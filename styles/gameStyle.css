@@ -1,0 +1,48 @@
+div {
+    border-style: solid;
+    border-color: black;
+}
+
+
+div.textOutput {
+    background-color: red;
+    position: absolute;
+    left: 50px;
+    top: 50px;
+    width: 1200px;
+    height: 550px;
+    padding: 5px;
+}
+
+
+div.sidebarMenu {
+    background-color: blue;
+    position: absolute;
+    left: 1300px;
+    top: 50px;
+    height: 720px;
+    width: 250px;
+    padding: 5px;
+}
+
+
+div.actionButtons {
+    background-color: green;
+    position: absolute;
+    left: 50px;
+    top: 620px;
+    width: 1200px;
+    height: 150px;
+    padding: 5px;
+}
+
+
+div.invStatToggle {
+    background-color: yellow;
+    position: absolute;
+    left: 1380px;
+    top: 20px;
+    height: 15px;
+    width: 100px;
+    padding: 5px;
+}
