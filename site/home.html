@@ -1,0 +1,70 @@
+ <!doctype html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title>Space Adventure</title>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,700,600' rel='stylesheet' type='text/css'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <link href="./styles/gameStyle.css" rel="stylesheet">
+        
+        <script>
+            var planet = "planet1";
+            var answers = "";
+            var depth = 1;
+            
+            $(window).on("load",function(){
+                loadscript();
+                $("#op-a").on("click",function(){
+                    answers += "a";
+                    depth += 1;
+                    loadscript();
+                });
+
+                $("#op-b").on("click",function(){
+                    answers += "b";
+                    depth += 1;
+                    loadscript();
+                });
+            });
+
+            //When the new planet is needed, edit planet and run loadscript()
+
+            function loadscript(){
+                var loc = "./prompts/" + planet + ".js" + "?" + Math.random();  
+                var head= document.getElementsByTagName('head')[0];
+                var script= document.createElement('script');
+                script.type= 'text/javascript';
+                script.src= loc;
+                head.appendChild(script);
+
+                $(script).on("load",function(){
+                    var promptdepth = "_" + depth + "_" + answers;
+                    $("#displayprompt").html(levels[promptdepth].prompt);
+                    $("#op-a").html(levels[promptdepth].a); 
+                    $("#op-b").html(levels[promptdepth].b);
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <div class="layoutMain" id="layoutLeft">
+            <div id="textOutput" class="layoutArea">
+                <div id="prompt">
+                    <p id="displayprompt">Welcome</p>
+                </div>
+            </div>
+            <div id="actionButtons" class="layoutArea">
+                <button class="btn" id="op-a">Begin</button>
+                <button class="btn" id="op-b">Quit</button>
+            </div>
+        </div>
+        <div id="layoutRight">
+            <div id="invStatToggle" class="layoutArea">
+                Toggle
+            </div>
+            <div id="sidebarMenu" class="layoutArea">
+                This is the sidebar that toggles stats and inventory
+            </div>
+        </div> 
+    </body>
+</html>
