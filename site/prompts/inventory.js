@@ -20,7 +20,7 @@ var equipment={
 //creates Equipment header
 var newPart=document.createElement("h2");
 newPart.appendChild(document.createTextNode("Equipment"));
-var area=document.getElementById("tester2");
+var area=document.getElementById("sidebarMenu");
 area.appendChild(newPart);
 //steps through the equipment array and "prints" out each piece of equipment
 for (var key in equipment){
@@ -28,13 +28,13 @@ for (var key in equipment){
 	newPart.appendChild(document.createTextNode(key));
 	newPart.appendChild(document.createTextNode(": "));
 	newPart.appendChild(document.createTextNode(equipment[key]));
-	var area=document.getElementById("tester2");
+	var area=document.getElementById("sidebarMenu");
 	area.appendChild(newPart);
 }
 //creates Inventory heeader
 var newPart=document.createElement("h2");
 newPart.appendChild(document.createTextNode("Inventory"));
-var area=document.getElementById("tester2");
+var area=document.getElementById("sidebarMenu");
 area.appendChild(newPart);
 //steps through each item in inventory array and "prints" them
 for (var key in inventory){
@@ -43,7 +43,7 @@ for (var key in inventory){
 	newPart.appendChild(document.createTextNode(": "));
 	temp=inventory[key];
 	newPart.appendChild(document.createTextNode(temp.count));
-	var area=document.getElementById("tester2");
+	var area=document.getElementById("sidebarMenu");
 	area.appendChild(newPart);
 }
 
