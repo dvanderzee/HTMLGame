@@ -42,7 +42,18 @@
                     $("#displayprompt").html(levels[promptdepth].prompt);
                     $("#op-a").html(levels[promptdepth].a); 
                     $("#op-b").html(levels[promptdepth].b);
+                    if (levels[promptdepth].item){
+                        alert("You Found An Item");
+                    }
+                    if (levels[promptdepth].game){
+                        alert("Start Game");
+                    }
+                    if (levels[promptdepth].newplanet){
+                        alert("New Planet");
+                    }
                 });
+
+                
             }
         </script>
     </head>
