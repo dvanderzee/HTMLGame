@@ -11,6 +11,7 @@
             var planet = "planet1";
             var answers = "";
             var depth = 1;
+            var showingStats = false;
             
             $(window).on("load",function(){
                 loadscript();
@@ -28,7 +29,7 @@
             });
 
             //When the new planet is needed, edit planet and run loadscript()
-
+  
             function loadscript(){
                 var loc = "./prompts/" + planet + ".js" + "?" + Math.random();  
                 var head= document.getElementsByTagName('head')[0];
@@ -53,8 +54,35 @@
                     }
                 });
 
+               
                 
             }
+            
+             //function to toggle between the stats and inventory menu when the toggle button is clicked
+            function toggle() {
+                var invOrStatScript = document.getElementById("statOrInv");
+                var toggleText = document.getElementById("invStatToggle");
+                if(showingStats) {
+                    invOrStatScript.src = "prompts/inventory.js";
+                    showingStats = false;
+                    toggleText.innerHTML = "Show Stats";
+                }
+                else if (showingStats == false) {
+                    invOrStatScript.src = "prompts/stat.js";
+                    showingStats = true;
+                    toggleText.innerHTML = "Show Inventory";
+                }
+                
+                
+                
+                else {
+                    console.log("Error");
+                    
+                }
+            
+            
+            }
+            
         </script>
     </head>
     <body>
@@ -70,11 +98,11 @@
             </div>
         </div>
         <div id="layoutRight">
-            <div id="invStatToggle" class="layoutArea">
-                Show Inventory
+            <div id="invStatToggle" class="layoutArea" onclick = "toggle()">
+                Show Stats
             </div>
             <div id="sidebarMenu" class="layoutArea">
-                <script type="text/javascript" src="prompts/inventory.js"></script>
+                <script id = "statOrInv" type="text/javascript" src="prompts/inventory.js"></script>
             </div>
         </div> 
     </body>

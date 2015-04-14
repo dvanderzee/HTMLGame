@@ -1,4 +1,4 @@
-
+console.log("Working");
 //will hold our base stats, unmodified at all
 var BaseStats={
 	Level:1,
@@ -94,5 +94,21 @@ function updateModifiedStats(){
 	ModifiedStats.MaxMP=BaseStats.MaxMP+5*BaseStats.Intelligence;
 }
 
+//creates Stats heeader
+var newPart=document.createElement("h2");
+newPart.appendChild(document.createTextNode("Stats"));
+var area=document.getElementById("sidebarMenu");
+area.appendChild(newPart);
+
+//steps through each item in ModifiedStat array and "prints" them
+for (var key in ModifiedStats){
+	var newPart=document.createElement("p");
+	newPart.appendChild(document.createTextNode(key));
+	newPart.appendChild(document.createTextNode(": "));
+	temp=ModifiedStats[key];
+	newPart.appendChild(document.createTextNode(temp));
+	var area=document.getElementById("sidebarMenu");
+	area.appendChild(newPart);
+}
 
 
