@@ -114,7 +114,16 @@ button{
     margin: 0 10px 10px 0;
     padding: 10px;
 }
-
+#statMenu {
+    width: 300px;
+    position: absolute;
+    right: 0;
+    top: 65px;
+    bottom: 0;
+    margin: 0 10px 10px 0;
+    padding: 10px;
+    display: none;
+}
 #invStatToggle {
     text-align: center;
     width: 150px;

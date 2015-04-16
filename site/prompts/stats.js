@@ -34,7 +34,7 @@ ModifiedStats.CurrentHP-=10;
 
 var newPart=document.createElement("h2");
 newPart.appendChild(document.createTextNode("Stats:"));
-var area=document.getElementById("tester");
+var area = document.getElementById("statMenu");
 area.appendChild(newPart);
 
 for (var key in ModifiedStats){
@@ -42,7 +42,7 @@ for (var key in ModifiedStats){
 	newPart.appendChild(document.createTextNode(key));
 	newPart.appendChild(document.createTextNode(": "));
 	newPart.appendChild(document.createTextNode(ModifiedStats[key]));
-	var area=document.getElementById("tester");
+	var area=document.getElementById("statMenu");
 	area.appendChild(newPart);
 }
 
@@ -50,7 +50,7 @@ LevelUp("Intelligence","Willpower")
 
 var newPart=document.createElement("h2");
 newPart.appendChild(document.createTextNode("Updated Stats:"));
-var area=document.getElementById("tester");
+var area=document.getElementById("statMenu");
 area.appendChild(newPart);
 
 for (var key in ModifiedStats){
@@ -58,7 +58,7 @@ for (var key in ModifiedStats){
 	newPart.appendChild(document.createTextNode(key));
 	newPart.appendChild(document.createTextNode(": "));
 	newPart.appendChild(document.createTextNode(ModifiedStats[key]));
-	var area=document.getElementById("tester");
+	var area=document.getElementById("statMenu");
 	area.appendChild(newPart);
 }
 
