@@ -46,21 +46,6 @@ for (var key in ModifiedStats){
 	area.appendChild(newPart);
 }
 
-LevelUp("Intelligence","Willpower")
-
-var newPart=document.createElement("h2");
-newPart.appendChild(document.createTextNode("Updated Stats:"));
-var area=document.getElementById("statMenu");
-area.appendChild(newPart);
-
-for (var key in ModifiedStats){
-	var newPart=document.createElement("p");
-	newPart.appendChild(document.createTextNode(key));
-	newPart.appendChild(document.createTextNode(": "));
-	newPart.appendChild(document.createTextNode(ModifiedStats[key]));
-	var area=document.getElementById("statMenu");
-	area.appendChild(newPart);
-}
 
 //function for levelling up. It assumes we only allow to stats to be increased per level
 //Also fully heals the character since that's fairly common
@@ -94,21 +79,5 @@ function updateModifiedStats(){
 	ModifiedStats.MaxMP=BaseStats.MaxMP+5*BaseStats.Intelligence;
 }
 
-//creates Stats heeader
-var newPart=document.createElement("h2");
-newPart.appendChild(document.createTextNode("Stats"));
-var area=document.getElementById("sidebarMenu");
-area.appendChild(newPart);
-
-//steps through each item in ModifiedStat array and "prints" them
-for (var key in ModifiedStats){
-	var newPart=document.createElement("p");
-	newPart.appendChild(document.createTextNode(key));
-	newPart.appendChild(document.createTextNode(": "));
-	temp=ModifiedStats[key];
-	newPart.appendChild(document.createTextNode(temp));
-	var area=document.getElementById("sidebarMenu");
-	area.appendChild(newPart);
-}
 
 
