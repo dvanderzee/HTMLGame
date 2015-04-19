@@ -37,6 +37,7 @@ newPart.appendChild(document.createTextNode("Stats:"));
 var area = document.getElementById("statMenu");
 area.appendChild(newPart);
 
+
 for (var key in ModifiedStats){
 	var newPart=document.createElement("p");
 	newPart.appendChild(document.createTextNode(key));
