@@ -87,7 +87,7 @@ button{
     margin: 10px;
     padding: 10px;
     position: absolute;
-    bottom: 110px;
+    bottom: 200px;
     top: 0;
     left: 0;
     right: 310px;
@@ -95,7 +95,7 @@ button{
 }
 
 #actionButtons {
-    height: 100px;
+    height: 180px;
     margin: 10px;
     padding: 10px;
     position: absolute;

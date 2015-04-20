@@ -3,6 +3,40 @@ var levels = {};
 //_1_ means the first question, _2_ is second, etc.
 //The letters after the question number indicate the history of choices to get to that point in the branch
 
+levels.dialogue = function() {
+	//Run dialogue based on location
+	switch (coord[0]) {
+		case 0:
+			switch (coord[1]) {
+				case 0:
+					levels.prompt = "prompt 1"
+					levels.a = "North"
+					levels.b = "Option B"
+					break
+				case 1:
+					levels.prompt = "prompt 2"
+					levels.a = "South"
+					levels.b = "Option B"
+					break
+			}
+			break
+		case 1:
+				switch (coord[1]) {
+					case 0:
+						levels.prompt = "prompt 2"
+						levels.a = "South"
+						levels.b = "Option B"
+						break
+					case 1:
+						levels.prompt = "prompt 2"
+						levels.a = "South"
+						levels.b = "Option B"
+						break
+				}
+			break
+	}
+	
+}
 levels._1_ = {
 	prompt: "Prompt 1",
 	a: "Option A",
