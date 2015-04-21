@@ -20,6 +20,7 @@ body {
 body, html {
     height: 100%;
     width: 100%;
+    overflow: hidden; 
 }
 
 #prompt {
@@ -86,7 +87,7 @@ button{
     margin: 10px;
     padding: 10px;
     position: absolute;
-    bottom: 110px;
+    bottom: 200px;
     top: 0;
     left: 0;
     right: 310px;
@@ -94,7 +95,7 @@ button{
 }
 
 #actionButtons {
-    height: 100px;
+    height: 180px;
     margin: 10px;
     padding: 10px;
     position: absolute;
@@ -114,13 +115,28 @@ button{
     margin: 0 10px 10px 0;
     padding: 10px;
 }
-
+#statMenu {
+    width: 300px;
+    position: absolute;
+    right: 0;
+    top: 65px;
+    bottom: 0;
+    margin: 0 10px 10px 0;
+    padding: 10px;
+    display: none;
+}
 #invStatToggle {
     text-align: center;
-    width: 100px;
+    width: 150px;
     position: absolute;
     right: 0;
     top: 0;
     margin: 10px;
     padding: 10px;
+    cursor: pointer;
+}
+
+#invStatToggle:hover {
+    background: #248BA4;
+    text-decoration: none;
 }

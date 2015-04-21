@@ -7,28 +7,46 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <link href="./styles/gameStyle.css" rel="stylesheet">
         
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        
         <script>
             var planet = "planet1";
             var answers = "";
             var depth = 1;
+            var showingStats = false;
+			var coord = [0,0];
             
             $(window).on("load",function(){
                 loadscript();
                 $("#op-a").on("click",function(){
+					console.log("button pressed");
+					
+					<!-- Check if the player has changed locations, and edit coordinates -->
+					switch (document.getElementById("op-a").innerHTML){
+						case "North":
+							console.log("north detected");
+							coord[0] ++;
+							console.log(coord[0]);
+							break
+						case "South":
+							coord[0] --;
+							break
+					}
+					
                     answers += "a";
                     depth += 1;
                     loadscript();
                 });
 
                 $("#op-b").on("click",function(){
-                    answers += "b";
+					answers += "b";
                     depth += 1;
                     loadscript();
                 });
             });
 
             //When the new planet is needed, edit planet and run loadscript()
-
+  
             function loadscript(){
                 var loc = "./prompts/" + planet + ".js" + "?" + Math.random();  
                 var head= document.getElementsByTagName('head')[0];
@@ -39,25 +57,66 @@
 
                 $(script).on("load",function(){
                     var promptdepth = "_" + depth + "_" + answers;
-                    $("#displayprompt").html(levels[promptdepth].prompt);
-                    $("#op-a").html(levels[promptdepth].a); 
-                    $("#op-b").html(levels[promptdepth].b);
-                    if (levels[promptdepth].item){
+					
+					<!-- Run the Dialogue function -->
+					levels.dialogue();
+					
+					<!-- Change display to the current prompt -->
+                    $("#displayprompt").html(levels.prompt);
+					
+					<!-- Change options to the current options -->
+                    $("#op-a").html(levels.a); 
+                    $("#op-b").html(levels.b);
+					
+					<!-- Will be used to add items, start Games and change Planets-->
+                    if (levels.item){
                         alert("You Found An Item");
                     }
-                    if (levels[promptdepth].game){
+                    if (levels.game){
                         alert("Start Game");
                     }
-                    if (levels[promptdepth].newplanet){
+                    if (levels.newplanet){
                         alert("New Planet");
                     }
                 });
 
+               
                 
             }
+            
+             //function to toggle between the stats and inventory menu when the toggle button is clicked
+            function toggle() {
+                var invDiv = document.getElementById("sidebarMenu");
+                var statDiv = document.getElementById("statMenu");
+                var toggleText = document.getElementById("invStatToggle");
+                if(showingStats) {
+                    statDiv.style.display = "none";
+                    invDiv.style.display = "block";
+                    showingStats = false;
+                    toggleText.innerHTML = "Show Stats";
+                    
+                }
+                else if (showingStats == false) {
+                    invDiv.style.display = "none";
+                    statDiv.style.display = "block";
+                    showingStats = true;
+                    toggleText.innerHTML = "Show Inventory";
+                }
+                
+                
+                
+                else {
+                    console.log("Error");
+                    
+                }
+            
+                
+            }
+            
         </script>
     </head>
     <body>
+        
         <div class="layoutMain" id="layoutLeft">
             <div id="textOutput" class="layoutArea">
                 <div id="prompt">
@@ -70,11 +129,14 @@
             </div>
         </div>
         <div id="layoutRight">
-            <div id="invStatToggle" class="layoutArea">
-                Toggle
+            <div id="invStatToggle" class="layoutArea" onclick = "toggle()">
+                Show Stats
             </div>
             <div id="sidebarMenu" class="layoutArea">
-                This is the sidebar that toggles stats and inventory
+                <script id = "invScript" type="text/javascript" src="prompts/inventory.js"></script>
+            </div>
+            <div id="statMenu" class ="layoutArea">
+                <script id = "statScript" type = "text/javascript" src = "prompts/stats.js"></script>
             </div>
         </div> 
     </body>
