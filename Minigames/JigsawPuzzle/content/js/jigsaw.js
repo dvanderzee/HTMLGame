@@ -21,6 +21,8 @@
 	// Load the puzzle image
     $('#puzzle-image').attr('src', imgPath);
 
+	// Configure the initial settings
+	
 	this.currentZoom = 1;
 	this.zoomScaleOnDrag = 1.125;
 	this.imgName = 'puzzle-image';
@@ -37,6 +39,8 @@
 	this.selectionGroup = undefined;
 	this.shadowWidth = 120;
 	this.shadowScale = 1.5;
+	
+	// Create the puzzle pieces
 	this.tiles = createTiles(this.tileWidth, this.tilesPerRow, this.tilesPerColumn, this.puzzleImage);
  };
  
@@ -89,52 +93,70 @@
 
 			// Add the piece to the array of puzzle pieces
 			tiles.push(tile);
+			// Add the piece's index to the index array
 			tileIndexes.push(tileIndexes.length);
 		}
 	}
 
-	// Loop through the puzzle pieces again now that the shapes have been created
+	// Loop through the puzzle pieces and randomize their order
 	for (var y = 0; y < tilesPerColumn; y++) {
 		for (var x = 0; x < tilesPerRow; x++) {
 
+			// Get random value between 0 and the number of remaining pieces
 			var index1 = Math.floor(Math.random() * tileIndexes.length);
+			// Find the randomly selected piece's index
 			var index2 = tileIndexes[index1];
+			// Get the puzzle piece
 			var tile = tiles[index2];
+			// Remove that piece's index from the remaining indexes
 			tileIndexes.splice(index1, 1);
 
+			// Calculate the position where the selected piece will be placed on the canvas
 			var position = view.center - 
 							new Point(tileWidth, tileWidth / 2) + 
 							new Point(tileWidth * (x * 2 + ((y % 2))), tileWidth  * y) -
 							new Point(puzzleImage.size.width, puzzleImage.size.height / 2);
 
+			// Convert the position to a cell position in the matrix layout
 			var cellPosition = new Point(
 				Math.round(position.x / tileWidth) + 1,
 				Math.round(position.y / tileWidth) + 1);
 
+			// Set the puzzle pieces position and cell position values
 			tile.position = cellPosition * tileWidth;
 			tile.cellPosition = cellPosition;                        
 		}
 	}
+	// Return the array of puzzle piece tiles
 	return tiles;
  }
  
 
 
  function getRandomShapes(width, height) {
- // PURPOSE: Create the random puzzle shapes
+ // PURPOSE: Create the random puzzle shapes.  The shape is determined by the values of the four tabs, one for each side of
+ //			the puzzle piece.  A tab value of 0 represents a flat side (border), a tab value of +1 indicates a male puzzle 
+ //			connector, and a tab value of -1 indicates a female puzzle connector.  Note, this function assigns random tab values
+ //			to the right and bottom sides of each puzzle piece, and then carries the shape over so the the left and top sides
+ //			of each piece correspond to the matching connector for the surrounding pieces.
+ //			For example) If a piece is assigned a right side tab value of +1, then the piece to the right is assigned a left side
+ //			tab value of -1 so that the pieces match up.
  // INPUT: The height and width of the puzzle in number of pieces
  // OUTPUT: An array of puzzle piece shapes
 	
 	var shapeArray = new Array();
 
+	// Loop through all of the puzzle pieces
 	for (var y = 0; y < height; y++) {
 		for (var x = 0; x < width; x++) {
 
+			// Initialize the tab values as undefined
 			var topTab = undefined;
 			var rightTab = undefined;
 			var bottomTab = undefined;
 			var leftTab = undefined;
 
+			// If the piece is a boarder piece set its border edge tab to 0
 			if (y == 0)
 				topTab = 0;
 
@@ -147,6 +169,7 @@
 			if (x == width - 1)
 				rightTab = 0;
 
+			// Add the puzzle shape to the shape array
 			shapeArray.push(
 				({
 					topTab: topTab,
@@ -158,34 +181,43 @@
 		}
 	}
 
+	// Loop through the puzzle pieces
 	for (var y = 0; y < height; y++) {
 		for (var x = 0; x < width; x++) {
-
+			//debugger;
+			// Find the puzzle piece's shape object in the shape array
 			var shape = shapeArray[y * width + x];
 			
+			// Get the shape of the piece to the right of this piece
 			var shapeRight = (x < width - 1) ? 
 				shapeArray[y * width + (x + 1)] : 
 				undefined;
 			
+			// Get the shape of the piece bellow this piece
 			var shapeBottom = (y < height - 1) ? 
 				shapeArray[(y + 1) * width + x] :
 				undefined;
 
+			// Determine the shape of the right side of this piece
 			shape.rightTab = (x < width - 1) ? 
 				Math.pow(-1, Math.floor(Math.random() * 2)) :
 				shape.rightTab;
 
+			// If there is a shape to the right of this piece, set the left side of it equal to the opposite shape of the right side of this piece
 			if (shapeRight)
 				shapeRight.leftTab = - shape.rightTab;
 			
+			// Determine the shape of the bottom side of this piece
 			shape.bottomTab = (y < height - 1) ? 
 				Math.pow(-1, Math.floor(Math.random() * 2)) :
 				shape.bottomTab;
 
+			// If there is a shape bellow this piece, set the top side of it equal to the opposite shape of the bottom side of this piece
 			if (shapeBottom)
 				shapeBottom.topTab = - shape.bottomTab;
 		}
 	}
+	// Return the array of puzzle piece shapes
 	return shapeArray;
 }
 
@@ -289,24 +321,33 @@
  
 
  JigsawPuzzle.prototype.pickTile = function() {
- // PURPOSE: 
+ // PURPOSE: Handle when the user clicks on a tile.  When this occurs the tile is scaled slightly larger to make it
+ //			clear that a tile is selected.  The tile is also ready to be dragged and dropped to place it in the puzzle
  // INPUT: None
- // OUTPUT: 
+ // OUTPUT: Game management - The selected tile is recorded
  
+	// Check if there is already a selected tile
 	if (this.selectedTile) {
+		// If the scale is not defined for the selected tile
 		if (!this.selectedTile.lastScale) {
+			// Set the scale to the appropriate level for a selected tile
 			this.selectedTile.lastScale = this.zoomScaleOnDrag;
 			this.selectedTile.scale(this.selectedTile.lastScale);
 		}
+		// Else if the scale is already defined then the user is trying to release this tile
 		else {
+			// Check if tile is scaled larger (tile is definitely selected)
 			if (this.selectedTile.lastScale > 1) {
+				// Release the tile
 				this.releaseTile();
 				return;
 			}
 		}
 
+		// Initialize the selected tile's cell position as undefined
 		this.selectedTile.cellPosition = undefined;
 
+		// Add the 
 		this.selectionGroup = new Group(this.selectedTile);
 
 		var pos = new Point(this.selectedTile.position.x, this.selectedTile.position.y);
@@ -467,51 +508,53 @@
 
 	return errors;
 }
-
- 
  
 view.currentScroll = new Point(0, 0);
 var scrollVector = new Point(0,0);
 var scrollMargin = 32;
 
-var puzzle = new JigsawPuzzle('content/images/Earth.png');
-puzzle.zoom(-.3);
 var path;
 var movePath = false;
 
-$('.zoomIn').click(function() {
-	puzzle.zoom(.1);
+	
+$(window).load(function() {
 });
 
-$('.zoomOut').click(function() {
-	puzzle.zoom(-.1);
-});
+console.log("Initializing JigsawPuzzle");
+ $(document).ready(function(){
+	console.log("Document Ready");
+	puzzle = new JigsawPuzzle('content/images/Earth.png');
+	puzzle.zoom(-.3);
+	
+	$('.zoomIn').click(function() {
+		puzzle.zoom(.1);
+	});
 
-$('.help').mousedown(function() {
-	if ($('.canvas').css('display') == 'none') {
-		$('.canvas').show();
-		$('.puzzle-image').hide();
-		$('.logo').hide();
-	}
-	else {
-		$('.canvas').hide();
-		$('.puzzle-image').show();
-		$('.logo').show();
-	}
-});
+	$('.zoomOut').click(function() {
+		puzzle.zoom(-.1);
+	});
 
-var charmsWidth = $('.charms').css('width').replace('px', '');
-$('.puzzle-image').css('margin', '-' + puzzle.imgHeight/2 + 'px 0 0 -' + puzzle.imgWidth/2 + 'px');
+	$('.help').click(function() {
+		$('.canvas').toggle();
+		$('.puzzle-image').toggle();
+	});
 
-debugger;
+	var charmsWidth = $('.charms').css('width').replace('px', '');
+	$('.puzzle-image').css('margin', '-' + puzzle.imgHeight/2 + 'px 0 0 -' + puzzle.imgWidth/2 + 'px');
+ });
+
+
+// Paper.js onMouseDown event handler
 function onMouseDown(event) {
 	puzzle.pickTile();
 }
 
+// Paper.js onMouseUp event handler
 function onMouseUp(event) {
 	puzzle.releaseTile();
 }
 
+// Paper.js onMouseMove event handler
 function onMouseMove(event) {
 	puzzle.mouseMove(event.point, event.delta);
 
@@ -523,6 +566,7 @@ function onMouseMove(event) {
 	}
 }
 
+// Paper.js onMouseDrag event handler
 function onMouseDrag(event) {
 	puzzle.dragTile(event.delta);
 }
