@@ -23,26 +23,83 @@ body, html {
     overflow: hidden; 
 }
 
+Main {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	padding: 10px 20px;
+	overflow: auto;
+	clear: both;
+}
+
+#layoutLeft {
+	float: left;
+	position: relative;
+	width: 75%;
+	height: 100%;
+}
+
+#layoutRight {
+	float: right;
+	position: relative;
+	width: 24%;
+	height:100%;
+}
+
+.layoutArea {
+    display: inline-block;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+}
+
+#textGame {
+	width: 100%;
+	height: 100%;
+}
+
+#miniGame {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+#textOutput {
+    padding: 10px;
+    position: relative;
+	width: 100%;
+	height: 80%;
+	margin-bottom: 5px;
+}
+
 #prompt {
     display: block;
+	position: relative;
     font-size: 20px;
-    left:50%;
-    top:50%;
     text-align: center;
-    margin: 200px auto 0px auto;
-    padding-top: 70px;
+	top: 45%;
+}
+
+#spacing {
+	position: relative;
+	height: 5%;
+	width: 100%;
+}
+
+#actionButtons {
+    height: 18%;
+	width: 100%;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+	margin-top: 5px;
 }
 
 button{
     display: inline-block;
     width: 45%;
-    height: 70px;
+    height: 90%;
     margin: 5px;
-}
-
-#options{
-    width: 100%;
-    text-align: center;
 }
 
 .btn {
@@ -63,80 +120,29 @@ button{
     text-decoration: none;
 }
 
-.layoutArea {
-    display: inline-block;
-    border-style: solid;
-    border-color: white;
-    border-width: 1px;
-}
-
-.layoutLeft {
-    overflow: auto;
-    height: 100%;
-}
-
-.layoutRight {
-    overflow: auto;
-}
-
-.layoutMain {
-    height: 100%;
-}
-
-#textOutput {
-    margin: 10px;
-    padding: 10px;
-    position: absolute;
-    bottom: 200px;
-    top: 0;
-    left: 0;
-    right: 310px;
-    min-width: 420px;
-}
-
-#actionButtons {
-    height: 180px;
-    margin: 10px;
-    padding: 10px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 310px;
-    text-align: center;
-    min-width: 420px;
-}
-
-#sidebarMenu {
-    width: 300px;
-    position: absolute;
-    right: 0;
-    top: 65px;
-    bottom: 0;
-    margin: 0 10px 10px 0;
-    padding: 10px;
-}
-#statMenu {
-    width: 300px;
-    position: absolute;
-    right: 0;
-    top: 65px;
-    bottom: 0;
-    margin: 0 10px 10px 0;
-    padding: 10px;
-    display: none;
-}
 #invStatToggle {
+	position: relative;
     text-align: center;
-    width: 150px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    margin: 10px;
+    width: 100%;
+	height: 6%;
     padding: 10px;
+	margin-bottom: 5px;
     cursor: pointer;
 }
 
 #invStatToggle:hover {
     background: #248BA4;
     text-decoration: none;
+}
+
+.sidebar {
+    width: 100%;
+	margin-top: 5px;
+    position: relative;
+	height:92%;
+    padding: 10px;
+}
+
+#statMenu {
+	display: none;
 }

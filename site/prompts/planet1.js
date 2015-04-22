@@ -65,7 +65,8 @@ levels._2_a = {
 levels._2_b = {
 	prompt: "Prompt 2_b",
 	a: "Option A",
-	b: "Option B"
+	b: "Option B",
+	game: "../Minigames/JigsawPuzzle/Puzzle.html"
 }
 
 levels._3_aa = {
@@ -97,7 +98,6 @@ levels._4_aaa = {
 	prompt: "Prompt 4_aaa",
 	a: "Option A",
 	b: "Option B",
-	game: true
 }
 
 levels._4_aab = {
