@@ -17,9 +17,6 @@
  // INPUT: divID - The id of the dom element to create the puzzle in
  //		   imgPath - The path to the image to construct the puzzle from
  // OUTPUT: Instantiates a JigsawPuzzle object
-	
-	// Load the puzzle image
-    $('#puzzle-image').attr('src', imgPath);
 
 	// Configure the initial settings
 	
@@ -234,7 +231,7 @@
  //		   tileWidth - The width of the puzzle piece
  //	OUTPUT: Returns the mask defining the piece's shape
  
-	var curvyCoords = [
+	var bezierCurves = [
 		  0, 0, 35, 15, 37, 5,
 		  37, 5, 40, 0, 38, -5,
 		  38, -5, 20, -20, 50, -20,
@@ -251,37 +248,37 @@
 	mask.moveTo(topLeftEdge);
 
 	//Top
-	for (var i = 0; i < curvyCoords.length / 6; i++) {
-		var p1 = topLeftEdge + new Point(curvyCoords[i * 6 + 0] * tileRatio, topTab * curvyCoords[i * 6 + 1] * tileRatio);
-		var p2 = topLeftEdge + new Point(curvyCoords[i * 6 + 2] * tileRatio, topTab * curvyCoords[i * 6 + 3] * tileRatio);
-		var p3 = topLeftEdge + new Point(curvyCoords[i * 6 + 4] * tileRatio, topTab * curvyCoords[i * 6 + 5] * tileRatio);
+	for (var i = 0; i < bezierCurves.length / 6; i++) {
+		var p1 = topLeftEdge + new Point(bezierCurves[i * 6 + 0] * tileRatio, topTab * bezierCurves[i * 6 + 1] * tileRatio);
+		var p2 = topLeftEdge + new Point(bezierCurves[i * 6 + 2] * tileRatio, topTab * bezierCurves[i * 6 + 3] * tileRatio);
+		var p3 = topLeftEdge + new Point(bezierCurves[i * 6 + 4] * tileRatio, topTab * bezierCurves[i * 6 + 5] * tileRatio);
 
 		mask.cubicCurveTo(p1, p2, p3);
 	}
 	//Right
 	var topRightEdge = topLeftEdge + new Point(tileWidth, 0);
-	for (var i = 0; i < curvyCoords.length / 6; i++) {
-		var p1 = topRightEdge + new Point(-rightTab * curvyCoords[i * 6 + 1] * tileRatio, curvyCoords[i * 6 + 0] * tileRatio);
-		var p2 = topRightEdge + new Point(-rightTab * curvyCoords[i * 6 + 3] * tileRatio, curvyCoords[i * 6 + 2] * tileRatio);
-		var p3 = topRightEdge + new Point(-rightTab * curvyCoords[i * 6 + 5] * tileRatio, curvyCoords[i * 6 + 4] * tileRatio);
+	for (var i = 0; i < bezierCurves.length / 6; i++) {
+		var p1 = topRightEdge + new Point(-rightTab * bezierCurves[i * 6 + 1] * tileRatio, bezierCurves[i * 6 + 0] * tileRatio);
+		var p2 = topRightEdge + new Point(-rightTab * bezierCurves[i * 6 + 3] * tileRatio, bezierCurves[i * 6 + 2] * tileRatio);
+		var p3 = topRightEdge + new Point(-rightTab * bezierCurves[i * 6 + 5] * tileRatio, bezierCurves[i * 6 + 4] * tileRatio);
 
 		mask.cubicCurveTo(p1, p2, p3);
 	}
 	//Bottom
 	var bottomRightEdge = topRightEdge + new Point(0, tileWidth);
-	for (var i = 0; i < curvyCoords.length / 6; i++) {
-		var p1 = bottomRightEdge - new Point(curvyCoords[i * 6 + 0] * tileRatio, bottomTab * curvyCoords[i * 6 + 1] * tileRatio);
-		var p2 = bottomRightEdge - new Point(curvyCoords[i * 6 + 2] * tileRatio, bottomTab * curvyCoords[i * 6 + 3] * tileRatio);
-		var p3 = bottomRightEdge - new Point(curvyCoords[i * 6 + 4] * tileRatio, bottomTab * curvyCoords[i * 6 + 5] * tileRatio);
+	for (var i = 0; i < bezierCurves.length / 6; i++) {
+		var p1 = bottomRightEdge - new Point(bezierCurves[i * 6 + 0] * tileRatio, bottomTab * bezierCurves[i * 6 + 1] * tileRatio);
+		var p2 = bottomRightEdge - new Point(bezierCurves[i * 6 + 2] * tileRatio, bottomTab * bezierCurves[i * 6 + 3] * tileRatio);
+		var p3 = bottomRightEdge - new Point(bezierCurves[i * 6 + 4] * tileRatio, bottomTab * bezierCurves[i * 6 + 5] * tileRatio);
 
 		mask.cubicCurveTo(p1, p2, p3);
 	}
 	//Left
 	var bottomLeftEdge = bottomRightEdge - new Point(tileWidth, 0);
-	for (var i = 0; i < curvyCoords.length / 6; i++) {
-		var p1 = bottomLeftEdge - new Point(-leftTab * curvyCoords[i * 6 + 1] * tileRatio, curvyCoords[i * 6 + 0] * tileRatio);
-		var p2 = bottomLeftEdge - new Point(-leftTab * curvyCoords[i * 6 + 3] * tileRatio, curvyCoords[i * 6 + 2] * tileRatio);
-		var p3 = bottomLeftEdge - new Point(-leftTab * curvyCoords[i * 6 + 5] * tileRatio, curvyCoords[i * 6 + 4] * tileRatio);
+	for (var i = 0; i < bezierCurves.length / 6; i++) {
+		var p1 = bottomLeftEdge - new Point(-leftTab * bezierCurves[i * 6 + 1] * tileRatio, bezierCurves[i * 6 + 0] * tileRatio);
+		var p2 = bottomLeftEdge - new Point(-leftTab * bezierCurves[i * 6 + 3] * tileRatio, bezierCurves[i * 6 + 2] * tileRatio);
+		var p3 = bottomLeftEdge - new Point(-leftTab * bezierCurves[i * 6 + 5] * tileRatio, bezierCurves[i * 6 + 4] * tileRatio);
 
 		mask.cubicCurveTo(p1, p2, p3);
 	}
@@ -416,6 +413,7 @@
 
 			var errors = this.checkTiles();
 			if (errors == 0) {
+				// Change this to signal to main window that the minigame was completed successfully
 				alert('Congratulations!!!');
 			}
 		}
@@ -516,14 +514,8 @@ var scrollMargin = 32;
 var path;
 var movePath = false;
 
-	
-$(window).load(function() {
-});
-
-console.log("Initializing JigsawPuzzle");
  $(document).ready(function(){
-	console.log("Document Ready");
-	puzzle = new JigsawPuzzle('content/images/Earth.png');
+	puzzle = new JigsawPuzzle();
 	puzzle.zoom(-.3);
 	
 	$('.zoomIn').click(function() {

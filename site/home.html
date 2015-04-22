@@ -43,6 +43,8 @@
                     depth += 1;
                     loadscript();
                 });
+				
+				window.addEventListener("message", miniGameResult, false);
             });
 
             //When the new planet is needed, edit planet and run loadscript()
@@ -62,82 +64,81 @@
 					levels.dialogue();
 					
 					<!-- Change display to the current prompt -->
-                    $("#displayprompt").html(levels.prompt);
+                    $("#displayprompt").html(levels[promptdepth].prompt);
 					
 					<!-- Change options to the current options -->
-                    $("#op-a").html(levels.a); 
-                    $("#op-b").html(levels.b);
+                    $("#op-a").html(levels[promptdepth].a); 
+                    $("#op-b").html(levels[promptdepth].b);
 					
 					<!-- Will be used to add items, start Games and change Planets-->
-                    if (levels.item){
+                    if (levels[promptdepth].item){
                         alert("You Found An Item");
                     }
-                    if (levels.game){
-                        alert("Start Game");
+                    if (levels[promptdepth].game){
+						var miniGame = document.createElement("iframe");
+						miniGame.id = "miniGame";
+						$(miniGame).attr('src', levels[promptdepth].game);
+						document.getElementById("layoutLeft").appendChild(miniGame);
+						$("#textGame").hide();
                     }
-                    if (levels.newplanet){
+                    if (levels[promptdepth].newplanet){
                         alert("New Planet");
                     }
                 });
-
-               
-                
             }
-            
+						
              //function to toggle between the stats and inventory menu when the toggle button is clicked
             function toggle() {
                 var invDiv = document.getElementById("sidebarMenu");
                 var statDiv = document.getElementById("statMenu");
                 var toggleText = document.getElementById("invStatToggle");
+				$(invDiv).toggle();
+				$(statDiv).toggle();
                 if(showingStats) {
-                    statDiv.style.display = "none";
-                    invDiv.style.display = "block";
                     showingStats = false;
                     toggleText.innerHTML = "Show Stats";
-                    
                 }
-                else if (showingStats == false) {
-                    invDiv.style.display = "none";
-                    statDiv.style.display = "block";
+                else {
                     showingStats = true;
                     toggleText.innerHTML = "Show Inventory";
                 }
-                
-                
-                
-                else {
-                    console.log("Error");
-                    
-                }
-            
-                
             }
+			
+			function miniGameResult(e) {
+				$("miniGame").hide();
+				$("#textGame").show();
+			}
             
         </script>
     </head>
     <body>
-        
-        <div class="layoutMain" id="layoutLeft">
-            <div id="textOutput" class="layoutArea">
-                <div id="prompt">
-                    <p id="displayprompt">Welcome</p>
-                </div>
-            </div>
-            <div id="actionButtons" class="layoutArea">
-                <button class="btn" id="op-a">Begin</button>
-                <button class="btn" id="op-b">Quit</button>
-            </div>
-        </div>
-        <div id="layoutRight">
-            <div id="invStatToggle" class="layoutArea" onclick = "toggle()">
-                Show Stats
-            </div>
-            <div id="sidebarMenu" class="layoutArea">
-                <script id = "invScript" type="text/javascript" src="prompts/inventory.js"></script>
-            </div>
-            <div id="statMenu" class ="layoutArea">
-                <script id = "statScript" type = "text/javascript" src = "prompts/stats.js"></script>
-            </div>
-        </div> 
+        <main> 
+			<div id="layoutLeft">
+				<div id="textGame">
+					<div id="textOutput" class="layoutArea">
+						<div id="prompt">
+							<p id="displayprompt">Welcome</p>
+						</div>
+					</div>
+					
+					<div id="actionButtons" class="layoutArea">
+						<button class="btn" id="op-a">Begin</button>
+						<button class="btn" id="op-b">Quit</button>
+					</div>
+				</div>
+				<!-- <iframe id="miniGame" src="../Minigames/JigsawPuzzle/Puzzle.html"></iframe> -->
+			</div>
+			<div id="layoutRight">
+				<div id="invStatToggle" class="layoutArea" onclick = "toggle()">
+					Show Stats
+				</div>
+				<div id="sidebarMenu" class="layoutArea sidebar">
+					<script id = "invScript" type="text/javascript" src="prompts/inventory.js"></script>
+				</div>
+				<div id="statMenu" class ="layoutArea sidebar">
+					<script id = "statScript" type = "text/javascript" src = "prompts/stats.js"></script>
+				</div>
+			</div> 
+		</main>
     </body>
 </html>
