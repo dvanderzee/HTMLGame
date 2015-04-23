@@ -15,39 +15,56 @@
             var depth = 1;
             var showingStats = false;
 			var coord = [0,0];
+			var game = false;
+			var gameList = {puzzle:false, hacking:false, src:""};
             
             $(window).on("load",function(){
                 loadscript();
                 $("#op-a").on("click",function(){
-					console.log("button pressed");
 					
 					<!-- Check if the player has changed locations, and edit coordinates -->
 					switch (document.getElementById("op-a").innerHTML){
+						<!-- If the player travels North -->
 						case "North":
-							console.log("north detected");
 							coord[0] ++;
-							console.log(coord[0]);
 							break
+						<!-- If the player travels South -->
 						case "South":
 							coord[0] --;
 							break
+						case "Exit":
+							game = false;
+							break
 					}
-					
-                    answers += "a";
-                    depth += 1;
-                    loadscript();
+					loadscript();
                 });
 
                 $("#op-b").on("click",function(){
-					answers += "b";
-                    depth += 1;
+					switch (document.getElementById("op-b").innerHTML){
+						<!-- If the player travels North -->
+						case "North":
+							coord[0] ++;
+							break
+							
+						<!-- If the player travels South -->
+						case "South":
+							coord[0] --;
+							break
+						
+						<!-- If the player activates a computer to hack. -->
+						case "Computer":
+							gameList.hacking = true;
+							game = true;
+							console.log(game, gameList.hacking, "game value when computer is pressed")
+							break
+					}
                     loadscript();
                 });
 				
 				window.addEventListener("message", miniGameResult, false);
             });
 
-            //When the new planet is needed, edit planet and run loadscript()
+            <!-- When the new planet is needed, edit planet and run loadscript() -->
   
             function loadscript(){
                 var loc = "./prompts/" + planet + ".js" + "?" + Math.random();  
@@ -60,34 +77,54 @@
                 $(script).on("load",function(){
                     var promptdepth = "_" + depth + "_" + answers;
 					
+					<!-- If a game is exited, set the game specific boolean to false -->
+					if (game == false) {
+						gameList.hacking = false;
+						gameList.puzzle = false;
+						$("#miniGame").remove();
+					}					
+					
 					<!-- Run the Dialogue function -->
 					levels.dialogue();
 					
 					<!-- Change display to the current prompt -->
-                    $("#displayprompt").html(levels[promptdepth].prompt);
+                    $("#displayprompt").html(levels.prompt);
 					
 					<!-- Change options to the current options -->
-                    $("#op-a").html(levels[promptdepth].a); 
-                    $("#op-b").html(levels[promptdepth].b);
+                    $("#op-a").html(levels.a); 
+                    $("#op-b").html(levels.b);
 					
 					<!-- Will be used to add items, start Games and change Planets-->
-                    if (levels[promptdepth].item){
+                    if (levels.item){
                         alert("You Found An Item");
                     }
-                    if (levels[promptdepth].game){
+					
+                    if (game){
+					
+						<!-- Determine the game to be run, and set the src -->
+						for (var prop in gameList){
+							switch (gameList[prop]) {
+								case false:
+									break
+								case true:
+									gameList.src = prop;
+							}
+						}
+						
 						var miniGame = document.createElement("iframe");
 						miniGame.id = "miniGame";
-						$(miniGame).attr('src', levels[promptdepth].game);
+						$(miniGame).attr('src', gameList.src);
 						document.getElementById("layoutLeft").appendChild(miniGame);
-						$("#textGame").hide();
+						$("#textoutput").hide();
                     }
-                    if (levels[promptdepth].newplanet){
+					
+                    if (levels.newplanet){
                         alert("New Planet");
                     }
                 });
             }
 						
-             //function to toggle between the stats and inventory menu when the toggle button is clicked
+             <!-- function to toggle between the stats and inventory menu when the toggle button is clicked -->
             function toggle() {
                 var invDiv = document.getElementById("sidebarMenu");
                 var statDiv = document.getElementById("statMenu");

@@ -25,7 +25,7 @@ levels.dialogue = function() {
 				// Coord [-1,0]
 				switch (coord[1]) {
 					case 0:						
-						if (computer == true){
+						if (gameList.hacking == true){
 							console.log("You have activated the computer")
 							levels.prompt = "You approach the computer and turn it on."
 							levels.a = "Exit"
