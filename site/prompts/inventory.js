@@ -33,20 +33,29 @@ function inventmain(){
 		var cellvalue=row.insertCell();
 		cellname.style.width="70px";
 		cellvalue.style.textAlign="right";
-		
 		cellname.innerHTML=key;
-		var btn=document.createElement("div");
-		btn.className="smallbtn";
+		
 		if (equipment[key]==="empty"){
-			btn.innerHTML="[empty]";
-			cellvalue.appendChild(btn);
+			cellvalue.innerHTML="[empty]";
 		}else{
+			cellvalue.innerHTML=equipment[key].name;
+			var btn=document.createElement("div");
+			btn.className="smallbtn";
+			btn.innerHTML="unequip";
+			btn.onclick=function(){
+				equipment[key]="empty";
+				this.parentNode.innerHTML="[empty]";
+			}
+			cellvalue.appendChild(btn);
+			/*var btn=document.createElement("div");
+			btn.className="smallbtn";
 			btn.innerHTML=equipment[key].name;
 			btn.onclick=function(){
 				equipment[key]="empty";
-				this.innerHTML="[empty]";
+				this.parentNode.innerHTML="[empty]";
 			}
 			cellvalue.appendChild(btn);
+			*/
 		}
 		cellvalue.id=key;
 	}
@@ -67,6 +76,16 @@ function inventmain(){
 		
 		cellname.innerHTML=inventory[key].name;
 		cellvalue.innerHTML=inventory[key].count;
+		if (inventory[key].name!="Gold"){
+			var btn=document.createElement("div");
+			btn.className="smallbtn";
+			btn.innerHTML="drop";
+			btn.onclick=function(){
+				this.parentNode.parentNode.parentNode.deleteRow(key);
+			}
+			cellvalue.appendChild(btn);
+		}
+		
 		cellvalue.id="items"+key;
 	}
 	area.appendChild(mytable);
