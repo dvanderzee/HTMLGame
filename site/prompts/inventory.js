@@ -2,10 +2,10 @@
 
 //Initiates the players inventory, giving a few starting things; global access
 var inventory=[
-	{name:"Shirt",type:"Armor",count:1},
-	{name:"Spatula",type:"Weapon",count:1},
-	{name:"Chef Hat",type:"Helmet",count:1},
-	{name:"Gold",type:"Currency",count:100}
+	{name:"Shirt",type:"Armor",count:1,description:"simple shirt"},
+	{name:"Spatula",type:"Weapon",count:1,description:"cooking spatula"},
+	{name:"Chef Hat",type:"Helmet",count:1,description:"cook's har"},
+	{name:"Gold",type:"Currency",count:100,description:"really?"}
 ];
 
 //initializes the equipment area; global access
@@ -31,16 +31,24 @@ function inventmain(){
 		var row=mytable.insertRow();
 		var cellname=row.insertCell();
 		var cellvalue=row.insertCell();
-		cellname.style.width="100px";
+		cellname.style.width="70px";
 		cellvalue.style.textAlign="right";
 		
 		cellname.innerHTML=key;
+		var btn=document.createElement("div");
+		btn.className="smallbtn";
 		if (equipment[key]==="empty"){
-			cellvalue.innerHTML="[empty]";
+			btn.innerHTML="[empty]";
+			cellvalue.appendChild(btn);
 		}else{
-			cellvalue.innerHTML=equipment[key].name;
+			btn.innerHTML=equipment[key].name;
+			btn.onclick=function(){
+				equipment[key]="empty";
+				this.innerHTML="[empty]";
+			}
+			cellvalue.appendChild(btn);
 		}
-		cellvalue.id="equip"+key;
+		cellvalue.id=key;
 	}
 	area.appendChild(mytable);
 
@@ -55,7 +63,6 @@ function inventmain(){
 		var row=mytable.insertRow();
 		var cellname=row.insertCell();
 		var cellvalue=row.insertCell();
-		cellname.style.width="100px";
 		cellvalue.style.textAlign="right";
 		
 		cellname.innerHTML=inventory[key].name;
