@@ -14,41 +14,39 @@
             var answers = "";
             var depth = 1;
             var showingStats = false;
-			var coord = [0,0];
 			var game = false;
 			var gameList = {puzzle:false, hacking:false, src:""};
             
             $(window).on("load",function(){
                 loadscript();
                 $("#op-a").on("click",function(){
-					
 					<!-- Check if the player has changed locations, and edit coordinates -->
 					switch (document.getElementById("op-a").innerHTML){
 						<!-- If the player travels North -->
 						case "North":
-							coord[0] ++;
+							levels.coord[0] ++;
 							break
 						<!-- If the player travels South -->
 						case "South":
-							coord[0] --;
+							levels.coord[0] --;
 							break
 						case "Exit":
 							game = false;
 							break
 					}
-					loadscript();
+					update();
                 });
 
                 $("#op-b").on("click",function(){
 					switch (document.getElementById("op-b").innerHTML){
 						<!-- If the player travels North -->
 						case "North":
-							coord[0] ++;
+							levels.coord[0] ++;
 							break
 							
 						<!-- If the player travels South -->
 						case "South":
-							coord[0] --;
+							levels.coord[0] --;
 							break
 						
 						<!-- If the player activates a computer to hack. -->
@@ -58,7 +56,7 @@
 							console.log(game, gameList.hacking, "game value when computer is pressed")
 							break
 					}
-                    loadscript();
+                    update();
                 });
 				
 				window.addEventListener("message", miniGameResult, false);
@@ -72,10 +70,11 @@
                 var script= document.createElement('script');
                 script.type= 'text/javascript';
                 script.src= loc;
-                head.appendChild(script);
-
-                $(script).on("load",function(){
-                    var promptdepth = "_" + depth + "_" + answers;
+                head.appendChild(script);   
+				
+            }
+			
+			function update(){
 					
 					<!-- If a game is exited, set the game specific boolean to false -->
 					if (game == false) {
@@ -121,8 +120,8 @@
                     if (levels.newplanet){
                         alert("New Planet");
                     }
-                });
-            }
+                
+			}
 						
              <!-- function to toggle between the stats and inventory menu when the toggle button is clicked -->
             function toggle() {
