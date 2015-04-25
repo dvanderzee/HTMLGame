@@ -33,7 +33,6 @@ function statsmain(){
 		var cellvalue=row.insertCell();
 		cellname.style.width="100px";
 		cellvalue.style.textAlign="right";
-		
 		cellname.innerHTML=key;
 		cellvalue.innerHTML=BaseStats[key];
 		cellvalue.id="stats"+key;
