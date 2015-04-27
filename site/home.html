@@ -13,13 +13,19 @@
             var planet = "planet1";
             var answers = "";
             var depth = 1;
+			var loc = "_1_";
             var showingStats = false;
 			var game = false;
 			var gameList = {puzzle:false, hacking:false, src:""};
             
             $(window).on("load",function(){
+			
+				window.addEventListener("message", miniGameResult, false);
                 loadscript();
-                $("#op-a").on("click",function(){
+				//update2(loc);
+				
+                /* Devon's Stuff
+				$("#op-a").on("click",function(){
 					<!-- Check if the player has changed locations, and edit coordinates -->
 					switch (document.getElementById("op-a").innerHTML){
 						<!-- If the player travels North -->
@@ -59,21 +65,62 @@
                     update();
                 });
 				
-				window.addEventListener("message", miniGameResult, false);
+				
+				// Old style that I updated
+				$("#op-a").on("click",function(){
+						newLoc = levels[loc].a_go;
+						update2(newLoc);
+                });
+
+                $("#op-b").on("click",function(){
+						newLoc = levels[loc].b_go;
+						update2(newLoc);
+				});
+				*/
             });
 
             <!-- When the new planet is needed, edit planet and run loadscript() -->
   
             function loadscript(){
-                var loc = "./prompts/" + planet + ".js" + "?" + Math.random();  
+                var src = "./prompts/" + planet + ".js" + "?" + Math.random();  
                 var head= document.getElementsByTagName('head')[0];
                 var script= document.createElement('script');
                 script.type= 'text/javascript';
-                script.src= loc;
-                head.appendChild(script);   
-				
+                script.src= src;
+                head.appendChild(script);  
+
+				$(script).on("load",function(){
+					update2(loc);
+					// Old style that I updated
+					$("#op-a").on("click",function(){
+						newLoc = levels[loc].a_go;
+						update2(newLoc);
+					});
+
+					$("#op-b").on("click",function(){
+						newLoc = levels[loc].b_go;
+						update2(newLoc);
+					});
+                });
             }
 			
+			function update2(newLoc) {
+				loc = newLoc;
+				if (levels[loc].game) {
+					var miniGame = document.createElement("iframe");
+					miniGame.id = "miniGame";
+					$(miniGame).attr('src', levels[loc].game);
+					document.getElementById("layoutLeft").appendChild(miniGame);
+					$("#textGame").hide();
+				}
+				else {
+					$("#displayprompt").html(levels[newLoc].prompt);
+					$("#op-a").html(levels[newLoc].a); 
+					$("#op-b").html(levels[newLoc].b);
+				}
+			}
+			
+			/* Devon's update function
 			function update(){
 					
 					<!-- If a game is exited, set the game specific boolean to false -->
@@ -99,20 +146,17 @@
                     }
 					
                     if (game){
-					
 						<!-- Determine the game to be run, and set the src -->
+						var gameSrc;
 						for (var prop in gameList){
-							switch (gameList[prop]) {
-								case false:
-									break
-								case true:
-									gameList.src = "../Minigames/" + prop;
+							if(gameList[prop]) {
+								gameSrc = "../Minigames/" + prop;
 							}
 						}
 						
 						var miniGame = document.createElement("iframe");
 						miniGame.id = "miniGame";
-						$(miniGame).attr('src', gameList.src);
+						$(miniGame).attr('src', gameSrc);
 						document.getElementById("layoutLeft").appendChild(miniGame);
 						$("#textoutput").hide();
                     }
@@ -122,6 +166,7 @@
                     }
                 
 			}
+			*/
 						
              <!-- function to toggle between the stats and inventory menu when the toggle button is clicked -->
             function toggle() {
@@ -140,9 +185,11 @@
                 }
             }
 			
-			function miniGameResult(e) {
-				$("miniGame").hide();
+			function miniGameResult(e) {			
+				console.log(e.data);
+				$("#miniGame").hide();
 				$("#textGame").show();
+				update2(levels[loc].success);
 			}
             
         </script>
@@ -162,7 +209,6 @@
 						<button class="btn" id="op-b">Quit</button>
 					</div>
 				</div>
-				<!-- <iframe id="miniGame" src="../Minigames/JigsawPuzzle/Puzzle.html"></iframe> -->
 			</div>
 			<div id="layoutRight">
 				<div id="invStatToggle" class="layoutArea" onclick = "toggle()">

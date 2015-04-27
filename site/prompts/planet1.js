@@ -1,8 +1,8 @@
-var levels = {coord:[0,0]};
+var levels = {};//= {coord:[0,0]};
 
 //_1_ means the first question, _2_ is second, etc.
 //The letters after the question number indicate the history of choices to get to that point in the branch
-
+/*
 levels.dialogue = function() {
 	//Run dialogue based on location
 	switch (levels.coord[0]) {
@@ -43,44 +43,66 @@ levels.dialogue = function() {
 			switch (levels.coord[1]) {
 				// Coord [1,0]
 				case 0:
-					levels.prompt = "You enter the shuttle bay, and see your ship has been moved onto one of the docks now that repairs are complete.<p> To the south is the entrance to the mech station where your ship was repaired."
+					levels.prompt = "You enter the shuttle bay, and see your ship has been moved onto one of the docks now that repairs are complete.\
+					<p> To the south is the entrance to the mech station where your ship was repaired."
 					levels.a = "South"
 					levels.b = "Enter Ship"
 			}
 	}
 	
 }
-
+*/
 levels._1_ = {
-	prompt: "Prompt 1",
-	a: "Option A",
-	b: "Option B"
+	prompt: "You've been waiting in the mechanics bay of this space station for 3 hours while a crew inspects your ship.  \
+	A number of systems have been malfunctioning, and you wanted it repaired before you began your journey in Sector 17. \
+	Finally a mechanic walks through the door. <p>\"So here's the deal Marc.  We've repaired most every system you reported issues with, \
+	as well as recalibrating your navigation systems. The biggest problem is with your stellar map. We had to replace the entire console. \
+	The new one is all installed, but it doesn't have all of the map files your old one had. You'll have to load in the files currently \
+	available for this system.\"",
+	a: "North",
+	a_go: "_2_",
+	b: "South",
+	b_go: "_3_"
 }
 
-levels._2_a = {
-	prompt: "Prompt 2_a",
-	a: "Option A",
-	b: "Option B"
+levels._2_ = {
+	prompt: "You enter the shuttle bay, and see your ship has been moved onto one of the docks now that repairs are complete.\
+	<p> To the south is the entrance to the mech station where your ship was repaired.",
+	a: "South",
+	a_go: "_1_",
+	b: "Enter Ship",
+	b_go: "_4_"
 }
 
-levels._2_b = {
-	prompt: "Prompt 2_b",
+levels._3_ = {
+	prompt: "Leaving the mech station through the door to the south you enter a room filled with computers. \
+	Most likely you can find the file you need stored on one of the computers.<p>To the north there is a door leading back into the mech station.",
+	a: "North",
+	a_go: "_1_",
+	b: "Computer",
+	b_go: "_3_a"
+}
+
+levels._3_a = {
+	prompt: "You approach the computer and turn it on.",
+	a: "Exit",
+	a_go: "",
+	b: "Activate Minigame",
+	b_go: "_3_minigame"
+}
+
+levels._3_minigame = {
+	game: "../Minigames/JigsawPuzzle/Puzzle.html",
+	success: "_3_success",
+	fail: "_3_fail"
+}
+
+levels._3_success = {
+	prompt: "You completed the minigame!",
 	a: "Option A",
+	a_go: "",
 	b: "Option B",
-	game: "../Minigames/JigsawPuzzle/Puzzle.html"
-}
-
-levels._3_aa = {
-	prompt: "Prompt 3_aa",
-	a: "Option A",
-	b: "Option B",
-	item: "item1"
-}
-
-levels._3_ab = {
-	prompt: "Prompt 3_ab",
-	a: "Option A",
-	b: "Option B"
+	b_go: ""
 }
 
 levels._3_ba = {
