@@ -15,8 +15,11 @@
             var depth = 1;
             var showingStats = false;
 			var coord = [0,0];
-            
+			
             $(window).on("load",function(){
+				
+				window.addEventListener("message", miniGameResult, false);
+			
                 loadscript();
                 $("#op-a").on("click",function(){
 					console.log("button pressed");
@@ -43,8 +46,6 @@
                     depth += 1;
                     loadscript();
                 });
-				
-				window.addEventListener("message", miniGameResult, false);
             });
 
             //When the new planet is needed, edit planet and run loadscript()
@@ -104,9 +105,10 @@
                 }
             }
 			
-			function miniGameResult(e) {
-				$("miniGame").hide();
-				$("#textGame").show();
+			function miniGameResult(e) {			
+				console.log(e.data);
+				//$("miniGame").hide();
+				//$("#textGame").show();
 			}
             
         </script>

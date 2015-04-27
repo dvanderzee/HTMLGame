@@ -12,14 +12,13 @@
  */
  
  // This is the constructor for a JigsawPuzzle object
- var JigsawPuzzle = function(imgPath) {
+ var JigsawPuzzle = function() {
  // PURPOSE: Construct a JigsawPuzzle object
  // INPUT: divID - The id of the dom element to create the puzzle in
  //		   imgPath - The path to the image to construct the puzzle from
  // OUTPUT: Instantiates a JigsawPuzzle object
 
 	// Configure the initial settings
-	
 	this.currentZoom = 1;
 	this.zoomScaleOnDrag = 1.125;
 	this.imgName = 'puzzle-image';
@@ -181,7 +180,6 @@
 	// Loop through the puzzle pieces
 	for (var y = 0; y < height; y++) {
 		for (var x = 0; x < width; x++) {
-			//debugger;
 			// Find the puzzle piece's shape object in the shape array
 			var shape = shapeArray[y * width + x];
 			
@@ -415,6 +413,7 @@
 			if (errors == 0) {
 				// Change this to signal to main window that the minigame was completed successfully
 				alert('Congratulations!!!');
+				parent.postMessage({'success':true}, "*");
 			}
 		}
 	}
@@ -534,7 +533,6 @@ var movePath = false;
 	var charmsWidth = $('.charms').css('width').replace('px', '');
 	$('.puzzle-image').css('margin', '-' + puzzle.imgHeight/2 + 'px 0 0 -' + puzzle.imgWidth/2 + 'px');
  });
-
 
 // Paper.js onMouseDown event handler
 function onMouseDown(event) {
