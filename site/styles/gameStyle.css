@@ -95,11 +95,35 @@ Main {
 	margin-top: 5px;
 }
 
+#movementButtons {
+    height: 18%;
+	width: 100%;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+	margin-top: 5px;
+}
+
 button{
     display: inline-block;
-    width: 45%;
+	width: 45%;
     height: 90%;
     margin: 5px;
+}
+
+.mvbtn {
+    -webkit-border-radius: 10;
+    -moz-border-radius: 10;
+	width: 40%;
+    height: 90%;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 15px;
+    background-color: rgba(0,0,0,0);
+    padding: 10px 20px 10px 20px;
+    border: solid #ffffff 2px;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .btn {
@@ -135,6 +159,11 @@ button{
     text-decoration: none;
 }
 
+.mvbtn:hover {
+    background: #248BA4;
+    text-decoration: none;
+}
+
 #invStatToggle {
 	position: relative;
     text-align: center;
@@ -154,7 +183,7 @@ button{
     width: 100%;
 	margin-top: 5px;
     position: relative;
-	height:92%;
+	height:72%;
     padding: 10px;
 }
 

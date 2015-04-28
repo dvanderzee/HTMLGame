@@ -13,10 +13,11 @@
             var planet = "planet1";
             var answers = "";
             var depth = 1;
-			var loc = "_1_";
+			var loc = "_1_a";
             var showingStats = false;
 			var game = false;
 			var gameList = {puzzle:false, hacking:false, src:""};
+			var cardinal = ["north", "east", "west", "south"];
             
             $(window).on("load",function(){
 			
@@ -91,15 +92,58 @@
 
 				$(script).on("load",function(){
 					update2(loc);
+					/*for (dir in cardinal) {
+						var dir_go = cardinal[dir] + "_go";
+						console.log(dir_go);
+						console.log(levels[loc]);
+						console.log(levels[loc].dir_go);
+						if (!(levels[loc].dir_go)) {
+							//console.log("turn", cardinal[dir], "off");
+							$("#" + cardinal[dir]).toggle();
+						} else {
+							//console.log("turn", cardinal[dir], "on");
+							$("#" + cardinal[dir]).toggle();
+						}
+					}*/
 					// Old style that I updated
+					$("#north").on("click",function(){
+						if (levels[loc].north_go){
+						newLoc = levels[loc].north_go;
+						update2(newLoc);
+						}
+					});
+
+					$("#east").on("click",function(){
+						if (levels[loc].east_go){
+						newLoc = levels[loc].east_go;
+						update2(newLoc);
+						}
+					});
+					$("#west").on("click",function(){
+						if (levels[loc].west_go){
+						newLoc = levels[loc].west_go;
+						update2(newLoc);
+						}
+					});
+
+					$("#south").on("click",function(){
+						if (levels[loc].south_go){
+						newLoc = levels[loc].south_go;
+						update2(newLoc);
+						}
+					});
 					$("#op-a").on("click",function(){
+						if (levels[loc].a_go){
 						newLoc = levels[loc].a_go;
 						update2(newLoc);
+						}
 					});
 
 					$("#op-b").on("click",function(){
+						if (levels[loc].b_go){
 						newLoc = levels[loc].b_go;
 						update2(newLoc);
+						}
 					});
                 });
             }
@@ -219,6 +263,15 @@
 				</div>
 				<div id="statMenu" class ="layoutArea sidebar">
 					<script id = "statScript" type = "text/javascript" src = "prompts/stats.js"></script>
+				</div>
+				<div id="movementButtons" class="layoutArea sidebar">
+					<p>
+						<button class="mvbtn" id="north">North</button>
+						<button class="mvbtn" id="east">East</button>
+					</p><p>
+						<button class="mvbtn" id="west">West</button>
+						<button class="mvbtn" id="south">South</button>
+					</p>
 				</div>
 			</div> 
 		</main>
