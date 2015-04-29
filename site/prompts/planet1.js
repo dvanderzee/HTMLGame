@@ -81,7 +81,7 @@ levels._1_a = {
 levels._1_b = {
 	prompt: "You approach the mechanic again, and ask him where you might find the files you need. <p>\"Listen buddy, that's not really my domain. \
 	Check out the computers in the room south a' here.  If you got access to 'em then the files you need are on there.\"",
-	a: "continue",
+	a: "Continue",
 	a_go: "_1_",
 	b: "Explore",
 	b_go: "_1_c",
@@ -108,7 +108,6 @@ levels._2_ = {
 	south_go: "_1_",
 	b: "Enter Ship",
 	b_go: "_4_",
-	east_go: "_4_",
 }
 
 levels._3_ = {

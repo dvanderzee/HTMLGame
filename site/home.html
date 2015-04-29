@@ -15,8 +15,6 @@
             var depth = 1;
 			var loc = "_1_a";
             var showingStats = false;
-			var game = false;
-			var gameList = {puzzle:false, hacking:false, src:""};
 			var cardinal = ["north", "east", "west", "south"];
             
             $(window).on("load",function(){
@@ -92,21 +90,19 @@
 
 				$(script).on("load",function(){
 					update2(loc);
-					/*for (dir in cardinal) {
-						var dir_go = cardinal[dir] + "_go";
-						console.log(dir_go);
-						console.log(levels[loc]);
-						console.log(levels[loc].dir_go);
-						if (!(levels[loc].dir_go)) {
-							//console.log("turn", cardinal[dir], "off");
-							$("#" + cardinal[dir]).toggle();
-						} else {
-							//console.log("turn", cardinal[dir], "on");
-							$("#" + cardinal[dir]).toggle();
-						}
-					}*/
+					
 					// Old style that I updated
-					$("#north").on("click",function(){
+					//Button Click functionality
+					$("button").on("click",function(){
+						console.log(loc);
+						var id = this.id;
+						var dir_go = id + "_go";
+						if (levels[loc][dir_go]){
+							newLoc = levels[loc][dir_go];
+							update2(newLoc);
+						}
+					});
+					/*$("#north").on("click",function(){
 						if (levels[loc].north_go){
 						newLoc = levels[loc].north_go;
 						update2(newLoc);
@@ -144,12 +140,26 @@
 						newLoc = levels[loc].b_go;
 						update2(newLoc);
 						}
-					});
+					});*/
                 });
             }
 			
 			function update2(newLoc) {
 				loc = newLoc;
+				
+				//Toggle Directional keys as needed.
+				for (dir in cardinal) {
+						var dir_go = cardinal[dir] + "_go";
+						if (!(levels[loc][dir_go])) {
+							console.log("turn", cardinal[dir], "off");
+							$("#" + cardinal[dir]).hide();
+						} else {
+							console.log("turn", cardinal[dir], "on");
+							$("#" + cardinal[dir]).show();
+						}
+					}
+					
+				//If the location runs a game, find the file and append the game screen
 				if (levels[loc].game) {
 					var miniGame = document.createElement("iframe");
 					miniGame.id = "miniGame";
@@ -157,10 +167,12 @@
 					document.getElementById("layoutLeft").appendChild(miniGame);
 					$("#textGame").hide();
 				}
+				
+				//Otherwise, update the prompt and options.
 				else {
 					$("#displayprompt").html(levels[newLoc].prompt);
-					$("#op-a").html(levels[newLoc].a); 
-					$("#op-b").html(levels[newLoc].b);
+					$("#a").html(levels[newLoc].a); 
+					$("#b").html(levels[newLoc].b);
 				}
 			}
 			
@@ -249,8 +261,8 @@
 					</div>
 					
 					<div id="actionButtons" class="layoutArea">
-						<button class="btn" id="op-a">Begin</button>
-						<button class="btn" id="op-b">Quit</button>
+						<button class="btn" id="a">Begin</button>
+						<button class="btn" id="b">Quit</button>
 					</div>
 				</div>
 			</div>
