@@ -104,45 +104,46 @@ levels._1_c = {
 levels._2_ = {
 	prompt: "You enter the shuttle bay, and see your ship has been moved onto one of the docks now that repairs are complete.\
 	<p> To the south is the entrance to the mech station where your ship was repaired.",
-	a: "South",
-	south_go: "_1_",
 	b: "Enter Ship",
-	b_go: "_4_",
+	b_go: "_2_a",
+	
+	south_go: "_1_",
+}
+
+levels._2_a = {
+	prompt: "You enter your ship.  Looking around, you see the damaged console the mechanic was referring to.  Unfortunately you still don't have the map you need.",
+	
+	a: "Leave Ship",
+	a_go: "_2_",
 }
 
 levels._3_ = {
 	prompt: "Leaving the mech station through the door to the south you enter a room filled with computers. \
 	Most likely you can find the file you need stored on one of the computers.<p>To the north there is a door leading back into the mech station.",
-	a: "North",
+	a: "Computer",
+	a_go: "_3_a",
+	
 	north_go: "_1_",
-	b: "Computer",
-	b_go: "_3_a"
 }
 
 levels._3_a = {
 	prompt: "You approach the computer and turn it on.",
 	a: "Exit",
-	a_go: "",
+	a_go: "_3_",
 	b: "Activate Minigame",
-	b_go: "_3_minigame"
+	b_go: "_3_minigame",
 }
 
 levels._3_minigame = {
 	game: "../Minigames/JigsawPuzzle/Puzzle.html",
 	success: "_3_success",
-	fail: "_3_fail"
+	fail: "_3_fail",
 }
 
 levels._3_success = {
-	prompt: "You completed the minigame!",
-	a: "Option A",
-	a_go: "",
-	b: "Option B",
-	b_go: ""
-}
-
-levels._4_ = {
-	prompt: "You enter your ship.  Looking around, you see the damaged console the mechanic was referring to.  Unfortunately you still don't have the map you need."
+	prompt: "You have hack into the computer and acquire the files you need on a portable drive!",
+	
+	north_go: "_1_",
 }
 
 levels._3_ba = {
