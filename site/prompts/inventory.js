@@ -35,12 +35,6 @@ var inventory={
 		count:1,
 		equipped:true,
 		description:"cook's hat"
-	},
-	HealthPotion:{
-		name:"Health Potion",
-		type:"Potion",
-		count:3,
-		description:"restores 50 HP"
 	}
 };
 
@@ -109,6 +103,7 @@ function inventmain(){
 	newPart.innerHTML="<br>Inventory";
 	area.appendChild(newPart);
 	mytable=document.createElement("table");
+	addinventory("Health Potion","HealthPotion","Potion",3,"restores 50 HP");
 
 	//steps through each item in inventory array and "prints" them
 	for (var key in inventory){
@@ -230,20 +225,20 @@ function inventmain(){
 		row.id="items"+key;
 	}
 	area.appendChild(mytable);
+
 }
 
 
 //will add objects to the inventory,if they're already present, add to count
-function addinventory(){
+function addinventory(name_,nospacename,type_,count_,description_){
+	inventory[nospacename]={
+		name:name_,
+		type:type_,
+		count:count_,
+		description:description_
+	}
 	
 }
-
-//will remove objects from the inventory,if count of that object is 0, remove it from array
-//unless it is "gold" in which case it stays as zero
-function removeinventory(){
-	
-}
-
 
 
 inventmain();
