@@ -13,10 +13,9 @@
             var planet = "planet1";
             var answers = "";
             var depth = 1;
-			var loc = "_1_";
+			var loc = "_1_a";
             var showingStats = false;
-			var game = false;
-			var gameList = {puzzle:false, hacking:false, src:""};
+			var cardinal = ["north", "east", "west", "south", "a", "b", "c", "d"];
             
             $(window).on("load",function(){
 			
@@ -91,21 +90,76 @@
 
 				$(script).on("load",function(){
 					update2(loc);
+					
 					// Old style that I updated
+					//Button Click functionality
+					$("button").on("click",function(){
+						console.log(loc);
+						var id = this.id;
+						var dir_go = id + "_go";
+						if (levels[loc][dir_go]){
+							newLoc = levels[loc][dir_go];
+							update2(newLoc);
+						}
+					});
+					/*$("#north").on("click",function(){
+						if (levels[loc].north_go){
+						newLoc = levels[loc].north_go;
+						update2(newLoc);
+						}
+					});
+
+					$("#east").on("click",function(){
+						if (levels[loc].east_go){
+						newLoc = levels[loc].east_go;
+						update2(newLoc);
+						}
+					});
+					$("#west").on("click",function(){
+						if (levels[loc].west_go){
+						newLoc = levels[loc].west_go;
+						update2(newLoc);
+						}
+					});
+
+					$("#south").on("click",function(){
+						if (levels[loc].south_go){
+						newLoc = levels[loc].south_go;
+						update2(newLoc);
+						}
+					});
 					$("#op-a").on("click",function(){
+						if (levels[loc].a_go){
 						newLoc = levels[loc].a_go;
 						update2(newLoc);
+						}
 					});
 
 					$("#op-b").on("click",function(){
+						if (levels[loc].b_go){
 						newLoc = levels[loc].b_go;
 						update2(newLoc);
-					});
+						}
+					});*/
                 });
             }
 			
 			function update2(newLoc) {
 				loc = newLoc;
+				
+				//Toggle Directional keys as needed.
+				for (dir in cardinal) {
+						var dir_go = cardinal[dir] + "_go";
+						if (!(levels[loc][dir_go])) {
+							console.log("turn", cardinal[dir], "off");
+							$("#" + cardinal[dir]).hide();
+						} else {
+							console.log("turn", cardinal[dir], "on");
+							$("#" + cardinal[dir]).show();
+						}
+					}
+					
+				//If the location runs a game, find the file and append the game screen
 				if (levels[loc].game) {
 					var miniGame = document.createElement("iframe");
 					miniGame.id = "miniGame";
@@ -113,10 +167,12 @@
 					document.getElementById("layoutLeft").appendChild(miniGame);
 					$("#textGame").hide();
 				}
+				
+				//Otherwise, update the prompt and options.
 				else {
 					$("#displayprompt").html(levels[newLoc].prompt);
-					$("#op-a").html(levels[newLoc].a); 
-					$("#op-b").html(levels[newLoc].b);
+					$("#a").html(levels[newLoc].a); 
+					$("#b").html(levels[newLoc].b);
 				}
 			}
 			
@@ -205,8 +261,10 @@
 					</div>
 					
 					<div id="actionButtons" class="layoutArea">
-						<button class="btn" id="op-a">Begin</button>
-						<button class="btn" id="op-b">Quit</button>
+						<button class="btn" id="a">Begin</button>
+						<button class="btn" id="b">Quit</button>
+						<button class="btn" id="c">Begin</button>
+						<button class="btn" id="d">Quit</button>
 					</div>
 				</div>
 			</div>
@@ -219,6 +277,15 @@
 				</div>
 				<div id="statMenu" class ="layoutArea sidebar">
 					<script id = "statScript" type = "text/javascript" src = "prompts/stats.js"></script>
+				</div>
+				<div id="movementButtons" class="layoutArea sidebar">
+					<p>
+						<button class="mvbtn" id="north">North</button>
+						<button class="mvbtn" id="east">East</button>
+					</p><p>
+						<button class="mvbtn" id="west">West</button>
+						<button class="mvbtn" id="south">South</button>
+					</p>
 				</div>
 			</div> 
 		</main>
