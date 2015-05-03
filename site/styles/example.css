@@ -1,0 +1,224 @@
+/* CSS Document */
+
+html, body, form, img {margin:0; padding:0; border:0}
+html {font-size:100%}
+body {
+	font:13px/1.4 verdana,arial,sans-serif;
+	background:#666;
+	color:#000;
+}
+
+/* ---- universal properties ---- */
+p, ul, li, h1, h2, h3 {margin:0 10px 1em; padding:0; font-weight:normal}
+
+abbr, acronym {cursor:help}
+
+.clearfix:after {
+  visibility:hidden;
+  display:block;
+  font-size:0;
+  content:" ";
+  clear:both;
+  height:0;
+}
+
+.clearfix {display:inline-block}
+
+/* start commented backslash hack \*/
+* html .clearfix {height:1%}
+.clearfix {display:block}
+/* close commented backslash hack */
+
+.hide {display:none !important}
+.show {display:block !important}
+
+input#btn-reload {
+	cursor:pointer;
+	width:90px;
+	height:35px;
+	position:absolute;
+	left:455px;
+	font-weight:bold;
+	border:0;
+	background-color:red;
+	z-index:1000;
+}
+
+input#btn-nextbattle {
+	cursor:pointer;
+	width:90px;
+	height:35px;
+	position:absolute;
+	left:455px;
+	font-weight:bold;
+	border:0;
+	background-color:yellow;
+	z-index:1000;
+}
+
+/* ---- lists ---- */
+ul {margin-left:35px}
+li {margin-bottom:5px}
+ul li ul {margin-top:10px}
+
+/* ---- headings ---- */
+h1 {font-size:18px; margin-bottom:7px}
+h2 {font-size:16px}
+h3 {font-size:14px; margin-bottom:0}
+
+/* ---- container ---- */
+#container {
+	margin:20px auto;
+	width:960px;
+	height:500px;
+	position:relative;
+	padding:20px;
+	border:4px solid #fff;
+}
+
+#fadetoblack {
+	width:1000px;
+	height:540px;
+	position:absolute;
+	left:0;
+	top:0;
+	background-color:black;
+	z-index:900;
+	opacity:0;
+}
+
+.fadein {
+	opacity:1 !important;
+	transition:opacity 5s ease-in-out;
+	-webkit-transition:opacity 5s ease-in-out;
+}
+
+.forest {background:url(forest-bg.gif) no-repeat 0 0}
+.cave {background:url(cave-bg.gif) no-repeat 0 0}
+.lair {background:url(lair-bg.gif) no-repeat 0 0}
+
+/* ---- display boxes ---- */
+#display {width:960px}
+
+#display-hero {
+	width:150px;
+	padding:10px 20px 14px;
+	float:left;
+	margin-bottom:30px;
+	background:aqua;
+	border:1px solid blue;
+	position:relative;
+	z-index:1000;
+}
+
+#display-monster {
+	width:150px;
+	padding:10px 20px 14px;
+	float:right;
+	margin-bottom:30px;
+	background:pink;
+	border:1px solid red;
+	position:relative;
+	z-index:1000;
+}
+
+/* ---- menu ---- */
+#menu {
+	width:140px;
+	height:120px;
+	position:absolute;
+	right:20px;
+	bottom:20px;
+}
+
+#menu input {
+	cursor:pointer;
+	width:140px;
+	height:55px;
+	margin-bottom:10px;
+	font-size:16px;
+}
+
+#menu input#btn-run {margin-bottom:0}
+
+#btn-fight-wrap,
+#btn-run-wrap {
+	width:140px;
+	height:55px;
+	margin-bottom:8px;
+	background:gray;
+	position:relative;
+	z-index:1000;
+}
+
+#btn-run-wrap {margin-bottom:0}
+
+a#btn-fight,
+a#btn-run {
+	display:block;
+	cursor:pointer;
+	width:140px;
+	height:39px;
+	padding-top:16px;
+	font-size:16px;
+	text-decoration:none;
+	text-align:center;
+	color:#000;
+	border:1px solid #4d90fe;
+	font-weight:bold;
+	background:lavender;
+}
+
+/* ---- monster image ---- */
+#monster-image {
+	width:800px;
+	height:460px;
+	position:absolute;
+	left:100px;
+	top:40px;
+	z-index:10;
+	xxxbackground-color:black;
+}
+
+#attack-animation {
+	width:400px;
+	height:230px;
+	position:absolute;
+	left:300px;
+	top:160px;
+	z-index:100;
+	background:none;
+}
+
+#attack-animation.hit {background:url(attack.gif) no-repeat 0 0}
+
+#monster-image.slime {background:url(slime.png) no-repeat 0 0}
+#monster-image.slime-attack {background-color:lime}
+
+#monster-image.troll {background:url(troll.png) no-repeat 0 0}
+#monster-image.troll-attack {background:cyan}
+
+#monster-image.dragon {background:url(dragon.png) no-repeat 0 0}
+#monster-image.dragon-attack {background:magenta}
+
+
+/* ---- battle text ---- */
+#battle-text {
+	width:798px;
+	height:104px;
+	padding-top:14px;
+	position:absolute;
+	left:20px;
+	bottom:20px;
+	font-size:18px;
+	line-height:20px;
+	background:lavender;
+	border:1px solid purple;
+	z-index:1000;
+}
+
+#battle-text p {
+	font-size:18px;
+	line-height:22px;
+	margin-bottom:10px;
+}
