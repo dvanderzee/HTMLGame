@@ -126,4 +126,5 @@ $(document).ready(function(){
 function onPlanet(){
 	alert("You Landed!")
 	//trigger whatever happens after the game
+	parent.postMessage({'success':true}, "*");
 }
