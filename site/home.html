@@ -56,10 +56,8 @@
 				for (dir in cardinal) {
 						var dir_go = cardinal[dir] + "_go";
 						if (!(levels[loc][dir_go])) {
-							console.log("turn", cardinal[dir], "off");
 							$("#" + cardinal[dir]).hide();
 						} else {
-							console.log("turn", cardinal[dir], "on");
 							$("#" + cardinal[dir]).show();
 						}
 					}
@@ -71,14 +69,31 @@
 					$(miniGame).attr('src', levels[loc].game);
 					document.getElementById("layoutLeft").appendChild(miniGame);
 					$("#textGame").hide();
-				}
+				} 
 				
-				if (levels[loc].planet) {
+				else if (levels[loc].planet) {
 					planet = levels[loc].planet;
 					loc = "_1_";
 					loadscript();
 				}
 				
+				else if (levels[loc].condition) {
+					var condition = levels[loc].condition;
+					var pass = levels[loc].pass;
+					switch (condition) {
+						case "map":
+							if (inventory["map"]){
+								newLoc = loc + "_accept";
+								update(newLoc);
+							}
+							
+							else {
+								newLoc = loc + "_deny";
+								update(newLoc);
+							}
+							break;	
+					}
+				}
 				//Otherwise, update the prompt and options.
 				else {
 					$("#displayprompt").html(levels[newLoc].prompt);
@@ -109,6 +124,7 @@
 				$("#miniGame").remove();
 				$("#textGame").show();
 				if (e.data.success) {
+					levels[loc].reward();
 					update(levels[loc].success);
 				}
 				else {
@@ -132,8 +148,8 @@
 					<div id="actionButtons" class="layoutArea">
 						<button class="btn" id="a">Begin</button>
 						<button class="btn" id="b">Quit</button>
-						<button class="btn" id="c">Begin</button>
-						<button class="btn" id="d">Quit</button>
+						<button class="btn" id="c"></button>
+						<button class="btn" id="d"></button>
 					</div>
 				</div>
 			</div>

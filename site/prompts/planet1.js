@@ -56,22 +56,41 @@ levels._2_ = {
 	prompt: "You enter the shuttle bay, and see your ship has been moved onto one of the docks now that repairs are complete.\
 	<p> To the south is the entrance to the mech station where your ship was repaired.",
 	b: "Enter Ship",
-	b_go: "_2_minigame",
+	b_go: "_2_a",
 	
 	south_go: "_1_",
 }
 
-levels._2_minigame = {
+levels._2_a = {
+	condition: "map",
+	pass: "map"
+	
+}
+
+levels._2_a_accept = {
+	game: "./minigames/flight/flight.html",
+	success: "_2_a_success",
+	fail: "_2_a_fail",
+
+}
+
+levels._2_a_deny = {
+	prompt: "You enter your ship.  Looking around, you see the damaged console the mechanic was referring to.  Unfortunately you still don't have the map you need.",
+	
+	a: "Leave Ship",
+	a_go: "_2_",
+}
+levels._2_a_minigame = {
 	game: "./minigames/flight/flight.html",
 	success: "_2_success",
 	fail: "_2_fail",
 }
 
-levels._2_success = {
+levels._2_a_success = {
 	planet: "planet2"
 }
 
-levels._2_fail = {
+levels._2_a_fail = {
 	prompt: "You crashed your ship! Gameover"
 }
 
@@ -95,6 +114,9 @@ levels._3_minigame = {
 	game: "./minigames/jigsawpuzzle/Puzzle.html",
 	success: "_3_success",
 	fail: "_3_fail",
+	reward: function(){
+		addinventory("map","map","key item",1,null)
+	}
 }
 
 levels._3_success = {
