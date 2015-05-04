@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<link rel="stylesheet" href="styles/example.css" type="text/css" media="all"> 
+<link rel="stylesheet" href="example.css" type="text/css" media="all"> 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <title>RPG</title>
 </head>
@@ -16,11 +16,11 @@
 <input type="button" value="Play Again" id="btn-reload" class="hide" onClick="document.location.reload(true)">
 <input type="button" value="Next Battle" id="btn-nextbattle" class="hide">
 <div id="display" class="clearfix">
-    <div id="display-hero">
-        <h1><strong>HERO</strong></h1>
-        <h3><strong>HP:</strong> <span id="herohp">--</span>/<span id="herohp-total">--</span></h3>
-        <h3><strong>Level:</strong> <span id="herolevel">--</span></h3>
-    </div><!-- /display-hero -->
+    <div id="display-Stats">
+        <h1><strong>Stats</strong></h1>
+        <h3><strong>HP:</strong> <span id="Statshp">--</span>/<span id="Statshp-total">--</span></h3>
+        <h3><strong>Level:</strong> <span id="Statslevel">--</span></h3>
+    </div><!-- /display-Stats -->
     
   <div id="display-monster">
         <h1><strong><span id="monstername"></span></strong></h1>
@@ -43,12 +43,18 @@
 </div><!-- /menu -->
 
 <div id="battle-text">
-	<p id="battle-text-hero"></p>
+	<p id="battle-text-Stats"></p>
     <p id="battle-text-enemy"></p>
     <p id="battle-text-extra"></p>
 </div>
 
 </div><!-- /container -->
-<script type="text/javascript" src="prompts/example.js"></script>
+<div id="statMenu" class ="layoutArea sidebar">
+	<script id = "statScript" type = "text/javascript" src = "../../prompts/stats.js"></script>
+</div>
+<div id="sidebarMenu" class="layoutArea sidebar">
+	<script id = "invScript" type="text/javascript" src="../../prompts/inventory.js"></script>
+</div>
+<script type="text/javascript" src="game.js"></script>
 </body>
 </html>

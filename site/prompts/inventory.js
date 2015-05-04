@@ -1,7 +1,6 @@
 
-
-//Initiates the players inventory, giving a few starting things; global access
-
+//this function lets us easily create new items without having to set each
+//part separately
 function Item(name,type,count,equipped,effect){
 	this.name=name;
 	this.type=type;
@@ -10,6 +9,7 @@ function Item(name,type,count,equipped,effect){
 	this.effect=effect;
 }
 
+//Initiates the players inventory, giving a few starting things; global access
 var inventory={
 	Gold:new Item("Gold","Currency",100,null,"no"),
 	Shirt:new Item("Shirt","Armor",1,true,"simple shirt"),
@@ -221,6 +221,7 @@ function printitem(mytable,key){
 
 //will add objects to the inventory,if they're already present, add to count
 function addinventory(name,nospacename,type,count,effect){
+	if (nospacename==null){nospacename=name;}
 	inventory[nospacename]=new Item(name,type,count,null,effect);
 	mytable=document.getElementById("Inventorytable");
 	printitem(mytable,nospacename);
