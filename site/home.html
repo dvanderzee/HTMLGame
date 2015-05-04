@@ -12,8 +12,7 @@
         <script>
             var planet = "planet1";
             var answers = "";
-            var depth = 1;
-			var loc = "_1_a";
+			var loc = "_1_";
             var showingStats = false;
 			var cardinal = ["north", "east", "west", "south", "a", "b", "c", "d"];
             
@@ -21,65 +20,10 @@
 			
 				window.addEventListener("message", miniGameResult, false);
                 loadscript();
-				//update2(loc);
-				
-                /* Devon's Stuff
-				$("#op-a").on("click",function(){
-					<!-- Check if the player has changed locations, and edit coordinates -->
-					switch (document.getElementById("op-a").innerHTML){
-						<!-- If the player travels North -->
-						case "North":
-							levels.coord[0] ++;
-							break
-						<!-- If the player travels South -->
-						case "South":
-							levels.coord[0] --;
-							break
-						case "Exit":
-							game = false;
-							break
-					}
-					update();
-                });
-
-                $("#op-b").on("click",function(){
-					switch (document.getElementById("op-b").innerHTML){
-						<!-- If the player travels North -->
-						case "North":
-							levels.coord[0] ++;
-							break
-							
-						<!-- If the player travels South -->
-						case "South":
-							levels.coord[0] --;
-							break
-						
-						<!-- If the player activates a computer to hack. -->
-						case "Computer":
-							gameList.hacking = true;
-							game = true;
-							console.log(game, gameList.hacking, "game value when computer is pressed")
-							break
-					}
-                    update();
-                });
-				
-				
-				// Old style that I updated
-				$("#op-a").on("click",function(){
-						newLoc = levels[loc].a_go;
-						update2(newLoc);
-                });
-
-                $("#op-b").on("click",function(){
-						newLoc = levels[loc].b_go;
-						update2(newLoc);
-				});
-				*/
+				//update(loc);
             });
 
             <!-- When the new planet is needed, edit planet and run loadscript() -->
-  
             function loadscript(){
                 var src = "./prompts/" + planet + ".js" + "?" + Math.random();  
                 var head= document.getElementsByTagName('head')[0];
@@ -89,7 +33,7 @@
                 head.appendChild(script);  
 
 				$(script).on("load",function(){
-					update2(loc);
+					update(loc);
 					
 					// Old style that I updated
 					//Button Click functionality
@@ -99,52 +43,13 @@
 						var dir_go = id + "_go";
 						if (levels[loc][dir_go]){
 							newLoc = levels[loc][dir_go];
-							update2(newLoc);
+							update(newLoc);
 						}
 					});
-					/*$("#north").on("click",function(){
-						if (levels[loc].north_go){
-						newLoc = levels[loc].north_go;
-						update2(newLoc);
-						}
-					});
-
-					$("#east").on("click",function(){
-						if (levels[loc].east_go){
-						newLoc = levels[loc].east_go;
-						update2(newLoc);
-						}
-					});
-					$("#west").on("click",function(){
-						if (levels[loc].west_go){
-						newLoc = levels[loc].west_go;
-						update2(newLoc);
-						}
-					});
-
-					$("#south").on("click",function(){
-						if (levels[loc].south_go){
-						newLoc = levels[loc].south_go;
-						update2(newLoc);
-						}
-					});
-					$("#op-a").on("click",function(){
-						if (levels[loc].a_go){
-						newLoc = levels[loc].a_go;
-						update2(newLoc);
-						}
-					});
-
-					$("#op-b").on("click",function(){
-						if (levels[loc].b_go){
-						newLoc = levels[loc].b_go;
-						update2(newLoc);
-						}
-					});*/
                 });
             }
 			
-			function update2(newLoc) {
+			function update(newLoc) {
 				loc = newLoc;
 				
 				//Toggle Directional keys as needed.
@@ -168,6 +73,12 @@
 					$("#textGame").hide();
 				}
 				
+				if (levels[loc].planet) {
+					planet = levels[loc].planet;
+					loc = "_1_";
+					loadscript();
+				}
+				
 				//Otherwise, update the prompt and options.
 				else {
 					$("#displayprompt").html(levels[newLoc].prompt);
@@ -175,54 +86,6 @@
 					$("#b").html(levels[newLoc].b);
 				}
 			}
-			
-			/* Devon's update function
-			function update(){
-					
-					<!-- If a game is exited, set the game specific boolean to false -->
-					if (game == false) {
-						gameList.hacking = false;
-						gameList.puzzle = false;
-						$("#miniGame").remove();
-					}					
-					
-					<!-- Run the Dialogue function -->
-					levels.dialogue();
-					
-					<!-- Change display to the current prompt -->
-                    $("#displayprompt").html(levels.prompt);
-					
-					<!-- Change options to the current options -->
-                    $("#op-a").html(levels.a); 
-                    $("#op-b").html(levels.b);
-					
-					<!-- Will be used to add items, start Games and change Planets-->
-                    if (levels.item){
-                        alert("You Found An Item");
-                    }
-					
-                    if (game){
-						<!-- Determine the game to be run, and set the src -->
-						var gameSrc;
-						for (var prop in gameList){
-							if(gameList[prop]) {
-								gameSrc = "../Minigames/" + prop;
-							}
-						}
-						
-						var miniGame = document.createElement("iframe");
-						miniGame.id = "miniGame";
-						$(miniGame).attr('src', gameSrc);
-						document.getElementById("layoutLeft").appendChild(miniGame);
-						$("#textoutput").hide();
-                    }
-					
-                    if (levels.newplanet){
-                        alert("New Planet");
-                    }
-                
-			}
-			*/
 						
              <!-- function to toggle between the stats and inventory menu when the toggle button is clicked -->
             function toggle() {
@@ -243,9 +106,15 @@
 			
 			function miniGameResult(e) {			
 				console.log(e.data);
-				$("#miniGame").hide();
+				$("#miniGame").remove();
 				$("#textGame").show();
-				update2(levels[loc].success);
+				if (e.data.success) {
+					update(levels[loc].success);
+				}
+				else {
+					update(levels[loc].fail);
+				}
+				
 			}
             
         </script>
@@ -278,7 +147,7 @@
 				<div id="sidebarMenu" class="layoutArea sidebar">
 					<script id = "invScript" type="text/javascript" src="prompts/inventory.js"></script>
 				</div>
-				<div id="movementButtons" class="layoutArea sidebar">
+				<div id="movementButtons" class="layoutArea">
 					<p>
 						<button class="mvbtn" id="north">North</button>
 						<button class="mvbtn" id="east">East</button>

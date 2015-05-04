@@ -29,7 +29,7 @@ function updateDistance(){
 }
 
 function playgame(){
-	$("html").css("cursor","url('./ship.png'), auto");
+	$("html").css("cursor","url('./images/ship.png'), auto");
 	$(".btn").css("display","none");
 	started = true;
 		$('table tr').find('td:eq(0)').addClass("first");
@@ -126,4 +126,5 @@ $(document).ready(function(){
 function onPlanet(){
 	alert("You Landed!")
 	//trigger whatever happens after the game
+	parent.postMessage({'success':true}, "*");
 }
