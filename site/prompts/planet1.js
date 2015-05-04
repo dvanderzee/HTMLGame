@@ -111,10 +111,12 @@ levels._2_ = {
 }
 
 levels._2_a = {
-	prompt: "You enter your ship.  Looking around, you see the damaged console the mechanic was referring to.  Unfortunately you still don't have the map you need.",
+	/*prompt: "You enter your ship.  Looking around, you see the damaged console the mechanic was referring to.  Unfortunately you still don't have the map you need.",
 	
 	a: "Leave Ship",
-	a_go: "_2_",
+	a_go: "_2_",*/
+	game: "./minigames/flight/flight.html",
+
 }
 
 levels._3_ = {
@@ -135,7 +137,7 @@ levels._3_a = {
 }
 
 levels._3_minigame = {
-	game: "../Minigames/JigsawPuzzle/Puzzle.html",
+	game: "./minigames/jigsawpuzzle/puzzle.html",
 	success: "_3_success",
 	fail: "_3_fail",
 }
