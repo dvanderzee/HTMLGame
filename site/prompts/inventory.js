@@ -22,7 +22,7 @@ var inventory={
 		false,
 		"cooking knife, has a little tomato still on it"
 	),
-	ChefHat:new Item("Chef Hat","Helmet",1,true,"cook's hat")
+	ChefHat:new Item("Chef Hat","Helmet",1,true,"cook's hat"),
 };
 
 //initializes the equipment area; global access
