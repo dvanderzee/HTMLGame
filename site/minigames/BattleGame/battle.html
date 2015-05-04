@@ -1,0 +1,63 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" href="display.css" type="text/css" media="all"> 
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<title>RPG</title>
+	</head>
+
+	<body>
+		<div id="container">
+			<div id="fadetoblack"></div>
+
+			<input type="button" value="End-Battle" id="End-button" class="hide">
+			<div id="display" class="clearfix">
+				<div id="display-Stats">
+					<h1><strong>Name</strong></h1>
+					<h3><strong>HP:</strong> <span id="Statshp">--</span>/<span id="Statshp-total">--</span></h3>
+					<h3><strong>MP:</strong> <span id="Statsmp">--</span>/<span id="Statsmp-total">--</span></h3>
+				</div><!-- /display-Stats -->
+				
+				<div id="display-monster">
+					<h1><strong><span id="monstername"></span></strong></h1>
+					<h3><strong>HP:</strong> <span id="monsterhp">--</span>/<span id="monsterhp-total">--</span></h3>
+					<h3>&nbsp;</h3>
+				</div><!-- /display-monster -->
+			</div><!-- /display -->
+
+			<div id="attack-animation"></div>
+			<div id="monster-image"></div>
+			
+			<!-- this div needs to be edited alot more than others -->
+			<div id="menu">
+				<div id="btn-fight-wrap">
+					<a href="#" id="btn-fight">Attack</a>
+				</div>
+				
+				<div id="btn-fight-wrap">
+					<a href="#" id="btn-fight">Spells</a>
+				</div>
+				
+				<div id="btn-run-wrap">
+					<a href="#" id="btn-run">Run</a>
+				</div>
+			</div><!-- /menu -->
+
+			<div id="battle-text">
+				<p id="battle-text-Stats"></p>
+				<p id="battle-text-enemy"></p>
+				<p id="battle-text-extra"></p>
+			</div>
+
+		</div><!-- /container -->
+		<div id="statMenu" class ="layoutArea sidebar">
+			<script id = "statScript" type = "text/javascript" src = "../../prompts/stats.js"></script>
+		</div>
+		<div id="sidebarMenu" class="layoutArea sidebar">
+			<script id = "invScript" type="text/javascript" src="../../prompts/inventory.js"></script>
+		</div>
+		<script type="text/javascript" src="game.js"></script>
+	</body>
+</html>

@@ -13,34 +13,50 @@ var mercenary = new Enemy('mercenary', 12, 75, 2);
 var assasin = new Enemy('assasin', 16, 100, 3);
 var eldar = new Enemy('eldar', 20, 150, 4);
 
-var monster;
+var Monster;
 //changes the enemy you will fight depending upon your level
 var EnemyChoice = function() {
 	switch (Stats.level) {
 		case 1:
-			monster=grunt;
+			Monster=grunt;
 			break;
 		case 2:
-			monster=mercenary;
+			Monster=mercenary;
 			break;
 		case 3:
-			monster=assasin;
-			break;
-		case 4:
-			monster=eldar;
+			Monster=assasin;
 			break;
 		default:
-			monster=eldar;
+			Monster=eldar;
 			break;
 	}
 }
 
 
+function battlemain(){
+	//displays the characters most important stats
+	$('#HP-Current').html(Stats.HP);
+	$('#HP-Total').html(Stats.MaxHP);
+	$('#MP-Current').html(Stats.MP);
+	$('#MP-Total').html(Stats.MaxMP);
+	
+	//displays the health and name of the monster
+	$('#Monster-Name').html(Monster.Name);
+	$('#Monster-HP').html(Monster.HP);
+	$('#Monster-HP-Total').html(Monster.MaxHP);
+	
+}
 
+function displayStats() {
+	$('#HP-Current').html(Stats.HP);
+	$('#MP-Current').html(Stats.MP);
+}
 
+function displayMonsterHP() {
+	$('Monster-HP').html(Monster.HP);
+}
 
-
-
+/*
 ////////////////////////////////////////////////////////////////////////////////////////////
 function Enemy(name, hp, Strength, level) {
 	this.name = name;
@@ -55,7 +71,7 @@ var dragon = new Enemy('dragon', 60, 10, 3);
 
 var monster;
 var monsterCodex = [slime, troll, dragon];
-
+*/
 //Let's rock!
 var battle = function() {
 	//Make sure action buttons are active
@@ -64,7 +80,7 @@ var battle = function() {
 	
 	//Total hit points	
 	$('#Statshp-total').html(Stats.MaxHP);
-	$('#Statslevel').html(Stats.level);
+	$('#Statsmp-total').html(Stats.MaxMP);
 	$('#monstername').html(monster.name.toUpperCase());
 	$('#monsterhp-total').html(monster.hp);
 	
@@ -74,23 +90,6 @@ var battle = function() {
 	
 	//Monster Image
 	$('#monster-image').addClass(monster.name);
-	
-	//Battle Strength display
-	function displayStatsHP() {
-		if (Stats.HP < 1) {
-			$('#Statshp').html(0);  //Prevents showing negative HP
-		} else {
-			$('#Statshp').html(Stats.HP);
-		}
-	}
-	
-	function displayMonsterHP() {
-		if (monster.hp < 1) {
-			$('#monsterhp').html(0);  //Prevents showing negative HP
-		} else {
-			$('#monsterhp').html(monster.hp);
-		}
-	}
 	
 	//Critical Hit Rolls
 	var StatsStrengthCrit = Stats.Strength;
@@ -150,8 +149,10 @@ var battle = function() {
 			difficulty += 1;
 			Stats.hp = Stats.MaxHP + (10 * (Stats.level - 1));
 			
-			$('#Statshp').html(Stats.hp);
-			$('#Statshp-total').html(Stats.hp);		
+			$('#Statshp').html(Stats.HP);
+			$('#Statsmp').html(Stats.MP);
+			$('#Statshp-total').html(Stats.HP);
+			$('#Statsmp-total').html(Stats.MaxMP);
 			$('#Statslevel').html(Stats.level);
 			
 			$('#battle-text-enemy').html("YOU DEFEATED THE " + monster.name.toUpperCase() + " and have reached LEVEL " + Stats.level + "!");

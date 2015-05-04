@@ -82,7 +82,9 @@ function inventmain(){
 		printitem(mytable,key);
 	}
 	area.appendChild(mytable);
-	addinventory("Health Potion","HealthPotion","Potion",3,
+	addinventory("Health Potion","HealthPotion","Potion",1,
+				 function(){PlusStat("HP",50);});
+	addinventory("Health Potion","HealthPotion","Potion",2,
 				 function(){PlusStat("HP",50);});
 }
 
@@ -153,7 +155,7 @@ function Use(){
 	inventory[tempname].effect();
 	if (inventory[tempname].count>1){
 		inventory[tempname].count-=1;
-		this.parentNode.parentNode.cells[1].innerHTML-=1;
+		this.parentNode.parentNode.cells[1].innerHTML=inventory[tempname].count;
 	}else{
 		delete inventory[tempname];
 		this.parentNode.parentNode.parentNode.deleteRow(counter);
@@ -222,9 +224,15 @@ function printitem(mytable,key){
 //will add objects to the inventory,if they're already present, add to count
 function addinventory(name,nospacename,type,count,effect){
 	if (nospacename==null){nospacename=name;}
-	inventory[nospacename]=new Item(name,type,count,null,effect);
-	mytable=document.getElementById("Inventorytable");
-	printitem(mytable,nospacename);
+	if (inventory[nospacename]){
+		inventory[nospacename].count+=count;
+		temp=document.getElementById("items"+nospacename);
+		temp.cells[1].innerHTML=inventory[nospacename].count;
+	}else{
+		inventory[nospacename]=new Item(name,type,count,null,effect);
+		mytable=document.getElementById("Inventorytable");
+		printitem(mytable,nospacename);
+	}
 }
 
 

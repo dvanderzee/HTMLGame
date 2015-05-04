@@ -44,7 +44,7 @@ input#btn-reload {
 	z-index:1000;
 }
 
-input#btn-nextbattle {
+input#End-button {
 	cursor:pointer;
 	width:90px;
 	height:35px;
@@ -100,7 +100,7 @@ h3 {font-size:14px; margin-bottom:0}
 /* ---- display boxes ---- */
 #display {width:960px}
 
-#display-hero {
+#display-Stats {
 	width:150px;
 	padding:10px 20px 14px;
 	float:left;
@@ -190,15 +190,15 @@ a#btn-run {
 	background:none;
 }
 
-#attack-animation.hit {background:url(attack.gif) no-repeat 0 0}
+#attack-animation.hit {background:url(images/attack.gif) no-repeat 0 0}
 
-#monster-image.slime {background:url(slime.png) no-repeat 0 0}
+#monster-image.slime {background:url(images/slime.jpg) no-repeat 0 0}
 #monster-image.slime-attack {background-color:lime}
 
-#monster-image.troll {background:url(troll.png) no-repeat 0 0}
+#monster-image.troll {background:url(images/troll.png) no-repeat 0 0}
 #monster-image.troll-attack {background:cyan}
 
-#monster-image.dragon {background:url(dragon.png) no-repeat 0 0}
+#monster-image.dragon {background:url(images/dragon.png) no-repeat 0 0}
 #monster-image.dragon-attack {background:magenta}
 
 
