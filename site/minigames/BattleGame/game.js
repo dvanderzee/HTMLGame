@@ -1,4 +1,4 @@
-
+//the enemy object constructor
 function Enemy(Name,Strength,HP,level){
 	this.Name=Name;
 	this.Strength=Strength;
@@ -7,13 +7,14 @@ function Enemy(Name,Strength,HP,level){
 	this.level=level;
 }
 
+//the four enemies that you might face
 var grunt = new Enemy('grunt', 8,50, 1);
 var mercenary = new Enemy('mercenary', 12, 75, 2);
 var assasin = new Enemy('assasin', 16, 100, 3);
 var eldar = new Enemy('eldar', 20, 150, 4);
 
 var monster;
-
+//changes the enemy you will fight depending upon your level
 var EnemyChoice = function() {
 	switch (Stats.level) {
 		case 1:
