@@ -1,17 +1,18 @@
 //the enemy object constructor
-function Enemy(Name,Strength,HP,level){
+function Enemy(Name,Strength,HP,level,xp){
 	this.Name=Name;
 	this.Strength=Strength;
 	this.HP=HP;
 	this.MaxHP=HP;
 	this.level=level;
+	this.xp=xp;
 }
 
 //the four enemies that you might face
-var grunt = new Enemy('grunt', 8,50, 1);
-var mercenary = new Enemy('mercenary', 12, 75, 2);
-var assasin = new Enemy('assasin', 16, 100, 3);
-var eldar = new Enemy('eldar', 20, 150, 4);
+var grunt = new Enemy('grunt', 8, 50, 1, 5);
+var mercenary = new Enemy('mercenary', 12, 75, 2, 25);
+var assasin = new Enemy('assasin', 16, 100, 3, 75);
+var eldar = new Enemy('eldar', 20, 150, 4, 150);
 
 var Monster;
 //changes the enemy you will fight depending upon your level

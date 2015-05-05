@@ -6,58 +6,79 @@
 		<link rel="stylesheet" href="display.css" type="text/css" media="all"> 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<title>RPG</title>
+		<script>
+			var showingStats=false;
+			function toggle() {
+                var invDiv = document.getElementById("sidebarMenu");
+                var statDiv = document.getElementById("statMenu");
+                var toggleText = document.getElementById("invStatToggle");
+				$(invDiv).toggle();
+				$(statDiv).toggle();
+                if(showingStats) {
+                    showingStats = false;
+                    toggleText.innerHTML = "Show Stats";
+                }
+                else {
+                    showingStats = true;
+                    toggleText.innerHTML = "Show Inventory";
+                }
+            }
+		</script>
 	</head>
 
 	<body>
-		<div id="container">
-			<div id="fadetoblack"></div>
-
-			<input type="button" value="End-Battle" id="End-button" class="hide">
-			<div id="display" class="clearfix">
-				<div id="display-Stats">
-					<h1><strong>Name</strong></h1>
-					<h3><strong>HP:</strong> <span id="Statshp">--</span>/<span id="Statshp-total">--</span></h3>
-					<h3><strong>MP:</strong> <span id="Statsmp">--</span>/<span id="Statsmp-total">--</span></h3>
-				</div><!-- /display-Stats -->
-				
-				<div id="display-monster">
-					<h1><strong><span id="monstername"></span></strong></h1>
-					<h3><strong>HP:</strong> <span id="monsterhp">--</span>/<span id="monsterhp-total">--</span></h3>
-					<h3>&nbsp;</h3>
-				</div><!-- /display-monster -->
-			</div><!-- /display -->
-
-			<div id="attack-animation"></div>
-			<div id="monster-image"></div>
-			
-			<!-- this div needs to be edited alot more than others -->
-			<div id="menu">
-				<div id="btn-fight-wrap">
-					<a href="#" id="btn-fight">Attack</a>
+		<main>
+			<div id="layoutLeft">
+				<div id="background" class="layoutArea">
+					<div id="header-area">
+						<div id="display-hero">
+							<h1><strong>You</strong></h1>
+							<h3><strong>HP:</strong> <span id="herohp">--</span>/<span id="herohp-total">--</span></h3>
+							<h3><strong>Level:</strong> <span id="herolevel">--</span></h3>
+						</div><!-- /display-hero -->
+						
+						<div id="display-monster">
+							<h1><strong><span id="monstername">Enemy</span></strong></h1>
+							<h3><strong>HP:</strong> <span id="monsterhp">--</span>/<span id="monsterhp-total">--</span></h3>
+							<h3>&nbsp;</h3>
+						</div><!-- /display-monster -->
+					</div>
+					<div id="spacer">
+						<!-- stuff might go here? -->
+					</div>
+					<div id="footer-area">
+						<div id="battle-info">
+							an enemy faces you
+						</div>
+						<div id="choices">
+							<div id="Attack" class="action">
+								attack
+							</div>
+							<div id="Magic" class="action">
+								magic
+							</div>
+							<div id="Magic2" class="action">
+								magic2
+							</div>
+							<div id="Run" class="action">
+								run
+							</div>
+						</div>
+					</div>
 				</div>
-				
-				<div id="btn-fight-wrap">
-					<a href="#" id="btn-fight">Spells</a>
-				</div>
-				
-				<div id="btn-run-wrap">
-					<a href="#" id="btn-run">Run</a>
-				</div>
-			</div><!-- /menu -->
-
-			<div id="battle-text">
-				<p id="battle-text-Stats"></p>
-				<p id="battle-text-enemy"></p>
-				<p id="battle-text-extra"></p>
 			</div>
-
-		</div><!-- /container -->
-		<div id="statMenu" class ="layoutArea sidebar">
-			<script id = "statScript" type = "text/javascript" src = "../../prompts/stats.js"></script>
-		</div>
-		<div id="sidebarMenu" class="layoutArea sidebar">
-			<script id = "invScript" type="text/javascript" src="../../prompts/inventory.js"></script>
-		</div>
-		<script type="text/javascript" src="game.js"></script>
+			<div id="layoutRight">
+				<div id="invStatToggle" class="layoutArea" onclick = "toggle()">
+					Show Stats
+				</div>
+				<div id="statMenu" class ="layoutArea sidebar">
+					<script id = "statScript" type = "text/javascript" src = "../../prompts/stats.js"></script>
+				</div>
+				<div id="sidebarMenu" class="layoutArea sidebar">
+					<script id = "invScript" type="text/javascript" src="../../prompts/inventory.js"></script>
+				</div>
+			</div>
+			<script type="text/javascript" src="game.js"></script>
+		</main>
 	</body>
 </html>
