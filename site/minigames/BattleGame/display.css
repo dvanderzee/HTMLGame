@@ -63,7 +63,7 @@ Main {
     text-decoration: none;
     cursor: pointer;
 }
-.smallbtn:hover, .btn:hover, .mvbtn:hover, #invStatToggle:hover{
+.smallbtn:hover, #invStatToggle:hover{
 	background: #248BA4;
     text-decoration: none;
 }
@@ -99,6 +99,17 @@ Main {
 	padding:5%;
 	background:url(images/forest.jpg) no-repeat;
 	background-size:100% 100%;
+}
+
+#enemy-pic{
+	width: 50%;
+	height: 50%;
+	background:url(images/grunt.jpg) no-repeat;
+	background-size:100% 100%;
+	position:relative;
+	top:50%;
+	transform:translateY(-50%);
+	left:25%;
 }
 
 #header-area{
@@ -153,17 +164,22 @@ Main {
 	height:45%;
 	cursor: pointer;
 	background:#000074;
-	padding:5%;
 	border:solid 1px white;
 	text-align:center;
 	margin-left:5%;
 	margin-bottom:5%;
 }
+.action p{
+	position:relative;
+	top:50%;
+	transform:translateY(-50%);
+}
 
-#Magic{
+#Heal{
 	float:left;
 }
-#Magic2{
+
+#MagicMissile{
 	float:left;
 }
 
