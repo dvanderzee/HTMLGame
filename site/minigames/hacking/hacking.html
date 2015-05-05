@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <link rel="stylesheet" type="text/css" href="css/hacking.css">
+        <script type = "text/javascript">
+        
+            var maxTimeInSec;                               //variable for how many seconds you want to be converted to milliseconds
+            var timeLeft;                                   //variable for how much time is left. Reset to max after every round
+            var gameOver = false;                           //variable if game has ended
+            var round;                                      //what round you're on
+            var charactersInRound = ['!','@','#','$','%','^','&','*'];     //what characters may appear on round
+            var numberOfCharacters;                         //How many characters appear in the round
+            var decrementor;                                //decrement timer every second
+            var numberOfInputs;                             //How many input fields are in the level
+            var correctCode = new Array();                  //Array of the correct answer. Randomly generated
+            
+            //Called when game has started
+            function roundOne() {
+            
+                maxTimeInSec = 60;                                                  //max time for round 1
+                timeLeft = maxTimeInSec;                               
+                round = 1;                                                          //start on round 1
+                document.getElementById("round#").innerHTML = ("Level 1");
+                var timer = document.getElementById("timer");                       //variable for <p> area of timer
+                decrementor = setInterval(decrementTimer, 1000);                
+                numberOfCharacters = 4;
+                numberOfInputs = 3;
+                
+                //Add characters & inputs
+                var characterArea = document.getElementById("characters");
+                var inputArea = document.getElementById("inputArea");
+                
+                for(var i = 0; i < numberOfCharacters; i++) {                      
+                    characterArea.innerHTML += charactersInRound[i];
+                }
+                
+                for(var i = 0; i< numberOfInputs; i++){
+                    var inputBox = document.createElement('input');
+                    inputBox.setAttribute('type', 'text');
+                    inputBox.id = "input" + i;
+                    inputBox.setAttribute('maxlength', '1');
+                    inputArea.appendChild(inputBox);
+                }
+                
+                //Randomize Code
+                randomizeCode();
+                
+            }
+            
+            function randomizeCode() {
+                
+                for(var i = 0; i < numberOfInputs; i++){
+                    correctCode[i] = charactersInRound[Math.floor(Math.random() * numberOfCharacters)];
+                }
+                
+                //Show Answer
+                document.getElementById("answer").innerHTML = correctCode;
+                
+            }
+            
+            function send() {
+                
+                //Collect Input
+                var playerInput = new Array();
+                for(var i =0; i < numberOfInputs; i++) {
+                    playerInput[i] = document.getElementById("input" + i);
+                }
+                
+                //Check against answer
+                for(var i = 0; i < numberOfInputs; i++) {
+                    //If it's incorrect
+                    if(playerInput[i].value != correctCode[i]) {
+                    
+                        //Is it in the answer?
+                        if(correctCode.indexOf(playerInput[i].value != -1)) {
+                        
+                            //Make it yellow
+                            document.getElementById("input" + i).style.color = "yellow";
+                        }
+                        else {
+                        
+                            //Make it Red
+                            document.getElementById("input" + i).style.color = "red";
+                        }
+                        
+                        alert("Incorrect Code");
+                        return;
+                    }
+                    
+                    else {
+                        //Make it green
+                        document.getElementById("input" + i).style.color = "green";
+                    }
+                }
+                
+                //Correct code
+                win();
+            }
+                    
+            function win() {
+                alert("You win");
+                gameOver = true;
+                clearInterval(decrementor);                     //stop counting down
+                
+            }
+            
+            //function that is called every second while not gameover
+            function decrementTimer() {
+                
+                if(timeLeft <= 0) {                                 //if out of time
+                    gameOver = true;
+                    alert("Game Over");
+                    clearInterval(decrementor);                     //stop counting down
+                }
+                else{
+                    timeLeft -= 1;
+                    timer.innerHTML = ":" + timeLeft;
+                }
+            }
+        
+        </script>
+    </head>
+    
+    <body>
+        <button onclick = "roundOne()">Begin</button>
+        
+        <div id = "roundDiv">
+            <p id = "round#"><p>
+        </div>
+        
+        <div id = "timerArea">  
+            <p id = "timer">:</p>
+        </div>
+        
+        <div id = "characterDiv">
+            <p id = "characters"> </p>
+            <p id = "answer"> </p>
+        </div>
+        
+        <div id = "inputDiv">
+            <div id = "inputArea">
+                
+            </div>
+            <input type = "button" value = "Send" onclick = "send()">
+        </div>
+    </body>
+    
+</html>

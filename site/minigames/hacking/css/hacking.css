@@ -1,0 +1,11 @@
+input[type = text]{
+
+    font-size: 100px;
+    width: 100px;
+    border-style: hidden;
+    text-align: center;
+}
+input[type = text]: focus{
+    outline: none;
+    
+}
