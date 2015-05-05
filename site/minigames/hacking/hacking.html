@@ -16,9 +16,9 @@
             var correctCode = new Array();                  //Array of the correct answer. Randomly generated
             
             //Called when game has started
-            function roundOne() {
+            function round1() {
             
-                maxTimeInSec = 60;                                                  //max time for round 1
+                maxTimeInSec = 15;                                                  //max time for round 1
                 timeLeft = maxTimeInSec;                               
                 round = 1;                                                          //start on round 1
                 document.getElementById("round#").innerHTML = ("Level 1");
@@ -27,6 +27,72 @@
                 numberOfCharacters = 4;
                 numberOfInputs = 3;
                 
+                buildLevel();
+                
+            }
+            
+            function round2() {
+            
+                maxTimeInSec = 25;                                                  //max time for round 2
+                timeLeft = maxTimeInSec;                               
+                round = 2;                                                          
+                document.getElementById("round#").innerHTML = ("Level 2");
+                var timer = document.getElementById("timer");                       //variable for <p> area of timer
+                decrementor = setInterval(decrementTimer, 1000);                
+                numberOfCharacters = 5;
+                numberOfInputs = 4;
+                
+                buildLevel()                                                        //builds level
+                
+            }
+            
+            function round3() {
+            
+                maxTimeInSec = 30;                                                 
+                timeLeft = maxTimeInSec;                               
+                round = 3;                                                          
+                document.getElementById("round#").innerHTML = ("Level 3");
+                var timer = document.getElementById("timer");                       //variable for <p> area of timer
+                decrementor = setInterval(decrementTimer, 1000);                
+                numberOfCharacters = 6;
+                numberOfInputs = 6;
+                
+                buildLevel()                                                        //builds level
+                
+            }
+            
+            function round4() {
+            
+                maxTimeInSec = 35;                                                
+                timeLeft = maxTimeInSec;                               
+                round = 4;                                                          
+                document.getElementById("round#").innerHTML = ("Level 4");
+                var timer = document.getElementById("timer");                       //variable for <p> area of timer
+                decrementor = setInterval(decrementTimer, 1000);                
+                numberOfCharacters = 8;
+                numberOfInputs = 8;
+                
+                buildLevel()                                                        //builds level
+                
+            }
+            
+            function round5() {
+            
+                maxTimeInSec = 45;                                                
+                timeLeft = maxTimeInSec;                               
+                round = 5;                                                          
+                document.getElementById("round#").innerHTML = ("Level 5");
+                var timer = document.getElementById("timer");                       //variable for <p> area of timer
+                decrementor = setInterval(decrementTimer, 1000);                
+                numberOfCharacters = 8;
+                numberOfInputs = 10;
+                
+                buildLevel()                                                        //builds level
+                
+            }
+            
+            function buildLevel() {
+            
                 //Add characters & inputs
                 var characterArea = document.getElementById("characters");
                 var inputArea = document.getElementById("inputArea");
@@ -45,7 +111,6 @@
                 
                 //Randomize Code
                 randomizeCode();
-                
             }
             
             function randomizeCode() {
@@ -102,7 +167,33 @@
                 alert("You win");
                 gameOver = true;
                 clearInterval(decrementor);                     //stop counting down
+                clearInput();
+                if(round == 1){
+                    round2();
+                }
+                else if(round == 2){
+                    round3();
+                }
+                else if(round == 3) {
+                    round4();
+                }
+                else {
+                    round5();
+                }
+              
                 
+            }
+            
+            //Clears all the input boxes from previous level
+            function clearInput() {
+                var myNode = document.getElementById("inputArea");
+                var otherNode = document.getElementById("characters");
+                while (myNode.firstChild) {
+                    myNode.removeChild(myNode.firstChild);
+                }
+                while(otherNode.firstChild) {
+                    otherNode.removeChild(otherNode.firstChild);
+                }
             }
             
             //function that is called every second while not gameover
@@ -123,7 +214,7 @@
     </head>
     
     <body>
-        <button onclick = "roundOne()">Begin</button>
+        <button onclick = "round1()">Begin</button>
         
         <div id = "roundDiv">
             <p id = "round#"><p>
