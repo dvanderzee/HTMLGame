@@ -22,7 +22,18 @@ var inventory={
 		false,
 		"cooking knife, has a little tomato still on it"
 	),
-	ChefHat:new Item("Chef Hat","Helmet",1,true,"cook's hat")
+	ChefHat:new Item("Chef Hat","Helmet",1,true,"cook's hat"),
+	HealthPotion:new Item
+	(
+		"Health Potion",
+		"Potion",
+		1,
+		false,
+		function()
+		{
+			PlusStat("HP",50);
+		}
+	)
 };
 
 //initializes the equipment area; global access
@@ -82,10 +93,6 @@ function inventmain(){
 		printitem(mytable,key);
 	}
 	area.appendChild(mytable);
-	addinventory("Health Potion","HealthPotion","Potion",1,
-				 function(){PlusStat("HP",50);});
-	addinventory("Health Potion","HealthPotion","Potion",2,
-				 function(){PlusStat("HP",50);});
 }
 
 //will unequip equipment; always linked to buttons in the equipment area
@@ -193,7 +200,7 @@ function printitem(mytable,key){
 	cellname.innerHTML=inventory[key].name;
 	cellvalue.innerHTML=inventory[key].count;
 	type=inventory[key].type;
-	if (type!="Currency" && type!="KeyItem"){
+	if (type!="Currency" && type!="Key Item"){
 		var buttoncell=row.insertCell();
 		var btn=document.createElement("div");
 		btn.className="smallbtn";

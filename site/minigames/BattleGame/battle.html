@@ -28,18 +28,20 @@
 
 	<body>
 		<main>
-			<div id="layoutLeft">
+			<div id="layoutLeftgame">
 				<div id="background" class="layoutArea">
 					<div id="header-area">
 						<div id="display-hero">
-							<h1><strong>You</strong></h1>
-							<h3><strong>HP:</strong> <span id="herohp">--</span>/<span id="herohp-total">--</span></h3>
-							<h3><strong>Level:</strong> <span id="herolevel">--</span></h3>
+							<h1><strong>Marc</strong></h1>
+							<h3><strong>HP:</strong> <span id="HP-Current">--</span>/<span id="HP-Total">--</span></h3>
+							<h3><strong>MP:</strong> <span id="MP-Current">--</span>/<span id="MP-Total">--</span></h3>
 						</div><!-- /display-hero -->
 						
+						<div id="exit"><p>Exit</p></div>
+						
 						<div id="display-monster">
-							<h1><strong><span id="monstername">Enemy</span></strong></h1>
-							<h3><strong>HP:</strong> <span id="monsterhp">--</span>/<span id="monsterhp-total">--</span></h3>
+							<h1><strong><span id="Monster-Name">Enemy</span></strong></h1>
+							<h3><strong>HP:</strong> <span id="Monster-HP">--</span>/<span id="Monster-HP-Total">--</span></h3>
 							<h3>&nbsp;</h3>
 						</div><!-- /display-monster -->
 					</div>
@@ -49,14 +51,15 @@
 					</div>
 					<div id="footer-area">
 						<div id="battle-info">
-							an enemy faces you
+							<p id="player-actions">an enemy faces you</p>
+							<p id="enemy-actions">good luck</p>
 						</div>
 						<div id="choices">
-							<div id="Attack" class="action">
-								<p>Attack</p>
-							</div>
 							<div id="Heal" class="action">
 								<p>Heal</p>
+							</div>
+							<div id="Attack" class="action">
+								<p>Attack</p>
 							</div>
 							<div id="MagicMissile" class="action">
 								<p>Magic Missile</p>

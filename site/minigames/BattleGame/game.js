@@ -5,57 +5,135 @@ function Enemy(Name,Strength,HP,level,xp){
 	this.HP=HP;
 	this.MaxHP=HP;
 	this.level=level;
-	this.xp=xp;
+	this.XP=xp;
 }
 
 //the four enemies that you might face
-var grunt = new Enemy('grunt', 8, 50, 1, 5);
-var mercenary = new Enemy('mercenary', 12, 75, 2, 25);
-var assassin = new Enemy('assassin', 16, 100, 3, 75);
-var eldar = new Enemy('eldar', 20, 150, 4, 150);
+var Grunt = new Enemy('Grunt', 8, 50, 1, 10);
+var Bandit = new Enemy('Bandit', 12, 75, 2, 25);
+var Assassin = new Enemy('Assassin', 16, 100, 3, 45);
+var Eldar = new Enemy('Eldar', 20, 150, 4, 90);
 
-var Monster;
+var Monster=Grunt;
 //changes the enemy you will fight depending upon your level
 var EnemyChoice = function() {
-	switch (Stats.level) {
+	switch (Stats.Level) {
 		case 1:
-			Monster=grunt;
+			Monster=Grunt;
 			break;
 		case 2:
-			Monster=mercenary;
+			Monster=Bandit;
 			break;
 		case 3:
-			Monster=assassin;
+			Monster=Assassin;
 			break;
 		default:
-			Monster=eldar;
+			Monster=Eldar;
 			break;
 	}
 }
 
-
+//initializes the scene for the battle
 function battlemain(){
+	$('#layoutLeft').css("display","none");
+	$('#layoutLeftgame').css("display","block");
+	$('#exit').hide();
 	//displays the characters most important stats
 	$('#HP-Current').html(Stats.HP);
 	$('#HP-Total').html(Stats.MaxHP);
 	$('#MP-Current').html(Stats.MP);
 	$('#MP-Total').html(Stats.MaxMP);
 	
+	EnemyChoice();
 	//displays the health and name of the monster
 	$('#Monster-Name').html(Monster.Name);
 	$('#Monster-HP').html(Monster.HP);
 	$('#Monster-HP-Total').html(Monster.MaxHP);
-	
+	$('#enemy-pic').addClass(Monster.Name);
+	$('#player-actions').html("A "+Monster.Name+" jumps out of the \
+							  forest in front of you!");
+	$('#enemy-actions').html("It's a fight!");
+	$('#Heal').show();
+	$('#Attack').show();
+	$('#MagicMissile').show();
+	$('#Run').show();
 }
 
+//displays the updated stats in-game
 function displayStats() {
 	$('#HP-Current').html(Stats.HP);
 	$('#MP-Current').html(Stats.MP);
+	$('#Monster-HP').html(Monster.HP);
 }
 
-function displayMonsterHP() {
-	$('Monster-HP').html(Monster.HP);
+function MonsterAttack(){
+	if (Monster.HP<=0){
+		displayStats();
+		$('#enemy-actions').html("You have killed the "+Monster.Name+"You gain "+
+		Monster.XP+" xp!");
+		PlusStat("XP",Monster.XP);
+		$('#Heal').hide();
+		$('#Attack').hide();
+		$('#MagicMissile').hide();
+		$('#Run').hide();
+		Monster.HP=Monster.MaxHP;
+		$('#exit').show();
+	}else{
+		var damage=Monster.Strength;
+		var armor=Stats.Toughness/10;
+		damage-=armor;
+		MinusStat("HP",damage);
+		displayStats();
+		$('#enemy-actions').html("The "+Monster.Name+" hits Marc for "+damage+" damage");
+	}
 }
+
+$('#exit').click(function(){
+	$('#layoutLeftgame').css("display","none");
+});
+
+$('#Heal').click(function(){
+	mana=10-Stats.Intelligence/10;
+	if (Stats.MP>=mana){
+		MonsterAttack();
+		var healing=Stats.Intelligence*2;
+		PlusStat("HP",healing);
+		MinusStat("MP",mana);
+		MonsterAttack();
+		$('#player-actions').html("Mark heals "+healing+" health");
+	}else{
+		$('#player-actions').html("You don't have enough mana for that!");
+		$('#enemy-actions').html("");
+	}
+});
+
+$('#Attack').click(function(){
+	var damage=Stats.Strength/2;
+	Monster.HP-=damage;
+	MonsterAttack();
+	$('#player-actions').html("The "+Monster.Name+" hits Marc for "+damage+" damage");
+});
+
+$('#MagicMissile').click(function(){
+	mana=10-Stats.Intelligence/10;
+	if (Stats.MP>=mana){
+		var damage=Stats.Intelligence/5;
+		Monster.HP-=damage;
+		MinusStat("MP",mana);
+		MonsterAttack();
+		$('#player-actions').html("Mark deals "+damage+" to the "+Monster.Name);
+	}else{
+		$('#enemy-actions').html("You don't have enough mana for that!");
+		$('#player-actions').html("");
+	}
+});
+
+$('#Run').click(function(){
+	MonsterAttack();
+	$('#player-actions').html("You run like a little bitch, don't you feel proud?");
+	
+});
+
 
 /*
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -75,6 +153,7 @@ var monsterCodex = [slime, troll, dragon];
 */
 //Let's rock!
 var battle = function() {
+	/*
 	//Make sure action buttons are active
 	$('#btn-fight').removeClass().addClass('show');
 	$('#btn-run').removeClass().addClass('show');
@@ -91,7 +170,7 @@ var battle = function() {
 	
 	//Monster Image
 	$('#monster-image').addClass(monster.name);
-	
+	*/
 	//Critical Hit Rolls
 	var StatsStrengthCrit = Stats.Strength;
 	var monsterStrengthCrit = monster.Strength;

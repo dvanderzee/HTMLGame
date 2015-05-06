@@ -38,8 +38,6 @@ function statsmain(){
 		cellvalue.id="stats"+key;
 	}
 	area.appendChild(mytable);
-	PlusStat("XP",26);
-	MinusStat("HP",92);
 }
 
 //function for levelling up. It assumes we only allow to stats to be increased per level
@@ -50,10 +48,10 @@ function LevelUp(x,y){
 	Stats[y]+=5;
 	Stats.MaxHP=10*Stats.Toughness+10*(Stats.Level-1);
 	Stats.HP=Stats.MaxHP;
-	Stats.MaxMP=5*Stats.Intelligence+5*(Stats.Level-1);
+	Stats.MaxMP=5*Stats.Willpower+5*(Stats.Level-1);
 	Stats.MP=Stats.MaxMP;
 	Stats.XP-=Stats.XPtoLevel;
-	Stats.XPtoLevel*=4;
+	Stats.XPtoLevel*=2;
 	UpdateDisplay();
 }
 
@@ -71,7 +69,10 @@ function PlusStat(stat,amount){
 	if (stat="XP" && Stats.XPtoLevel<=Stats.XP){
 		//change main display to ask what stats to level up and then run levelup
 		//with those 2 stats
-		LevelUp("Toughness","Intelligence");
+		toggle();
+		stat1=prompt("Enter a (capitalized) stat to upgrade","Intelligence");
+		stat2=prompt("Enter a second (capitalized) stat to upgrade","Willpower");
+		LevelUp(stat1,stat2);
 	}else if(stat='HP' && Stats.MaxHP<=Stats.HP){
 		Stats.HP=Stats.MaxHP;
 	}else if(stat='MP' && Stats.MaxMP<=Stats.MP){
@@ -83,10 +84,10 @@ function PlusStat(stat,amount){
 //if a stat is being reduced (mostly applicable to health and MP)
 function MinusStat(stat,amount){
 	Stats[stat]-=amount;
-	if (stat="HP" && Stats.HP<0){
+	if (stat="HP" && Stats.HP<=0){
 		//print game over,restart game
-		var area = document.getElementById("statMenu");
-		area.innerHTML="YOU DIED!";
+		var area = document.getElementById("layoutLeft");
+		area.innerHTML="YOU DIED!Refresh your browser to start again!";
 	}else{
 		UpdateDisplay();
 	}
