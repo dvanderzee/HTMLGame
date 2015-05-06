@@ -194,7 +194,7 @@ button{
 	width: 100%;
 	height: 100%;
 	padding:5%;
-	background:url(images/forest.jpg) no-repeat;
+	background:url(../minigames/BattleGame/images/forest.jpg) no-repeat;
 	background-size:100% 100%;
 }
 
@@ -206,10 +206,10 @@ button{
 	position:relative;
 }
 
-#enemy-pic.Grunt{background:url(images/grunt.png) no-repeat 50% 0;background-size:auto 100%;}
-#enemy-pic.Bandit{background:url(images/bandit.png) no-repeat 50% 0;background-size:auto 100%;}
-#enemy-pic.Assassin{background:url(images/assassin.png) no-repeat 50% 0;background-size:auto 100%;}
-#enemy-pic.Eldar{background:url(images/eldar.png) no-repeat 50% 0;background-size:auto 100%;}
+#enemy-pic.Grunt{background:url(../minigames/BattleGame/images/grunt.png) no-repeat 50% 0;background-size:auto 100%;}
+#enemy-pic.Bandit{background:url(../minigames/BattleGame/images/bandit.png) no-repeat 50% 0;background-size:auto 100%;}
+#enemy-pic.Assassin{background:url(../minigames/BattleGame/images/assassin.png) no-repeat 50% 0;background-size:auto 100%;}
+#enemy-pic.Eldar{background:url(../minigames/BattleGame/images/eldar.png) no-repeat 50% 0;background-size:auto 100%;}
 
 
 #header-area{
