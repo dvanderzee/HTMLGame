@@ -1,11 +1,131 @@
+* {
+    font-family: "Courier New", Courier, monospace;
+    color: white;
+}
+
+body {
+
+    background-color: black;
+
+}
 input[type = text]{
 
     font-size: 100px;
     width: 100px;
     border-style: hidden;
     text-align: center;
+    margin: 15px;
+    color: black;
+    background-color: gray;
 }
 input[type = text]: focus{
     outline: none;
     
+}
+
+h2{
+
+font-size: 50px;
+}
+
+#game {
+
+    display:none;
+}
+
+#instruction {
+
+    text-align: center;
+}
+
+#begin {
+
+    background-color: gray;
+}
+.instructions {
+
+    text-align: center;
+    font-size: 25px;
+    margin: 10px;
+}
+
+.instructions_red {
+    text-align: center;
+    font-size: 50px;
+    color: red;
+    margin: 10px;
+}
+
+.instructions_yellow {
+    text-align: center;
+    font-size: 50px;
+    color: yellow;
+    margin: 20px;
+}
+
+.instructions_green {
+    text-align: center;
+    font-size: 50px;
+    color: green;
+    margin: 20px;
+}
+#inputDiv {
+
+    text-align: center;
+
+}
+
+#roundDiv {
+    position:absolute;
+    z-index: 10;
+    float: left;
+}
+
+#roundNumber {
+
+    font-size: 50px;
+    
+}
+
+#timerArea{
+    float: right;
+    position:absolute;
+    z-index: 11;
+    right: 2%;
+    text-align: center;
+}
+
+#timeLabel {
+
+    font-size: 30px;
+    margin: 5px;
+}
+#timer {
+
+    font-size: 50px;
+    margin: 10px;
+}
+#characterDiv {
+
+    text-align: center;
+    position: relative;
+}
+
+#characters {
+    position: relative;
+    font-size:100px;
+    letter-spacing: 30px;
+    vertical-align: text-bottom;
+    margin: 30px;
+    border-style: double;
+    width: 50%;
+    left: 25%;
+    text-align: center;
+}
+
+#sender {
+
+    width: 90px;
+    height: 60px;
+    background-color: gray;
 }

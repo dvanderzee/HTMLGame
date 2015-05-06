@@ -7,7 +7,6 @@
         
             var maxTimeInSec;                               //variable for how many seconds you want to be converted to milliseconds
             var timeLeft;                                   //variable for how much time is left. Reset to max after every round
-            var gameOver = false;                           //variable if game has ended
             var round;                                      //what round you're on
             var charactersInRound = ['!','@','#','$','%','^','&','*'];     //what characters may appear on round
             var numberOfCharacters;                         //How many characters appear in the round
@@ -18,10 +17,16 @@
             //Called when game has started
             function round1() {
             
-                maxTimeInSec = 15;                                                  //max time for round 1
+                //Remove begin and instructions
+                var gameDiv = document.getElementById("game");
+                var instructionDiv = document.getElementById("instruction");
+                instructionDiv.style.display = 'none';
+                gameDiv.style.display = 'block';
+
+                maxTimeInSec = 30;                                                  //max time for round 1
                 timeLeft = maxTimeInSec;                               
                 round = 1;                                                          //start on round 1
-                document.getElementById("round#").innerHTML = ("Level 1");
+                document.getElementById("roundNumber").innerHTML = ("Level 1");
                 var timer = document.getElementById("timer");                       //variable for <p> area of timer
                 decrementor = setInterval(decrementTimer, 1000);                
                 numberOfCharacters = 4;
@@ -33,10 +38,10 @@
             
             function round2() {
             
-                maxTimeInSec = 25;                                                  //max time for round 2
+                maxTimeInSec = 45;                                                  //max time for round 2
                 timeLeft = maxTimeInSec;                               
                 round = 2;                                                          
-                document.getElementById("round#").innerHTML = ("Level 2");
+                document.getElementById("roundNumber").innerHTML = ("Level 2");
                 var timer = document.getElementById("timer");                       //variable for <p> area of timer
                 decrementor = setInterval(decrementTimer, 1000);                
                 numberOfCharacters = 5;
@@ -48,10 +53,10 @@
             
             function round3() {
             
-                maxTimeInSec = 30;                                                 
+                maxTimeInSec = 50;                                                 
                 timeLeft = maxTimeInSec;                               
                 round = 3;                                                          
-                document.getElementById("round#").innerHTML = ("Level 3");
+                document.getElementById("roundNumber").innerHTML = ("Level 3");
                 var timer = document.getElementById("timer");                       //variable for <p> area of timer
                 decrementor = setInterval(decrementTimer, 1000);                
                 numberOfCharacters = 6;
@@ -63,10 +68,10 @@
             
             function round4() {
             
-                maxTimeInSec = 35;                                                
+                maxTimeInSec = 55;                                                
                 timeLeft = maxTimeInSec;                               
                 round = 4;                                                          
-                document.getElementById("round#").innerHTML = ("Level 4");
+                document.getElementById("roundNumber").innerHTML = ("Level 4");
                 var timer = document.getElementById("timer");                       //variable for <p> area of timer
                 decrementor = setInterval(decrementTimer, 1000);                
                 numberOfCharacters = 8;
@@ -78,10 +83,10 @@
             
             function round5() {
             
-                maxTimeInSec = 45;                                                
+                maxTimeInSec = 60;                                                
                 timeLeft = maxTimeInSec;                               
                 round = 5;                                                          
-                document.getElementById("round#").innerHTML = ("Level 5");
+                document.getElementById("roundNumber").innerHTML = ("Level 5");
                 var timer = document.getElementById("timer");                       //variable for <p> area of timer
                 decrementor = setInterval(decrementTimer, 1000);                
                 numberOfCharacters = 8;
@@ -106,6 +111,13 @@
                     inputBox.setAttribute('type', 'text');
                     inputBox.id = "input" + i;
                     inputBox.setAttribute('maxlength', '1');
+                    if(i < numberOfInputs - 1){
+                        inputBox.onkeypress = function(event){
+                            if(this.nextSibling.readOnly != true){
+                                this.nextSibling.focus();
+                            }
+                        };
+                    }
                     inputArea.appendChild(inputBox);
                 }
                 
@@ -120,7 +132,7 @@
                 }
                 
                 //Show Answer
-                document.getElementById("answer").innerHTML = correctCode;
+                //document.getElementById("answer").innerHTML = correctCode;
                 
             }
             
@@ -132,40 +144,47 @@
                     playerInput[i] = document.getElementById("input" + i);
                 }
                 
+                var correct = true;
+                
                 //Check against answer
                 for(var i = 0; i < numberOfInputs; i++) {
+                
                     //If it's incorrect
                     if(playerInput[i].value != correctCode[i]) {
                     
                         //Is it in the answer?
-                        if(correctCode.indexOf(playerInput[i].value != -1)) {
-                        
+                        if(correctCode.indexOf(playerInput[i].value) != -1) {
                             //Make it yellow
                             document.getElementById("input" + i).style.color = "yellow";
+                            correct = false;
                         }
                         else {
-                        
                             //Make it Red
                             document.getElementById("input" + i).style.color = "red";
+                            correct = false;
                         }
                         
-                        alert("Incorrect Code");
-                        return;
                     }
                     
                     else {
                         //Make it green
                         document.getElementById("input" + i).style.color = "green";
+                        document.getElementById("input" + i).readOnly = true;
                     }
                 }
                 
                 //Correct code
-                win();
+                if(correct){
+                    win();
+                }
+                
+                else {
+                    alert("Incorrect Code");
+                    return;
+                }
             }
                     
             function win() {
-                alert("You win");
-                gameOver = true;
                 clearInterval(decrementor);                     //stop counting down
                 clearInput();
                 if(round == 1){
@@ -177,8 +196,12 @@
                 else if(round == 3) {
                     round4();
                 }
-                else {
+                else if(round == 4){
                     round5();
+                }
+                else{
+                    //Win the game
+                    alert("YOU WIN THE GAME");
                 }
               
                 
@@ -200,9 +223,15 @@
             function decrementTimer() {
                 
                 if(timeLeft <= 0) {                                 //if out of time
-                    gameOver = true;
                     alert("Game Over");
                     clearInterval(decrementor);                     //stop counting down
+                    
+                    //reset
+                    clearInput();
+                    var gameDiv = document.getElementById("game");
+                    var instructionDiv = document.getElementById("instruction");
+                    instructionDiv.style.display = 'block';
+                    gameDiv.style.display = 'none';
                 }
                 else{
                     timeLeft -= 1;
@@ -214,26 +243,46 @@
     </head>
     
     <body>
-        <button onclick = "round1()">Begin</button>
-        
-        <div id = "roundDiv">
-            <p id = "round#"><p>
+        <div id = "instruction">
+            <p class = "instructions">To hack into the terminal, you need to crack all five layers of the systems secret code.</p>
+            <p class = "instructions">The terminal will show you possible characters that may appear in the secret code. <p>
+            <p class = "instructions">! @ # $ %<p>
+            <p class = "instructions">Type your guess at the code and the system will alert you how close you are. </p>
+            <p class ="instructions">If your input appears red, that character does NOT appear in the code</p>
+            <p class = "instructions_red">& </p>
+            <p class = "instructions">If your input appears yellow, that character appears in the code but that is not the right spot for it</p>
+            <p class = "instructions_yellow">& </p>
+            <p class = "instructions">If your input is correct, the character will appear green<p>
+            <p class = "instructions_green">& </p>
+            <p class = "instructions">You have a limited amount of time to hack into each layer. Otherwise the system will kick you out.<p>
+            <p class = "instructions">When you're ready click to hack the database<p>
+            <br>
+            <button id = "begin" onclick = "round1()" >Hack</button>
         </div>
         
-        <div id = "timerArea">  
-            <p id = "timer">:</p>
-        </div>
-        
-        <div id = "characterDiv">
-            <p id = "characters"> </p>
-            <p id = "answer"> </p>
-        </div>
-        
-        <div id = "inputDiv">
-            <div id = "inputArea">
-                
+        <div id = "game">
+            <div id = "roundDiv">
+                <p id = "roundNumber"><p>
             </div>
-            <input type = "button" value = "Send" onclick = "send()">
+            
+            <div id = "timerArea">  
+                <p id= "timeLabel">Time Left:<p>
+                <p id = "timer">:</p>
+            </div>
+            
+            <div id = "characterDiv">
+                <h2>Possible Code:</h2>
+                <p id = "characters"></p>
+                <p id = "answer"></p>
+            </div>
+            
+            <div id = "inputDiv">
+                <h2>Input your code here:</h2>
+                <div id = "inputArea">
+                    
+                </div>
+                <input type = "button" id = "sender" value = "Send Code" onclick = "send()">
+            </div>
         </div>
     </body>
     
