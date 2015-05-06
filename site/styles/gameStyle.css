@@ -261,6 +261,7 @@ button{
 	height:100%;
 	background:#000048;
 	padding:2%;
+	text-wrap:normal;
 	border:solid 1px white;
 }
 

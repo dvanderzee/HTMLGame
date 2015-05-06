@@ -88,6 +88,8 @@ function MinusStat(stat,amount){
 		//print game over,restart game
 		var area = document.getElementById("layoutLeft");
 		area.innerHTML="YOU DIED!Refresh your browser to start again!";
+		area = document.getElementById("layoutLeftgame");
+		area.innerHTML="YOU DIED!Refresh your browser to start again!";
 	}else{
 		UpdateDisplay();
 	}
