@@ -11,7 +11,7 @@ function Enemy(Name,Strength,HP,level,xp){
 //the four enemies that you might face
 var grunt = new Enemy('grunt', 8, 50, 1, 5);
 var mercenary = new Enemy('mercenary', 12, 75, 2, 25);
-var assasin = new Enemy('assasin', 16, 100, 3, 75);
+var assassin = new Enemy('assassin', 16, 100, 3, 75);
 var eldar = new Enemy('eldar', 20, 150, 4, 150);
 
 var Monster;
@@ -25,7 +25,7 @@ var EnemyChoice = function() {
 			Monster=mercenary;
 			break;
 		case 3:
-			Monster=assasin;
+			Monster=assassin;
 			break;
 		default:
 			Monster=eldar;

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<title>HTML5 Puzzle</title>
+		<link href="content/Jigsaw.css" rel="stylesheet" type="text/css" />
+		<script src="content/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+		<script src="content/js/paper.js" type="text/javascript"></script>
+		<script src="content/js/jigsaw.js" type="text/paperscript" canvas="canvas"></script>
+	</head>
+
+	<body>
+		<canvas id="canvas" class="canvas" resize></canvas>
+		<div class="charms">
+			<img width="50" height="50" src="content/images/zoomIn.png" class="zoomIn"/>
+			<img width="50" height="50" src="content/images/zoomOut.png" class="zoomOut"/>
+			<img width="50" height="50" src="content/images/help.png" class="help"/>
+		</div>
+		<img id="puzzle-image" class="puzzle-image" style="display: none;" src="content/images/planet1.png" />
+		<img width="124" height="124" id="empty" style="display: none;" src="content/images/empty.png" />
+	</body>
+</html>
