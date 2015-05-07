@@ -112,7 +112,7 @@ levels._3_a = {
 }
 
 levels._3_minigame = {
-	game: "./minigames/jigsawpuzzle/Puzzle.html",
+	game: "./minigames/jigsawpuzzle/planet1_puzzle.html",
 	success: "_3_success",
 	fail: "_3_fail",
 	reward: function(){
