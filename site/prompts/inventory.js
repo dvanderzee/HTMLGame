@@ -13,8 +13,8 @@ function Item(name,type,count,equipped,effect){
 var inventory={
 	Gold:new Item("Gold","Currency",100,null,"really?"),
 	Shirt:new Item("Shirt","Armor",1,true,["Toughness",.5]),
-	KitchenKnife:new Item("Kitchen Knife","Weapon",1,false,["Strength",3]),
-	ChefHat:new Item("Chef Hat","Helmet",1,true,["Toughness",.5]),
+	Machete:new Item("Machete","Weapon",1,false,["Strength",2]),
+	HideHat:new Item("Hide Hat","Helmet",1,true,["Toughness",.5]),
 	HealthPotion:new Item
 	(
 		"Health Potion",
@@ -30,9 +30,9 @@ var inventory={
 
 //initializes the equipment area; global access
 var equipment={
-	Helmet:inventory.ChefHat,
+	Helmet:inventory.HideHat,
 	Armor:inventory.Shirt,
-	Weapon:inventory.KitchenKnife,
+	Weapon:inventory.Machete,
 	Shield:"empty",
 	Greaves:"empty",
 	Ring:"empty",
