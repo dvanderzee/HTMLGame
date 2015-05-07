@@ -112,11 +112,11 @@ levels._3_a = {
 }
 
 levels._3_minigame = {
-	game: "./minigames/jigsawpuzzle/Puzzle.html",
+	game: "./minigames/hacking/hacking.html",
 	success: "_3_success",
 	fail: "_3_fail",
 	reward: function(){
-		addinventory("map","map","key item",1,null)
+		addinventory("Starmap","Starmap","Key Item",1,null)
 	}
 }
 
@@ -125,63 +125,3 @@ levels._3_success = {
 	north_go: "_1_",
 }
 
-levels._3_ba = {
-	prompt: "Prompt 3_ba",
-	a: "Option A",
-	b: "Option B"
-}
-
-levels._3_bb = {
-	prompt: "Prompt 3_bb",
-	a: "Option A",
-	b: "Option B"
-}
-
-levels._4_aaa = {
-	prompt: "Prompt 4_aaa",
-	a: "Option A",
-	b: "Option B",
-}
-
-levels._4_aab = {
-	prompt: "Prompt 4_aab",
-	a: "Option A",
-	b: "Option B",
-	newplanet: true
-}
-
-levels._4_aba = {
-	prompt: "Prompt 4_aba",
-	a: "Option A",
-	b: "Option B"
-}
-
-levels._4_abb = {
-	prompt: "Prompt 4_abb",
-	a: "Option A",
-	b: "Option B"
-}
-
-levels._4_bba = {
-	prompt: "Prompt 4_bba",
-	a: "Option A",
-	b: "Option B"
-}
-
-levels._4_bbb = {
-	prompt: "Prompt 4_bbb",
-	a: "Option A",
-	b: "Option B"
-}
-
-levels._4_baa = {
-	prompt: "Prompt 4_baa",
-	a: "Option A",
-	b: "Option B"
-}
-
-levels._4_bab = {
-	prompt: "Prompt 4_bab",
-	a: "Option A",
-	b: "Option B"
-}

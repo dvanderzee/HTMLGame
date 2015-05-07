@@ -9,10 +9,10 @@ function Enemy(Name,Strength,HP,level,xp){
 }
 
 //the four enemies that you might face
-var Grunt = new Enemy('Grunt', 8, 50, 1, 10);
-var Bandit = new Enemy('Bandit', 12, 75, 2, 25);
-var Assassin = new Enemy('Assassin', 16, 100, 3, 45);
-var Eldar = new Enemy('Eldar', 20, 150, 4, 90);
+var Grunt = new Enemy('Grunt', 8, 100, 1, 10);
+var Bandit = new Enemy('Bandit', 12, 125, 2, 20);
+var Assassin = new Enemy('Assassin', 16, 150, 3, 30);
+var Eldar = new Enemy('Eldar', 20, 200, 4, 40);
 
 var Monster=Grunt;
 //changes the enemy you will fight depending upon your level
@@ -74,11 +74,25 @@ function displayStats() {
 //determines whether or not an attack is critical
 function Critical(){
 	chance=Math.random();
-	if (chance<=.1){
+	if (chance<=Stats.Dexterity/100){
 		return true;
 	}else{
 		return false;
 	}
+}
+
+function Randomize(){
+	
+}
+
+function EquipStats(stat){
+	var bonus=0;
+	for (var item in equipment){
+		if (equipment[item]!="empty" && equipment[item].effect[0]==stat){
+			bonus+=equipment[item].effect[1];
+		}
+	}
+	return bonus;
 }
 
 //controls the monster attacks and the case of a dead monster/player
@@ -99,7 +113,7 @@ function MonsterAttack(){
 		var damage=Monster.Strength;
 		var iscrit="";
 		if (Critical()){damage*=2;iscrit="! It's a Critical Hit!";}
-		var armor=Stats.Toughness/10;
+		var armor=Stats.Toughness/10+Math.floor(EquipStats("Toughness"));
 		damage-=armor;
 		MinusStat("HP",damage);
 		displayStats();
@@ -122,7 +136,7 @@ $('#Heal').click(function(){
 	mana=10-Stats.Intelligence/10;
 	if (Stats.MP>=mana){
 		MonsterAttack();
-		var healing=Stats.Intelligence*2;
+		var healing=Stats.Intelligence*2+Math.floor(EquipStats("Intelligence"));
 		var iscrit="";
 		if (Critical()){healing*=2;iscrit="! It's a Critical Heal!";}
 		PlusStat("HP",healing);
@@ -137,7 +151,7 @@ $('#Heal').click(function(){
 
 //the main way to attack button
 $('#Attack').click(function(){
-	var damage=Stats.Strength/2;
+	var damage=Stats.Strength/2+Math.floor(EquipStats("Strength"));
 	var iscrit="";
 	if (Critical()){damage*=2;iscrit="! It's a Critical Hit!";}
 	Monster.HP-=damage;
@@ -149,7 +163,7 @@ $('#Attack').click(function(){
 $('#MagicMissile').click(function(){
 	mana=10-Stats.Intelligence/10;
 	if (Stats.MP>=mana){
-		var damage=Stats.Intelligence/5;
+		var damage=Stats.Intelligence/5+Math.floor(EquipStats("Intelligence"));
 		var iscrit="";
 		if (Critical()){damage*=2;iscrit="! It's a Critical Hit!";}
 		Monster.HP-=damage;
@@ -165,11 +179,19 @@ $('#MagicMissile').click(function(){
 //run like a pansy button
 $('#Run').click(function(){
 	MonsterAttack();
-	$('#player-actions').html("You run like a little bitch, don't you feel proud?");
-	$('#Heal').hide();
-	$('#Attack').hide();
-	$('#MagicMissile').hide();
-	$('#Run').hide();
-	Monster.HP=Monster.MaxHP;
-	$('#exit').show();
+	chancetorun=Math.random()*100;
+	if (Stats.Dexterity>chancetorun){
+		$('#player-actions').html("You run like a little bitch, don't you feel proud?");
+		$('#Heal').hide();
+		$('#Attack').hide();
+		$('#MagicMissile').hide();
+		$('#Run').hide();
+		Monster.HP=Monster.MaxHP;
+		$('#exit').show();
+	}else{
+		$('#player-actions').html("You attempt to run but your pathetic legs are \
+								  stiffened with fear. Better luck next time wimp.");
+	}
 });
+
+battlemain();

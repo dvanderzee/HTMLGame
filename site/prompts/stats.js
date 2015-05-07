@@ -14,7 +14,12 @@ var Stats={
 	MP:50,
 	MaxMP:50,
 	XP:0,
-	XPtoLevel:25
+	XPtoLevel:10
+}
+
+var hiddenStats={
+	planet2Base: false,
+	
 }
 
 //will set up the original html content for the display of the stats
