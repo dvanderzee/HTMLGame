@@ -69,7 +69,7 @@ function PlusStat(stat,amount){
 	if (stat="XP" && Stats.XPtoLevel<=Stats.XP){
 		//change main display to ask what stats to level up and then run levelup
 		//with those 2 stats
-		toggle();
+		if (!showingStats){toggle();}
 		stat1=prompt("Enter a (capitalized) stat to upgrade","Intelligence");
 		stat2=prompt("Enter a second (capitalized) stat to upgrade","Willpower");
 		LevelUp(stat1,stat2);

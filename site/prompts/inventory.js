@@ -11,18 +11,10 @@ function Item(name,type,count,equipped,effect){
 
 //Initiates the players inventory, giving a few starting things; global access
 var inventory={
-	Gold:new Item("Gold","Currency",100,null,"no"),
-	Shirt:new Item("Shirt","Armor",1,true,"simple shirt"),
-	Spatula:new Item("Spatula","Weapon",1,true,"cooking spatula"),
-	KitchenKnife:new Item
-	(
-		"Kitchen Knife",
-		"Weapon",
-		1,
-		false,
-		"cooking knife, has a little tomato still on it"
-	),
-	ChefHat:new Item("Chef Hat","Helmet",1,true,"cook's hat"),
+	Gold:new Item("Gold","Currency",100,null,"really?"),
+	Shirt:new Item("Shirt","Armor",1,true,["Toughness",.5]),
+	KitchenKnife:new Item("Kitchen Knife","Weapon",1,false,["Strength",3]),
+	ChefHat:new Item("Chef Hat","Helmet",1,true,["Toughness",.5]),
 	HealthPotion:new Item
 	(
 		"Health Potion",
@@ -40,7 +32,7 @@ var inventory={
 var equipment={
 	Helmet:inventory.ChefHat,
 	Armor:inventory.Shirt,
-	Weapon:inventory.Spatula,
+	Weapon:inventory.KitchenKnife,
 	Shield:"empty",
 	Greaves:"empty",
 	Ring:"empty",

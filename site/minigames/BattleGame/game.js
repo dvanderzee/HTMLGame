@@ -35,9 +35,13 @@ var EnemyChoice = function() {
 
 //initializes the scene for the battle
 function battlemain(){
-	$('#layoutLeft').css("display","none");
 	$('#layoutLeftgame').css("display","block");
+	$('#layoutLeft').css("display","none");
+	$('#movementButtons').hide();
+	$('#invStatToggle').hide();
 	$('#exit').hide();
+	if (!showingStats){toggle();}
+	
 	//displays the characters most important stats
 	$('#HP-Current').html(Stats.HP);
 	$('#HP-Total').html(Stats.MaxHP);
@@ -93,12 +97,14 @@ function MonsterAttack(){
 	}
 	else{
 		var damage=Monster.Strength;
-		if (Critical()){damage*=2;}
+		var iscrit="";
+		if (Critical()){damage*=2;iscrit="! It's a Critical Hit!";}
 		var armor=Stats.Toughness/10;
 		damage-=armor;
 		MinusStat("HP",damage);
 		displayStats();
-		$('#enemy-actions').html("The "+Monster.Name+" hits you for "+damage+" damage");
+		$('#enemy-actions').html("The "+Monster.Name+" hits you for "+damage+
+								 " damage"+iscrit);
 	}
 }
 
@@ -106,6 +112,9 @@ function MonsterAttack(){
 $('#exit').click(function(){
 	$('#layoutLeftgame').css("display","none");
 	$('#layoutLeft').css("display","block");
+	$('#movementButtons').show();
+	$('#invStatToggle').show();
+	toggle();
 });
 
 //lets the character heal mid-battle button
@@ -114,11 +123,12 @@ $('#Heal').click(function(){
 	if (Stats.MP>=mana){
 		MonsterAttack();
 		var healing=Stats.Intelligence*2;
-		if (Critical()){healing*=2;}
+		var iscrit="";
+		if (Critical()){healing*=2;iscrit="! It's a Critical Heal!";}
 		PlusStat("HP",healing);
 		MinusStat("MP",mana);
 		MonsterAttack();
-		$('#player-actions').html("You heal "+healing+" health");
+		$('#player-actions').html("You heal "+healing+" health"+iscrit);
 	}else{
 		$('#player-actions').html("You don't have enough mana for that!");
 		$('#enemy-actions').html("");
@@ -128,10 +138,11 @@ $('#Heal').click(function(){
 //the main way to attack button
 $('#Attack').click(function(){
 	var damage=Stats.Strength/2;
-	if (Critical()){damage*=2;}
+	var iscrit="";
+	if (Critical()){damage*=2;iscrit="! It's a Critical Hit!";}
 	Monster.HP-=damage;
 	MonsterAttack();
-	$('#player-actions').html("You deal "+damage+" to the "+Monster.Name);
+	$('#player-actions').html("You deal "+damage+" to the "+Monster.Name+iscrit);
 });
 
 //the wizard's path of attacking button
@@ -139,11 +150,12 @@ $('#MagicMissile').click(function(){
 	mana=10-Stats.Intelligence/10;
 	if (Stats.MP>=mana){
 		var damage=Stats.Intelligence/5;
-		if (Critical()){damage*=2;}
+		var iscrit="";
+		if (Critical()){damage*=2;iscrit="! It's a Critical Hit!";}
 		Monster.HP-=damage;
 		MinusStat("MP",mana);
 		MonsterAttack();
-		$('#player-actions').html("You deal "+damage+" to the "+Monster.Name);
+		$('#player-actions').html("You deal "+damage+" to the "+Monster.Name+iscrit);
 	}else{
 		$('#enemy-actions').html("You don't have enough mana for that!");
 		$('#player-actions').html("");
@@ -162,4 +174,4 @@ $('#Run').click(function(){
 	$('#exit').show();
 });
 
-battlemain()
+battlemain();
