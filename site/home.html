@@ -10,9 +10,8 @@
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
         
         <script>
-            var planet = "planet1";
-            var answers = "";
-			var loc = "_1_";
+            var loc = "ship";
+			var level = "_1_";
             var showingStats = false;
 			var cardinal = ["north", "east", "west", "south", "a", "b", "c", "d"];
             
@@ -20,12 +19,12 @@
 			
 				window.addEventListener("message", miniGameResult, false);
                 loadscript();
-				//update(loc);
+				//update(level);
             });
 
-            <!-- When the new planet is needed, edit planet and run loadscript() -->
+            <!-- When the new location is needed, edit location and run loadscript() -->
             function loadscript(){
-                var src = "./prompts/" + planet + ".js" + "?" + Math.random();  
+                var src = "./prompts/" + loc + ".js" + "?" + Math.random();  
                 var head= document.getElementsByTagName('head')[0];
                 var script= document.createElement('script');
                 script.type= 'text/javascript';
@@ -33,29 +32,29 @@
                 head.appendChild(script);  
 
 				$(script).on("load",function(){
-					update(loc);
+					update(level);
 					
 					// Old style that I updated
 					//Button Click functionality
 					$("button").on("click",function(){
-						console.log(loc);
+						console.log(level);
 						var id = this.id;
 						var dir_go = id + "_go";
-						if (levels[loc][dir_go]){
-							newLoc = levels[loc][dir_go];
-							update(newLoc);
+						if (levels[level][dir_go]){
+							newLevel = levels[level][dir_go];
+							update(newLevel);
 						}
 					});
                 });
             }
 			
-			function update(newLoc) {
-				loc = newLoc;
+			function update(newLevel) {
+				level = newLevel;
 				
 				//Toggle Directional keys as needed.
 				for (dir in cardinal) {
 						var dir_go = cardinal[dir] + "_go";
-						if (!(levels[loc][dir_go])) {
+						if (!(levels[level][dir_go])) {
 							$("#" + cardinal[dir]).hide();
 						} else {
 							$("#" + cardinal[dir]).show();
@@ -63,42 +62,44 @@
 					}
 					
 				//If the location runs a game, find the file and append the game screen
-				if (levels[loc].game) {
+				if (levels[level].game) {
 					var miniGame = document.createElement("iframe");
 					miniGame.id = "miniGame";
-					$(miniGame).attr('src', levels[loc].game);
+					$(miniGame).attr('src', levels[level].game);
 					document.getElementById("layoutLeft").appendChild(miniGame);
 					$("#textGame").hide();
 				} 
 				
-				else if (levels[loc].planet) {
-					planet = levels[loc].planet;
-					loc = "_1_";
+				else if (levels[level].location) {
+					// Set location to the next locataion (ship or planet)
+					loc = levels[level].location;
+					// Set the level to the startint level described in the levels object
+					level = levels[level].start;
 					loadscript();
 				}
 				
-				else if (levels[loc].condition) {
-					var condition = levels[loc].condition;
-					var pass = levels[loc].pass;
+				else if (levels[level].condition) {
+					var condition = levels[level].condition;
+					var pass = levels[level].pass;
 					switch (condition) {
 						case "map":
 							if (inventory["map"]){
-								newLoc = loc + "_accept";
-								update(newLoc);
+								newLevel = level + "_accept";
+								update(newLevel);
 							}
 							
 							else {
-								newLoc = loc + "_deny";
-								update(newLoc);
+								newLevel = level + "_deny";
+								update(newLevel);
 							}
 							break;	
 					}
 				}
 				//Otherwise, update the prompt and options.
 				else {
-					$("#displayprompt").html(levels[newLoc].prompt);
-					$("#a").html(levels[newLoc].a); 
-					$("#b").html(levels[newLoc].b);
+					$("#displayprompt").html(levels[newLevel].prompt);
+					$("#a").html(levels[newLevel].a); 
+					$("#b").html(levels[newLevel].b);
 				}
 			}
 						
@@ -124,11 +125,13 @@
 				$("#miniGame").remove();
 				$("#textGame").show();
 				if (e.data.success) {
-					levels[loc].reward();
-					update(levels[loc].success);
+					if (levels[level].reward) {
+						levels[level].reward();
+					}
+					update(levels[level].success);
 				}
 				else {
-					update(levels[loc].fail);
+					update(levels[level].fail);
 				}
 				
 			}

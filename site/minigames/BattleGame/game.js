@@ -173,5 +173,3 @@ $('#Run').click(function(){
 	Monster.HP=Monster.MaxHP;
 	$('#exit').show();
 });
-
-battlemain();

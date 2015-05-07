@@ -87,7 +87,7 @@ levels._2_a_minigame = {
 }
 
 levels._2_a_success = {
-	location: "planet2",
+	location: "planet1",
 	start: "_1_"
 }
 
