@@ -193,5 +193,3 @@ $('#Run').click(function(){
 								  stiffened with fear. Better luck next time wimp.");
 	}
 });
-
-battlemain();
