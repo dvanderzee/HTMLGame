@@ -74,17 +74,25 @@ function displayStats() {
 //determines whether or not an attack is critical
 function Critical(){
 	chance=Math.random();
-	if (chance<=Stats.Dexterity/100){
+	if (chance<=.05){
 		return true;
 	}else{
 		return false;
 	}
 }
 
-function Randomize(){
-	
+//will determine the variation of all hits
+function Randomize(amount){
+	var variation=Math.random()*amount*3;
+	var minusorplus=Math.random();
+	if (minusorplus<.5){
+		return variation;
+	}else{
+		return 0-variation;
+	}
 }
 
+//will add bonus damage/armor/intelligence... from your equipment
 function EquipStats(stat){
 	var bonus=0;
 	for (var item in equipment){
@@ -110,11 +118,12 @@ function MonsterAttack(){
 		$('#exit').show();
 	}
 	else{
-		var damage=Monster.Strength;
+		var damage=Monster.Strength+Randomize(Stats.Level);
 		var iscrit="";
 		if (Critical()){damage*=2;iscrit="! It's a Critical Hit!";}
 		var armor=Stats.Toughness/10+Math.floor(EquipStats("Toughness"));
 		damage-=armor;
+		damage=Math.floor(damage);
 		MinusStat("HP",damage);
 		displayStats();
 		$('#enemy-actions').html("The "+Monster.Name+" hits you for "+damage+
@@ -136,9 +145,11 @@ $('#Heal').click(function(){
 	mana=10-Stats.Intelligence/10;
 	if (Stats.MP>=mana){
 		MonsterAttack();
-		var healing=Stats.Intelligence*2+Math.floor(EquipStats("Intelligence"));
+		var healing=Stats.Intelligence*2+EquipStats("Intelligence")+
+					Randomize(Stats.Level*3);
 		var iscrit="";
 		if (Critical()){healing*=2;iscrit="! It's a Critical Heal!";}
+		healing=Math.floor(healing);
 		PlusStat("HP",healing);
 		MinusStat("MP",mana);
 		MonsterAttack();
@@ -151,9 +162,10 @@ $('#Heal').click(function(){
 
 //the main way to attack button
 $('#Attack').click(function(){
-	var damage=Stats.Strength/2+Math.floor(EquipStats("Strength"));
+	var damage=Stats.Strength/2+EquipStats("Strength")+Randomize(Stats.Level);
 	var iscrit="";
 	if (Critical()){damage*=2;iscrit="! It's a Critical Hit!";}
+	damage=Math.floor(damage);
 	Monster.HP-=damage;
 	MonsterAttack();
 	$('#player-actions').html("You deal "+damage+" to the "+Monster.Name+iscrit);
@@ -163,9 +175,10 @@ $('#Attack').click(function(){
 $('#MagicMissile').click(function(){
 	mana=10-Stats.Intelligence/10;
 	if (Stats.MP>=mana){
-		var damage=Stats.Intelligence/5+Math.floor(EquipStats("Intelligence"));
+		var damage=Stats.Intelligence/5+EquipStats("Intelligence")+Randomize(Stats.Level);
 		var iscrit="";
 		if (Critical()){damage*=2;iscrit="! It's a Critical Hit!";}
+		damage=Math.floor(damage);
 		Monster.HP-=damage;
 		MinusStat("MP",mana);
 		MonsterAttack();
