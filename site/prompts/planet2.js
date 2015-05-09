@@ -15,7 +15,7 @@ levels._0_ = {
 	a: "Enter Ship",
 	a_go: "_ship_"
 	b: "Explore",
-	b_go: "_0_explore_"
+	b_go: "_0_explore"
 	
 	north_go: "_0_north",
 	east_go: "_0_east",
@@ -23,7 +23,7 @@ levels._0_ = {
 	west_go: "_0_west",
 }
 
-levels._0_explore_ = {
+levels._0_explore = {
 	explore: function(){
 		explore(50,10,"_0_a");
 	}
@@ -53,15 +53,71 @@ levels._0_west = {
 	}
 }
 
-levels._0_none = {
+levels._0_explore_none = {
 	prompt: "You roam around but find nothing of consequence.",
 	a: "Back",
 	a_go: "_0_",
 
 }
 
-levels._0_fight_ = {
-	game: "./minigames/BattleGame/battle.html",
+levels._0_north_fight = {
+	game: battlemain(),
+	success: "_0_success",
+	fail: "_0_fail",
+
+}
+
+levels._0_north_none = {
+	prompt: "You roam around but find nothing of consequence.",
+	a: "Back",
+	a_go: "_0_",
+
+}
+
+levels._0_east_none = {
+	prompt: "You roam around but find nothing of consequence.",
+	a: "Back",
+	a_go: "_0_",
+
+}
+
+levels._0_east_fight = {
+	game: battlemain(),
+	success: "_0_success",
+	fail: "_0_fail",
+
+}
+
+levels._0_south_none = {
+	prompt: "You roam around but find nothing of consequence.",
+	a: "Back",
+	a_go: "_0_",
+
+}
+
+levels._0_south_fight = {
+	game: battlemain(),
+	success: "_0_success",
+	fail: "_0_fail",
+
+}
+
+levels._0_west_none = {
+	prompt: "You roam around but find nothing of consequence.",
+	a: "Back",
+	a_go: "_0_",
+
+}
+
+levels._0_west_fight = {
+	game: battlemain(),
+	success: "_0_success",
+	fail: "_0_fail",
+
+}
+
+levels._0_explore_fight = {
+	game: battlemain(),
 	success: "_0_success",
 	fail: "_0_fail",
 
@@ -176,12 +232,35 @@ levels._1_west = {
 	}
 }
 
-levels._1_fight_ = {
-	game: "./minigames/BattleGame/battle.html",
-	success: "_0_success",
-	fail: "_0_fail",
+levels._1_north_fight = {
+	game: battlemain(),
+	success: "_1_success",
+	fail: "_1_fail",
 
 }
+
+levels._1_east_fight = {
+	game: battlemain(),
+	success: "_1_success",
+	fail: "_1_fail",
+
+}
+
+levels._1_south_fight = {
+	game: battlemain(),
+	success: "_1_success",
+	fail: "_1_fail",
+
+}
+
+levels._1_west_fight = {
+	game: battlemain(),
+	success: "_1_success",
+	fail: "_1_fail",
+
+}
+
+
 
 levels._1_success = {
 	prompt: "You managed to come out on top, and even got a bit of loot for your troubles.",

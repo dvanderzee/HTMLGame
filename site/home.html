@@ -26,27 +26,26 @@
             });
 			
 			function explore(fight, discover, goal){
-				var fightChance = fight;
-				var discoverChance = discover;
-				var chance = math.Floor((math.Random() * 100) + 1);
+
+				var chance = Math.ceil(Math.random() * 100);
 				switch(true){
-					case (chance <= discoverChance):
+					case (chance <= discover):
 						newLevel =  goal;
 						update(newLevel);
 						break;
-					case (chance <= fightChance):
-						newLevel = level + "fight_";
+					case (chance <= fight):
+						newLevel = level + "_fight";
 						update(newLevel);
 						break;
                     default:
-                        newLevel = level + "none";
+                        newLevel = level + "_none";
                         update(newLevel);
 				}
-			}
+			};
             
             function playClickSound(){
                 clickSound.play();
-            }
+            };
 
             <!-- When the new location is needed, edit location and run loadscript() -->
             function loadscript(){
@@ -62,7 +61,8 @@
 					
 					// Old style that I updated
 					//Button Click functionality
-					$("button").on("click",function(){
+				
+				$("button").on("click",function(){
 						console.log(level);
 						var id = this.id;
 						var dir_go = id + "_go";
@@ -77,11 +77,11 @@
 			
 			function update(newLevel) {
 				level = newLevel;
-				
+				console.log(level+" "+newLevel);
 				//Toggle Directional keys as needed.
 				for (dir in cardinal) {
 						var dir_go = cardinal[dir] + "_go";
-						if (!(levels[level][dir_go])) {
+						if (!levels[level][dir_go]) {
 							$("#" + cardinal[dir]).hide();
 						} else {
 							$("#" + cardinal[dir]).show();
@@ -97,8 +97,12 @@
 					$("#textGame").hide();
 				} 
 				
+				else if(levels[level].battle){
+					levels[level].battle();
+				}
+				
 				else if (levels[level].explore) {
-					levels[level].explore;
+					levels[level].explore();
 				}
 				
 				else if (levels[level].location) {
