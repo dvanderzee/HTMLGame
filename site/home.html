@@ -26,15 +26,14 @@
             });
 			
 			function explore(fight, discover, goal){
-				var fightChance = fight;
-				var discoverChance = discover;
-				var chance = math.Floor((math.Random() * 100) + 1);
+
+				var chance = Math.ceil(Math.random() * 100);
 				switch(true){
-					case (chance <= discoverChance):
+					case (chance <= discover):
 						newLevel =  goal;
 						update(newLevel);
 						break;
-					case (chance <= fightChance):
+					case (chance <= fight):
 						newLevel = level + "fight_";
 						update(newLevel);
 						break;
