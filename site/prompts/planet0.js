@@ -13,6 +13,13 @@ levels._1_ = {
 	
 }
 
+levels._1_b = {
+	prompt: "A desert. Perfect. At least you have a map now. Best look for an oasis, and avoid the natives, they're known to be pretty hostile towards visitors.",
+	a: "Explore",
+	a_go: "_1_explore",
+	
+}
+
 levels._1_salvage = {
 	prompt: "After rummaging through the wreckage you come across a data slate. It's a mapping tool, and its still active. It must have scanned the planet during descent, now you can build a map.",
 	a: "Map",
@@ -33,7 +40,7 @@ levels._1_minigame = {
 
 levels._1_success = {
 	prompt: "Now that you have this map, it should be easier to find water, assuming all of the scans are accurate. It was a crash landing after all.",
-	north_go: "_2_b",
+	north_go: "_1_b",
 }
 	
 //}
@@ -45,7 +52,7 @@ levels._1_explore = {
 	}
 }
 
-levels._1_explore_fight_ = {
+levels._1_explore_fight = {
 	game: battlemain(),
 	success: "_1_fight_success",
 	fail: "_1_fight_fail",
@@ -84,7 +91,7 @@ levels._1_explore_none = {
 
 //{ Waiting for rescue, being attacked while you do.
 levels._2_ = {
-	prompt: "Back at your ship, now with supplies to last, you need to wait, and hope you dont get attacked while you do.",
+	prompt: "Back at your ship, now with supplies to last, you need to wait, and hope you don't get attacked while you do.",
 	a: "Next",
 	a_go: "_2_wait_",
 	
