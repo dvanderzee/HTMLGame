@@ -5,11 +5,11 @@ var levels = {};
 
 //{ Lines associated with Mapping the planet
 levels._1_ = {
-	prompt: "A desert. Thats just perfect. You'll need to find water, and do your best to avoid the natives, they're known to be pretty hostile towards visitors.",
+	prompt: "A desert. That's just perfect. You'll need to find water, and do your best to avoid the natives, they're known to be pretty hostile towards visitors.",
 	a: "Explore",
 	a_go: "_1_explore",
 	b: "Salvage machinery",
-	b_go: "_1_salvage"
+	b_go: "_1_salvage",
 	
 }
 
@@ -18,7 +18,7 @@ levels._1_salvage = {
 	a: "Map",
 	a_go: "_1_minigame",
 	b: "Back",
-	b_go: "_1_"
+	b_go: "_1_",
 	
 }
 
@@ -45,13 +45,38 @@ levels._1_explore = {
 	}
 }
 
+levels._1_fight_ = {
+	game: "./minigames/BattleGame/battle.html",
+	success: "_1_fight_success",
+	fail: "_1_fight_fail",
+}
+
+levels._1_fight_fail = {
+	prompt: "You died. Game Over."
+}
+
+levels._1_fight_success = {
+	prompt: "You managed to come out on top, and even got a bit of loot for your troubles. You're still stuck waiting though.",
+	reward: function(){
+		addinventory("Gold","Gold","currency",math.Floor((math.Random *10) + 1),null)
+	},
+	a: "Back",
+	a_go: "_1_",
+	
+}
+
 levels._1_oasis = {
 	prompt: "Skin scorched and throat parched you finally find an oasis. You're quick to fill your waterskins, and take a long slow drink from the pool; all from the shade of a lemon tree. Now that you're stocked you just need to hold out until rescue arrives.",
 	a: "Return to your ship",
 	a_go: "_2_"
 	
 }
-	
+
+levels._1_none = {
+	prompt: "You roam around but find nothing of consequence.",
+	a: "Back",
+	a_go: "_1_",
+}	
 	
 //}
 
