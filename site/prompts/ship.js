@@ -11,7 +11,7 @@ levels._0_ = {
 }
 
 levels._0_a = {
-	prompt: "Alarms start going off, and lights all around are flashing. Emergency systems begin as you here something crash behind you. No time to worry about that, you need to land. The nearest planet is a wild planet, but it's close enough to send out an S.O.S. ",
+	prompt: "Alarms start going off, and lights all around are flashing. Emergency systems begin as the whole ship thrashes violently, you're fairly certain something just exploded. No time to waste worrying about that, you need to land. The nearest planet is a wild planet, but it's close enough to send out an S.O.S. ",
 	a: "Fly",
 	a_go: "_0_a_minigame",
 }
@@ -24,24 +24,32 @@ levels._0_a_minigame = {
 }
 
 levels._0_a_success = {
+	prompt: "After a very rough landing you do a quick damage report. Your ship is a bit of a wreck, with some scrap parts and machines strewn about, seems they fell out of the cargo bay. One of the fuel cells overheated, and became unstable. That would be the explosion. You've also completely lost the stellar map. Luckily Comms are still online, and an S.O.S. has been sent. Now you just need to last long enough for help to arrive.",
+	a: "Exit Ship",
+	a_go: "_0_exit"
+
+}
+
+levels._0_exit = {
 	location: "planet0",
 	start: "_1_"
+	
 }
 
 levels._0_a_fail = {
 	prompt: "You've crashed your ship! Gameover"
 }
 
+//}
+*/
+
+//{ Lines associated with Planet 1
 levels._1_check = {
 	condition: "Starmap",
 	pass: "Starmap"
 	
 }
 
-//}
-*/
-
-//{ Lines associated with Planet 1
 levels._1_deny = {
 	prompt: "You enter your ship. Looking around, you see the damaged console the mechanic was referring to. Unfortunately you still don't have the map you need.",
 	
