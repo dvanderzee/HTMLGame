@@ -45,8 +45,8 @@ function statsmain(){
 	area.appendChild(mytable);
 }
 
-//function for levelling up. It assumes we only allow to stats to be increased per level
-//Also fully heals the character since that's fairly common
+//function for levelling up. It assumes we only allow to stats to be increased
+//per level. Also fully heals the character since that's fairly common
 function LevelUp(x,y){
 	Stats.Level+=1;
 	Stats[x]+=5;
@@ -75,12 +75,20 @@ function PlusStat(stat,amount){
 		//change main display to ask what stats to level up and then run levelup
 		//with those 2 stats
 		if (!showingStats){toggle();}
-		stat1=prompt("Enter a (capitalized) stat to upgrade","Intelligence");
-		stat2=prompt("Enter a second (capitalized) stat to upgrade","Willpower");
+		stat1=prompt("You have levelled up! Enter your first attribute to boost.",
+					 "Intelligence");
+		while (!(stat1 in Stats)){
+			stat1=prompt("Sorry, that was not a valid attribute, maybe \
+						 capitalize it?","Strength");
+		}
+		stat2=prompt("Enter a second attribute to upgrade","Willpower");
+		while (stat1==stat2 || !(stat2 in Stats)){
+			stat2=prompt("Incorrect input, try again","Toughness");
+		}
 		LevelUp(stat1,stat2);
-	}else if(stat='HP' && Stats.MaxHP<=Stats.HP){
+	}else if(stat='HP' && Stats.MaxHP<Stats.HP){
 		Stats.HP=Stats.MaxHP;
-	}else if(stat='MP' && Stats.MaxMP<=Stats.MP){
+	}else if(stat='MP' && Stats.MaxMP<Stats.MP){
 		Stats.MP=Stats.MaxMP;
 	}
 	UpdateDisplay();
