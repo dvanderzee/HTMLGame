@@ -40,9 +40,7 @@ levels._1_success = {
 
 //{ Lines associated with exploration
 levels._1_explore = {
-	explore: function(){
-		explore(50,25,"_1_oasis");
-	}
+	explore: [50,25,"_1_oasis"]
 }
 
 levels._1_fight_ = {

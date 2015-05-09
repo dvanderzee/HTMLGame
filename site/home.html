@@ -22,25 +22,23 @@
 			
 				window.addEventListener("message", miniGameResult, false);
                 loadscript();
-				//update(level);
             });
 			
-			function explore(fight, discover, goal){
-				var fightChance = fight;
-				var discoverChance = discover;
-				var chance = math.Floor((math.Random() * 100) + 1);
-				switch(true){
-					case (chance <= discoverChance):
-						newLevel =  goal;
-						update(newLevel);
-						break;
-					case (chance <= fightChance):
-						newLevel = level + "fight_";
-						update(newLevel);
-						break;
-                    default:
-                        newLevel = level + "none";
-                        update(newLevel);
+			function explore(params){
+				var fightChance = params[0];
+				var discoverChance = fightChance + params[1];
+				var chance = Math.random() * 100;
+				if(chance <= discoverChance) {
+					newLevel =  params[2];
+					update(newLevel);
+				}
+				else if (chance <= fightChance) {
+					newLevel = level + "fight_";
+					update(newLevel);
+				}
+                else {
+                    newLevel = level + "none";
+                    update(newLevel);
 				}
 			}
             
@@ -98,7 +96,7 @@
 				} 
 				
 				else if (levels[level].explore) {
-					levels[level].explore;
+					explore(levels[level].explore);
 				}
 				
 				else if (levels[level].location) {
