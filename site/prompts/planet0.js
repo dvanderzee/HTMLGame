@@ -45,8 +45,8 @@ levels._1_explore = {
 	}
 }
 
-levels._1_fight_ = {
-	game: "./minigames/BattleGame/battle.html",
+levels._1_explore_fight_ = {
+	game: battlemain(),
 	success: "_1_fight_success",
 	fail: "_1_fight_fail",
 }
@@ -72,7 +72,7 @@ levels._1_oasis = {
 	
 }
 
-levels._1_none = {
+levels._1_explore_none = {
 	prompt: "You roam around but find nothing of consequence.",
 	a: "Back",
 	a_go: "_1_",
@@ -97,7 +97,7 @@ levels._2_wait_ = {
 }
 
 levels._2_wait_fight_ = {
-	game: "./minigames/BattleGame/battle.html",
+	game: battlemain(),
 	success: "_2_success",
 	fail: "_2_fail",
 }

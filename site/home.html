@@ -34,11 +34,11 @@
 						update(newLevel);
 						break;
 					case (chance <= fight):
-						newLevel = level + "fight_";
+						newLevel = level + "_fight_";
 						update(newLevel);
 						break;
                     default:
-                        newLevel = level + "none";
+                        newLevel = level + "_none";
                         update(newLevel);
 				}
 			};
@@ -77,11 +77,11 @@
 			
 			function update(newLevel) {
 				level = newLevel;
-				
+				console.log(level+" "+newLevel);
 				//Toggle Directional keys as needed.
 				for (dir in cardinal) {
 						var dir_go = cardinal[dir] + "_go";
-						if (!(levels[level][dir_go])) {
+						if (!levels[level][dir_go]) {
 							$("#" + cardinal[dir]).hide();
 						} else {
 							$("#" + cardinal[dir]).show();
