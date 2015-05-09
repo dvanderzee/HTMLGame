@@ -53,6 +53,13 @@ levels._0_west = {
 	}
 }
 
+levels._0_none = {
+	prompt: "You roam around but find nothing of consequence.",
+	a: "Back",
+	a_go: "_0_",
+
+}
+
 levels._0_fight_ = {
 	game: "./minigames/BattleGame/battle.html",
 	success: "_0_success",

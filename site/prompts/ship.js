@@ -39,7 +39,7 @@ levels._1_check = {
 }
 
 //}
-*/
+
 
 //{ Lines associated with Planet 1
 levels._1_deny = {
@@ -109,8 +109,8 @@ levels._2_a = {
 	a_go: "_2_b",
 	b: "Cargo Bay",
 	b_go: "_2_cargo",
-	c: "Cockpit"
-	c_go: "_2_cockpit"
+	c: "Cockpit",
+	c_go: "_2_cockpit",
 }
 
 levels._2_cockpit = {
@@ -127,7 +127,7 @@ levels._2_cargo = {
 }
 
 levels._2_b = {
-	prompt: "In front of you is your stellar map, loaded with the current list of unexplored planets. From orbit you can do a scan of the planet and build a map for yourself."
+	prompt: "In front of you is your stellar map, loaded with the current list of unexplored planets. From orbit you can do a scan of the planet and build a map for yourself.",
 	a: "Exit",
 	a_go: "_2_a",
 	b: "Activate Minigame",
@@ -152,8 +152,8 @@ levels._2_b = {
 	prompt: "Now that you have your map, you are fully prepared to land.",
 	a: "Cargo Bay",
 	a_go: "_2_cargo",
-	b: "Cockpit"
-	b_go: "_2_cockpit"
+	b: "Cockpit",
+	b_go: "_2_cockpit",
 }
 
 levels._2_minigame_2 = {
