@@ -41,7 +41,7 @@ levels._0_a_fail = {
 }
 
 //}
-*/
+
 
 //{ Lines associated with Planet 1
 levels._1_check = {
@@ -50,13 +50,12 @@ levels._1_check = {
 	
 }
 
-<<<<<<< HEAD
+
 //}
 
 
 //{ Lines associated with Planet 1
-=======
->>>>>>> 5a68ab911f55db1b79b2dc0b46c1a7b572478d4b
+
 levels._1_deny = {
 	prompt: "You enter your ship. Looking around, you see the damaged console the mechanic was referring to. Unfortunately you still don't have the map you need.",
 	
