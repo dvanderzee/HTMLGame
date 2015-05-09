@@ -36,7 +36,7 @@ levels._1_success = {
 	north_go: "_2_b",
 }
 	
-}
+//}
 
 //{ Lines associated with exploration
 levels._1_explore = {
@@ -53,7 +53,7 @@ levels._1_oasis = {
 }
 	
 	
-}
+//}
 
 
 
@@ -100,5 +100,5 @@ levels._2_leave = {
 	location: "planet1.js",
 	start: "_1_a",
 }
-}
+//}
 
