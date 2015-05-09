@@ -150,7 +150,7 @@ $('#exit').click(function(){
 	$('#layoutLeft').css("display","block");
 	$('#movementButtons').show();
 	$('#invStatToggle').show();
-	toggle();
+	update(levels[level].success);
 });
 
 //lets the character heal mid-battle button

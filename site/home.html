@@ -97,6 +97,10 @@
 					$("#textGame").hide();
 				} 
 				
+				else if(levels[level].battle){
+					levels[level].battle();
+				}
+				
 				else if (levels[level].explore) {
 					levels[level].explore();
 				}
