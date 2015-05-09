@@ -3,185 +3,194 @@ var levels = {};
 //_1_ means the first question, _2_ is second, etc.
 //The letters after the question number indicate the history of choices to get to that point in the branch
 
-levels._1_ = {
-	prompt: "You're in the mechanic's station.  A number of workers are busy inspecting and repairing ships on the station. You spot the mechanic who was handling inspections \
-	of your ship. There is an exit to the north and to the south.",
-	a: "Mechanic",
-	a_go: "_1_b",
-	b: "Explore",
-	b_go: "_1_c",
-	
-	north_go: "_2_",
-	south_go: "_3_",
+levels._0_ = {
+	prompt: "You're on your way to a Government space port, the midway point between explored space and the frontier. After nearly 3 days of travel you only have a few hours remaining. <p> Once docked, you can have your ship repaired an refuelled.",
+	a: "Next",
+	a_go: "_0_a",
 }
 
-levels._1_a = {
-	prompt: "You've been waiting in the mechanics bay of this space station for 3 hours while a crew inspects your ship.  \
-	A number of systems have been malfunctioning, and you wanted it repaired before you began your journey in Sector 17. \
-	Finally a mechanic walks through the door. <p>\"So here's the deal Marc.  We've repaired most every system you reported issues with, \
-	as well as recalibrating your navigation systems. The biggest problem is with your stellar map. We had to replace the entire console. \
-	The new one is all installed, but it doesn't have all of the map files your old one had. You'll have to load in the files currently \
-	available for this system.\"",
-	a: "Continue",
-	a_go: "_1_",
-	
-	north_go: "_2_",
-	south_go: "_3_",
+levels._0_a = {
+	prompt: "Alarms start going off, and lights all around are flashing. Emergency systems begin as you here something crash behind you. No time to worry about that, you need to land. The nearest planet is a wild planet, but it's close enough to send out an S.O.S. ",
+	a: "Fly",
+	a_go: "_0_a_minigame",
 }
 
-levels._1_b = {
-	prompt: "You approach the mechanic again, and ask him where you might find the files you need. <p>\"Listen buddy, that's not really my domain. \
-	Check out the computers in the room south a' here.  If you got access to 'em then the files you need are on there.\"",
-	a: "Continue",
-	a_go: "_1_",
-	b: "Explore",
-	b_go: "_1_c",
-	
-	north_go: "_2_",
-	south_go: "_3_",
-}
-
-levels._1_c = {
-	prompt: "You look around the mechanic station, but there isn't much to see. They have already moved your ship back into the docking bay to the north.",
-	a: "Mechanic",
-	a_go: "_1_b",
-	b: "Continue",
-	b_go: "_1_",
-	
-	north_go: "_2_",
-	south_go: "_3_",
-}
-
-levels._2_ = {
-	prompt: "You enter the shuttle bay, and see your ship has been moved onto one of the docks now that repairs are complete.\
-	<p> To the south is the entrance to the mech station where your ship was repaired.",
-	b: "Enter Ship",
-	b_go: "_2_a",
-	
-	south_go: "_1_",
-}
-
-levels._2_a = {
-	condition: "map",
-	pass: "map"
-	
-}
-
-levels._2_a_accept = {
+levels._0_a_minigame = {
 	game: "./minigames/flight/flight.html",
-	success: "_2_a_success",
-	fail: "_2_a_fail",
+	success: "_0_a_success",
+	fail: "_0_a_fail",
 
 }
 
-levels._2_a_deny = {
-	prompt: "You enter your ship.  Looking around, you see the damaged console the mechanic was referring to.  Unfortunately you still don't have the map you need.",
-	
-	a: "Leave Ship",
-	a_go: "_2_",
-}
-levels._2_a_minigame = {
-	game: "./minigames/flight/flight.html",
-	success: "_2_success",
-	fail: "_2_fail",
-}
-
-levels._2_a_success = {
-	location: "planet1",
+levels._0_a_success = {
+	location: "planet0",
 	start: "_1_"
 }
 
-levels._2_a_fail = {
+levels._0_a_fail = {
+	prompt: "You've crashed your ship! Gameover"
+}
+
+levels._1_check = {
+	condition: "Starmap",
+	pass: "Starmap"
+	
+}
+
+levels._1_deny = {
+	prompt: "You enter your ship. Looking around, you see the damaged console the mechanic was referring to. Unfortunately you still don't have the map you need.",
+	
+	a: "Leave Ship",
+	a_go: "_1_a",
+	
+	north_go: "_1_deck",
+	south_go: "_1_cargo"
+}
+
+levels._1_accept = {
+	prompt: "You enter your ship. Looking around, you see the damaged console the mechanic was referring to. Now that you've acquired the files you need, you can navigate to the first newly charted planet and begin exploring.",
+	
+	a: "Take Off",
+	a_go: "_1_minigame",
+	
+	north_go: "_1_cockpit",
+	south_go: "_1_cargo"
+}
+
+levels._1_cockpit = {
+	prompt: "You're in the cockpit of your ship. There isn't much to see here, your pilot's seat and the controls. Everything seems to be in order, you should set a course back on the bridge before doing anything though.",
+	south_go: "_1_check"
+}
+
+levels._1_cargo = {
+	prompt: "You're in your ships cargo bay. The room is stocked with supplies for your journey.",
+	north_go: "_1_check"
+}
+
+levels._1_a_minigame = {
+	game: "./minigames/flight/flight.html",
+	success: "_1_success",
+	fail: "_1_fail",
+}
+
+levels._1_success = {
+	a: "Next",
+	a_go: "_2_"
+}
+
+levels._1_fail = {
 	prompt: "You crashed your ship! Gameover"
 }
 
-levels._3_ = {
-	prompt: "Leaving the mech station through the door to the south you enter a room filled with computers. \
-	Most likely you can find the file you need stored on one of the computers.<p>To the north there is a door leading back into the mech station.",
-	a: "Computer",
-	a_go: "_3_a",
-	north_go: "_1_",
+levels._1_a = {
+	location: "planet1.js",
+	start: "_2_"
+	
 }
 
-levels._3_a = {
-	prompt: "You approach the computer and turn it on.",
+levels._2_ = {
+	prompt: "You arrive in orbit around the first planet. A quick scan reveals there is already significant human life on the planet. No surprise, this is the closest planet, every company would send it's scouts here first.",
+	a: "Next",
+	a_go: "_2_a",
+
+}
+
+levels._2_a = {
+	prompt: "You figure you should map out the planet before you land.",
+	a: "Stellar Map",
+	a_go: "_2_b",
+	b: "Cargo Bay",
+	b_go: "_2_cargo",
+	c: "Cockpit"
+	c_go: "_2_cockpit"
+}
+
+levels._2_cockpit = {
+	prompt: "You're in the cockpit of your ship. Are you ready to fly down to the planet?",
+	a: "Fly",
+	a_go: "_2_minigame_2",
+	
+	south_go: "_2_a"
+}
+
+levels._2_cargo = {
+	prompt: "You're in your ships cargo bay. The room is stocked with supplies for your journey.",
+	north_go: "_2_a"
+}
+
+levels._2_b = {
+	prompt: "In front of you is your stellar map, loaded with the current list of unexplored planets. From orbit you can do a scan of the planet and build a map for yourself."
 	a: "Exit",
-	a_go: "_3_",
+	a_go: "_2_a",
 	b: "Activate Minigame",
-	b_go: "_3_minigame",
+	b_go: "_2_minigame",
 }
 
-levels._3_minigame = {
-	game: "./minigames/jigsawpuzzle/planet1_puzzle.html",
-	success: "_3_success",
-	fail: "_3_fail",
+levels._2_minigame = {
+	game: "./minigames/jigsawpuzzle/planet2_puzzle.html",
+	success: "_2_success",
+	fail: "_2_fail",
 	reward: function(){
-		addinventory("map","map","key item",1,null)
+		hiddenStats.planet2Base = true;
 	}
 }
 
-levels._3_success = {
-	prompt: "You have hack into the computer and acquire the files you need on a portable drive!",
-	north_go: "_1_",
+levels._2_success = {
+	prompt: "You have constructed a map, and now know where the other explorers are stationed.",
+	north_go: "_2_b",
 }
 
-levels._3_ba = {
-	prompt: "Prompt 3_ba",
-	a: "Option A",
-	b: "Option B"
+levels._2_b = {
+	prompt: "Now that you have your map, you are fully prepared to land.",
+	a: "Cargo Bay",
+	a_go: "_2_cargo",
+	b: "Cockpit"
+	b_go: "_2_cockpit"
 }
 
-levels._3_bb = {
-	prompt: "Prompt 3_bb",
-	a: "Option A",
-	b: "Option B"
+levels._2_minigame_2 = {
+	game: "./minigames/flight/flight.html",
+	success: "_2_flight_success",
+	fail: "_2_flight_fail",
+
 }
 
-levels._4_aaa = {
-	prompt: "Prompt 4_aaa",
-	a: "Option A",
-	b: "Option B",
+levels._2_flight_success = {
+	condition: "map",
+	pass: "hiddenStats.planet2Base"
 }
 
-levels._4_aab = {
-	prompt: "Prompt 4_aab",
-	a: "Option A",
-	b: "Option B",
-	newplanet: true
+levels._2_fail = {
+	prompt: "You crashed your ship! Gameover"
 }
 
-levels._4_aba = {
-	prompt: "Prompt 4_aba",
-	a: "Option A",
-	b: "Option B"
+levels._2_deny = {
+	location: "planet2.js",
+	start: "_0_"
 }
 
-levels._4_abb = {
-	prompt: "Prompt 4_abb",
-	a: "Option A",
-	b: "Option B"
+levels._2_accept = {
+	location: "planet2.js",
+	start: "_1_"
 }
 
-levels._4_bba = {
-	prompt: "Prompt 4_bba",
-	a: "Option A",
-	b: "Option B"
+levels._2_c = {
+	prompt: "You enter your ship. Looking around, you see the damaged console the mechanic was referring to. Unfortunately you still don't have the map you need.",
+	
+	a: "Leave Ship",
+	a_go: "_1_a",
+	
+	north_go: "_2_c_deck",
+	south_go: "_2_c_cargo"
 }
 
-levels._4_bbb = {
-	prompt: "Prompt 4_bbb",
-	a: "Option A",
-	b: "Option B"
+levels._2_c_cockpit = {
+	prompt: "You're in the cockpit of your ship. Without new intel there's nowhere to go.",
+
+	south_go: "_2_c"
 }
 
-levels._4_baa = {
-	prompt: "Prompt 4_baa",
-	a: "Option A",
-	b: "Option B"
-}
-
-levels._4_bab = {
-	prompt: "Prompt 4_bab",
-	a: "Option A",
-	b: "Option B"
+levels._2_c_cargo = {
+	prompt: "You're in your ships cargo bay. The room is stocked with supplies for your journey.",
+	north_go: "_2_c"
 }

@@ -11,7 +11,7 @@
         
         <script>
             var loc = "ship";
-			var level = "_1_";
+			var level = "_0_";
             var showingStats = false;
 			var cardinal = ["north", "east", "west", "south", "a", "b", "c", "d"];
             
@@ -21,6 +21,22 @@
                 loadscript();
 				//update(level);
             });
+			
+			explore(fight, discover, goal){
+				var fightChance = fight;
+				var discoverChance = discover;
+				var chance = math.Floor((math.Random() * 100) + 1);
+				switch(true){
+					case (chance <= discover):
+						newLevel =  goal;
+						update(newLevel);
+						break;
+					case (chance <= fight):
+						newLevel = level + "fight_";
+						update(newLevel);
+						break;
+				}
+			}
 
             <!-- When the new location is needed, edit location and run loadscript() -->
             function loadscript(){
@@ -70,10 +86,14 @@
 					$("#textGame").hide();
 				} 
 				
+				else if (levels[level].explore) {
+					levels[level].explore;
+				}
+				
 				else if (levels[level].location) {
 					// Set location to the next locataion (ship or planet)
 					loc = levels[level].location;
-					// Set the level to the startint level described in the levels object
+					// Set the level to the starting level described in the levels object
 					level = levels[level].start;
 					loadscript();
 				}
@@ -93,6 +113,36 @@
 								update(newLevel);
 							}
 							break;	
+						case "map":
+							if (hiddenStats.planet2Base){
+								newLevel = level + "_accept";
+								update(newLevel);
+							}
+							
+							else {
+								newLevel = level + "_deny";
+								update(newLevel);
+							}
+						case "coordinator":
+							switch (true) {
+								case (hiddenStats.coordinator < 10) :
+									newLevel = level + "_a";
+									update(newLevel);
+									break;
+								case (hiddenStats.coordinator < 20) :
+									newLevel = level + "_b";
+									update(newLevel);
+									break;
+								case (hiddenStats.coordinator < 30) :
+									newLevel = level + "_c";
+									update(newLevel);
+									break;
+								case (hiddenStats.coordinator < 40) :
+									newLevel = level + "_d";
+									update(newLevel);
+									break;
+							}
+							hiddenStats.coordinator += 10;
 					}
 				}
 				//Otherwise, update the prompt and options.

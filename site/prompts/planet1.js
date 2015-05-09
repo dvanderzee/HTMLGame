@@ -62,38 +62,10 @@ levels._2_ = {
 }
 
 levels._2_a = {
-	condition: "map",
-	pass: "map"
-	
+	location: "ship.js"
+	start: "_1_check"
 }
 
-levels._2_a_accept = {
-	game: "./minigames/flight/flight.html",
-	success: "_2_a_success",
-	fail: "_2_a_fail",
-
-}
-
-levels._2_a_deny = {
-	prompt: "You enter your ship.  Looking around, you see the damaged console the mechanic was referring to.  Unfortunately you still don't have the map you need.",
-	
-	a: "Leave Ship",
-	a_go: "_2_",
-}
-levels._2_a_minigame = {
-	game: "./minigames/flight/flight.html",
-	success: "_2_success",
-	fail: "_2_fail",
-}
-
-levels._2_a_success = {
-	location: "planet2",
-	start: "_1_"
-}
-
-levels._2_a_fail = {
-	prompt: "You crashed your ship! Gameover"
-}
 
 levels._3_ = {
 	prompt: "Leaving the mech station through the door to the south you enter a room filled with computers. \
