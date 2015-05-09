@@ -3,6 +3,7 @@ var levels = {};
 //_1_ means the first question, _2_ is second, etc.
 //The letters after the question number indicate the history of choices to get to that point in the branch
 
+//{ Lines associated with Planet 0
 levels._0_ = {
 	prompt: "You're on your way to a Government space port, the midway point between explored space and the frontier. After nearly 3 days of travel you only have a few hours remaining. <p> Once docked, you can have your ship repaired an refuelled.",
 	a: "Next",
@@ -37,6 +38,10 @@ levels._1_check = {
 	
 }
 
+//}
+*/
+
+//{ Lines associated with Planet 1
 levels._1_deny = {
 	prompt: "You enter your ship. Looking around, you see the damaged console the mechanic was referring to. Unfortunately you still don't have the map you need.",
 	
@@ -46,6 +51,7 @@ levels._1_deny = {
 	north_go: "_1_deck",
 	south_go: "_1_cargo"
 }
+
 
 levels._1_accept = {
 	prompt: "You enter your ship. Looking around, you see the damaged console the mechanic was referring to. Now that you've acquired the files you need, you can navigate to the first newly charted planet and begin exploring.",
@@ -85,9 +91,11 @@ levels._1_fail = {
 levels._1_a = {
 	location: "planet1.js",
 	start: "_2_"
-	
 }
 
+//}
+
+//{ Lines associated with Planet 2
 levels._2_ = {
 	prompt: "You arrive in orbit around the first planet. A quick scan reveals there is already significant human life on the planet. No surprise, this is the closest planet, every company would send it's scouts here first.",
 	a: "Next",
@@ -194,3 +202,5 @@ levels._2_c_cargo = {
 	prompt: "You're in your ships cargo bay. The room is stocked with supplies for your journey.",
 	north_go: "_2_c"
 }
+
+//}

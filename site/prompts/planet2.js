@@ -9,6 +9,7 @@ levels._ship_ = {
 	
 }
 
+//{ Lines associated with not staying in the camp
 levels._0_ = {
 	prompt: "Not knowing where to go exactly, you land your ship in the first clearing you spot. All around you is forest, and you can explore in any direction."
 	a: "Enter Ship",
@@ -99,6 +100,10 @@ levels._map_success = {
 	
 }
 
+//}
+
+
+//{ Lines associated with the camp
 levels._1_ = {
 	prompt: "You look around the camp. With this many people, you doubt you'll have much luck discovering anything big. <p> The camp coordinator might know the route to the next planet if you ask him. Or you might manage to scrape together some loot by exploring the jungle."
 	a: "Enter Ship",
@@ -184,11 +189,4 @@ levels._1_fail = {
 	prompt: "You have been killed! Gameover"
 }
 
-
-
-
-
-
-
-
-
+//}
