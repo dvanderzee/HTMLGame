@@ -61,7 +61,7 @@ levels._0_none = {
 }
 
 levels._0_fight_ = {
-	game: "./minigames/BattleGame/battle.html",
+	game: battlemain(),
 	success: "_0_success",
 	fail: "_0_fail",
 
@@ -177,7 +177,7 @@ levels._1_west = {
 }
 
 levels._1_fight_ = {
-	game: "./minigames/BattleGame/battle.html",
+	game: battlemain(),
 	success: "_0_success",
 	fail: "_0_fail",
 
