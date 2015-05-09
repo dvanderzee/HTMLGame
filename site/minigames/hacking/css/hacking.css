@@ -10,11 +10,11 @@ body {
 }
 input[type = text]{
 
-    font-size: 100px;
-    width: 100px;
+    font-size: 625%;
+    width: 6%;
     border-style: hidden;
     text-align: center;
-    margin: 15px;
+    margin: 1%;
     color: black;
     background-color: gray;
 }
@@ -25,7 +25,7 @@ input[type = text]: focus{
 
 h2{
 
-font-size: 50px;
+font-size: 312.5%
 }
 
 #game {
@@ -45,29 +45,29 @@ font-size: 50px;
 .instructions {
 
     text-align: center;
-    font-size: 25px;
-    margin: 10px;
+    font-size: 156.25%;
+    margin: .64%;
 }
 
 .instructions_red {
     text-align: center;
-    font-size: 50px;
+    font-size: 312.5%;
     color: red;
-    margin: 10px;
+    margin: .64%;
 }
 
 .instructions_yellow {
     text-align: center;
-    font-size: 50px;
+    font-size: 312.5%;
     color: yellow;
-    margin: 20px;
+    margin: .64%;
 }
 
 .instructions_green {
     text-align: center;
-    font-size: 50px;
+    font-size: 312.5%;
     color: green;
-    margin: 20px;
+    margin: .64%;
 }
 #inputDiv {
 
@@ -79,11 +79,13 @@ font-size: 50px;
     position:absolute;
     z-index: 10;
     float: left;
+    left: 2%;
 }
 
 #roundNumber {
 
-    font-size: 50px;
+    font-size: 312.5%;
+    margin: 0%;
     
 }
 
@@ -91,19 +93,18 @@ font-size: 50px;
     float: right;
     position:absolute;
     z-index: 11;
-    right: 2%;
+    right: 1%;
     text-align: center;
 }
 
 #timeLabel {
 
-    font-size: 30px;
-    margin: 5px;
+    font-size: 312.5%;
+    margin: 0%;
 }
 #timer {
 
-    font-size: 50px;
-    margin: 10px;
+    font-size: 187.5%;
 }
 #characterDiv {
 
@@ -113,10 +114,10 @@ font-size: 50px;
 
 #characters {
     position: relative;
-    font-size:100px;
-    letter-spacing: 30px;
+    font-size:625%;
+    letter-spacing: .3em;
     vertical-align: text-bottom;
-    margin: 30px;
+    margin: 1.9%;
     border-style: double;
     width: 50%;
     left: 25%;
@@ -125,7 +126,7 @@ font-size: 50px;
 
 #sender {
 
-    width: 90px;
-    height: 60px;
+    width: 5.75%;
+    height: 4em;
     background-color: gray;
 }
