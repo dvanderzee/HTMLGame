@@ -117,7 +117,7 @@ levels._2_a = {
 	a_go: "_2_b",
 	b: "Cargo Bay",
 	b_go: "_2_cargo",
-	c: "Cockpit"
+	c: "Cockpit",
 	c_go: "_2_cockpit"
 }
 
@@ -160,7 +160,7 @@ levels._2_b = {
 	prompt: "Now that you have your map, you are fully prepared to land.",
 	a: "Cargo Bay",
 	a_go: "_2_cargo",
-	b: "Cockpit"
+	b: "Cockpit",
 	b_go: "_2_cockpit"
 }
 

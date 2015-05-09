@@ -61,7 +61,7 @@ levels._1_oasis = {
 levels._2_ = {
 	prompt: "Back at your ship, now with supplies to last, you need to wait, and hope you dont get attacked while you do.",
 	a: "Next",
-	a_go: "_2_wait_"
+	a_go: "_2_wait_",
 	
 }
 	
@@ -83,22 +83,22 @@ levels._2_success = {
 		addinventory("Gold","Gold","currency",math.Floor((math.Random *10) + 1),null)
 	},
 	a: "Wait",
-	a_go: "_2_wait"
+	a_go: "_2_wait",
 }
 
 levels._2_fail = {
-	prompt: "You have been killed! Gameover"
+	prompt: "You have been killed! Gameover",
 }
 
 levels._2_rescue = {
 	prompt: "Finally help arrives. You are escorted onto a transport ship and brought to the nearby space station.",
 	a: "Next",
-	a_go: "_2_leave"
+	a_go: "_2_leave",
 }
 
 levels._2_leave = {
 	location: "planet1.js",
-	start: "_1_a"
+	start: "_1_a",
 }
 }
 

@@ -66,11 +66,11 @@ levels._0_success = {
 		addinventory("Gold","Gold","currency",math.Floor((math.Random *10) + 1),null)
 	},
 	a: "Leave",
-	a_go: "_0_"
+	a_go: "_0_",
 }
 
 levels._0_fail = {
-	prompt: "You have been killed! Gameover"
+	prompt: "You have been killed! Gameover",
 }
 
 levels._0_a = {
@@ -79,13 +79,13 @@ levels._0_a = {
 	a_go: "_0_b",
 	
 	b: "Leave",
-	b_go: "_0_"
+	b_go: "_0_",
 }
 
 levels._0_b = {
 	prompt: "A short bit of searching later you find the camp coordinator and explain your current situation. He lends you a map, telling you to make a copy then hand it off to his assistant.",
 	a: "Next",
-	a_go: "_0_minigame"
+	a_go: "_0_minigame",
 }
 
 levels._0_minigame = {
@@ -96,7 +96,7 @@ levels._0_minigame = {
 levels._map_success = {
 	prompt: "After transcribing a map you return to your ship, and move it into the camp, landing in a designated area.",
 	a: "Next",
-	a_go: "_1_"
+	a_go: "_1_",
 	
 }
 
@@ -105,7 +105,7 @@ levels._map_success = {
 
 //{ Lines associated with the camp
 levels._1_ = {
-	prompt: "You look around the camp. With this many people, you doubt you'll have much luck discovering anything big. <p> The camp coordinator might know the route to the next planet if you ask him. Or you might manage to scrape together some loot by exploring the jungle."
+	prompt: "You look around the camp. With this many people, you doubt you'll have much luck discovering anything big. <p> The camp coordinator might know the route to the next planet if you ask him. Or you might manage to scrape together some loot by exploring the jungle.",
 	a: "Enter Ship",
 	a_go: "_ship_"
 	b: "Talk",
@@ -124,25 +124,25 @@ levels._1_talk = {
 levels._1_talk_a = {
 	prompt: "\"Ah, yes, you're the newest explorer here on the frontier.  I'd love to chat but I'm very buys at the moment. Why don't you do some exploring and come find me later.\"",
 	a: "Back",
-	a_go: "_1_"
+	a_go: "_1_",
 }
 
 levels._1_talk_b = {
 	prompt: "\"Hello again. I don't believe I properly introduced myself during our last encounter. My name is Sam, and I'm the coordinator on this planet.  With so many companies vying for control, there was a need for someone to mediate. Currently, you're free to explore, as no official claims have been registered. Until that time, all land here is public. Enjoy your stay.\"",
 	a: "Back",
-	a_go: "_1_"
+	a_go: "_1_",
 }
 
 levels._1_talk_c = {
 	prompt: "You again find the coordinator, and this time before he can lead the conversation you quickly tell him that you are seeking to move on from this planet. \"Oh is that all? You should have said so. You can easily reach the next planet in one jump, I'll get you a file with the coordinates. Come find me later.\"",
 	a: "Back",
-	a_go: "_1_"
+	a_go: "_1_",
 }
 
 levels._1_talk_d = {
 	prompt: "\"Right then, the coordinates to the next planet are on this memory unit. Plug it into your ship and you'll be able to set a course. Hopefully you'll find better luck there. You're one of the few to move on from here.\"",
 	a: "Back",
-	a_go: "_1_"
+	a_go: "_1_",
 }
 
 levels._1_north = {
@@ -182,11 +182,11 @@ levels._1_success = {
 		addinventory("Gold","Gold","currency",math.Floor((math.Random *10) + 1),null)
 	},
 	a: "Leave",
-	a_go: "_1_"
+	a_go: "_1_",
 }
 
 levels._1_fail = {
-	prompt: "You have been killed! Gameover"
+	prompt: "You have been killed! Gameover",
 }
 
 //}

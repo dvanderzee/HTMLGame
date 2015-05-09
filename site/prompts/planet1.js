@@ -62,8 +62,8 @@ levels._2_ = {
 }
 
 levels._2_a = {
-	location: "ship.js"
-	start: "_1_check"
+	location: "ship.js",
+	start: "_1_check",
 }
 
 
