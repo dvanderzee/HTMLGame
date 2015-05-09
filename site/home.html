@@ -15,6 +15,9 @@
             var showingStats = false;
 			var cardinal = ["north", "east", "west", "south", "a", "b", "c", "d"];
             
+            //sounds
+            var clickSound = new Audio("sounds/click.wav");
+            
             $(window).on("load",function(){
 			
 				window.addEventListener("message", miniGameResult, false);
@@ -22,21 +25,28 @@
 				//update(level);
             });
 			
-			explore(fight, discover, goal){
+			function explore(fight, discover, goal){
 				var fightChance = fight;
 				var discoverChance = discover;
 				var chance = math.Floor((math.Random() * 100) + 1);
 				switch(true){
-					case (chance <= discover):
+					case (chance <= discoverChance):
 						newLevel =  goal;
 						update(newLevel);
 						break;
-					case (chance <= fight):
+					case (chance <= fightChance):
 						newLevel = level + "fight_";
 						update(newLevel);
 						break;
+                    default:
+                        newLevel = level + "none";
+                        update(newLevel);
 				}
 			}
+            
+            function playClickSound(){
+                clickSound.play();
+            }
 
             <!-- When the new location is needed, edit location and run loadscript() -->
             function loadscript(){
@@ -60,6 +70,7 @@
 							newLevel = levels[level][dir_go];
 							update(newLevel);
 						}
+                        playClickSound();
 					});
                 });
             }
@@ -158,6 +169,7 @@
                 var invDiv = document.getElementById("sidebarMenu");
                 var statDiv = document.getElementById("statMenu");
                 var toggleText = document.getElementById("invStatToggle");
+                playClickSound();
 				$(invDiv).toggle();
 				$(statDiv).toggle();
                 if(showingStats) {
@@ -242,10 +254,10 @@
 					</div>
 					
 					<div id="actionButtons" class="layoutArea">
-						<button class="btn" id="a">Begin</button>
-						<button class="btn" id="b">Quit</button>
-						<button class="btn" id="c"></button>
-						<button class="btn" id="d"></button>
+						<button class="btn" id="a" onclick = "playClickSound()">Begin</button>
+						<button class="btn" id="b" onclick = "playClickSound()">Quit</button>
+						<button class="btn" id="c" onclick = "playClickSound()"></button>
+						<button class="btn" id="d" onclick = "playClickSound()"></button>
 					</div>
 				</div>
 			</div>
@@ -261,11 +273,11 @@
 				</div>
 				<div id="movementButtons" class="layoutArea">
 					<p>
-						<button class="mvbtn" id="north">North</button>
-						<button class="mvbtn" id="east">East</button>
+						<button class="mvbtn" id="north" onclick = "playClickSound()">North</button>
+						<button class="mvbtn" id="east" onclick = "playClickSound()">East</button>
 					</p><p>
-						<button class="mvbtn" id="west">West</button>
-						<button class="mvbtn" id="south">South</button>
+						<button class="mvbtn" id="west" onclick = "playClickSound()">West</button>
+						<button class="mvbtn" id="south" onclick = "playClickSound()">South</button>
 					</p>
 				</div>
 			</div> 

@@ -50,6 +50,13 @@ levels._1_check = {
 	
 }
 
+<<<<<<< HEAD
+//}
+
+
+//{ Lines associated with Planet 1
+=======
+>>>>>>> 5a68ab911f55db1b79b2dc0b46c1a7b572478d4b
 levels._1_deny = {
 	prompt: "You enter your ship. Looking around, you see the damaged console the mechanic was referring to. Unfortunately you still don't have the map you need.",
 	
@@ -118,7 +125,7 @@ levels._2_a = {
 	b: "Cargo Bay",
 	b_go: "_2_cargo",
 	c: "Cockpit",
-	c_go: "_2_cockpit"
+	c_go: "_2_cockpit",
 }
 
 levels._2_cockpit = {
@@ -135,7 +142,7 @@ levels._2_cargo = {
 }
 
 levels._2_b = {
-	prompt: "In front of you is your stellar map, loaded with the current list of unexplored planets. From orbit you can do a scan of the planet and build a map for yourself."
+	prompt: "In front of you is your stellar map, loaded with the current list of unexplored planets. From orbit you can do a scan of the planet and build a map for yourself.",
 	a: "Exit",
 	a_go: "_2_a",
 	b: "Activate Minigame",
@@ -161,7 +168,7 @@ levels._2_b = {
 	a: "Cargo Bay",
 	a_go: "_2_cargo",
 	b: "Cockpit",
-	b_go: "_2_cockpit"
+	b_go: "_2_cockpit",
 }
 
 levels._2_minigame_2 = {
