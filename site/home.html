@@ -42,11 +42,11 @@
                         newLevel = level + "none";
                         update(newLevel);
 				}
-			}
+			};
             
             function playClickSound(){
                 clickSound.play();
-            }
+            };
 
             <!-- When the new location is needed, edit location and run loadscript() -->
             function loadscript(){
@@ -62,7 +62,8 @@
 					
 					// Old style that I updated
 					//Button Click functionality
-					$("button").on("click",function(){
+				
+				$("button").on("click",function(){
 						console.log(level);
 						var id = this.id;
 						var dir_go = id + "_go";
@@ -98,7 +99,7 @@
 				} 
 				
 				else if (levels[level].explore) {
-					levels[level].explore;
+					levels[level].explore();
 				}
 				
 				else if (levels[level].location) {

@@ -19,7 +19,8 @@ var Stats={
 
 var hiddenStats={
 	planet2Base: false,
-	
+	coordinator: 0,
+	planet0Map: false,
 }
 
 //will set up the original html content for the display of the stats
