@@ -99,13 +99,27 @@ function MinusStat(stat,amount){
 	Stats[stat]-=amount;
 	if (stat="HP" && Stats.HP<=0){
 		//print game over,restart game
-		var area = document.getElementById("layoutLeft");
-		area.innerHTML="YOU DIED!Refresh your browser to start again!";
-		area = document.getElementById("layoutLeftgame");
-		area.innerHTML="YOU DIED!Refresh your browser to start again!";
-	}else{
-		UpdateDisplay();
+		if ($('#layoutLeftgame').display=="none"){
+			var area = document.getElementById("layoutLeft");
+			area.innerHTML="YOU DIED! Refresh your browser to start again!";
+			area = document.getElementById("layoutLeftgame");
+			area.innerHTML="YOU DIED! Refresh your browser to start again!";
+		}else{
+			//I WAS AGAINST THIS COURSE SINCE YOU SHOULD BE DEAD AND ALWAYS
+			//HAVE TO RESTART THE ENTIRE GAME!! but whatever, this restarts
+			//the current battle instead of the entire game...
+			$('#player-actions').html("You fall over in pain as you feel the "+
+			Monster.Name+"'s attack hit its mark. Your world goes dark.");
+			$('#enemy-actions').html("You suddenly feel the world returning,\
+				but it's flowing backwards. Time is reverting!");
+			$('#Heal').hide();
+			$('#Attack').hide();
+			$('#MagicMissile').hide();
+			$('#Run').hide();
+			$('#Restart').show();
+		}
 	}
+	UpdateDisplay();
 }
 
 statsmain();

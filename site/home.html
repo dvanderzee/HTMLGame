@@ -30,24 +30,6 @@
 				}, false);
 				backgroundSound.play();
             });
-			
-			function explore(params){
-				var fightChance = params[0];
-				var discoverChance = fightChance + params[1];
-				var chance = Math.random() * 100;
-				if(chance <= discoverChance) {
-					newLevel =  params[2];
-					update(newLevel);
-				}
-				else if (chance <= fightChance) {
-					newLevel = level + "_fight";
-					//update(newLevel);
-				}
-                else {
-                    newLevel = level + "_none";
-                    update(newLevel);
-				}
-			}
             
             function playClickSound(){
                 clickSound.play();
@@ -63,9 +45,8 @@
                 head.appendChild(script);  
 				
 				$(script).on("load",function(){
-					update(level);
+					//update(level);
 					$("button").on("click",function(){
-						console.log(level);
 						var id = this.id;
 						var dir_go = id + "_go";
 						if (levels[level][dir_go]){
@@ -98,10 +79,6 @@
 					$("#textGame").hide();
 				} 
 				
-				else if (levels[level].explore) {
-					explore(levels[level].explore);
-				}
-				
 				else {
 					// Set prompt and buttons
 					$("#displayprompt").html(levels[newLevel].prompt);
@@ -116,6 +93,7 @@
 						}
 					}
 				}
+				console.log("Done");
 				/*
 				else if (levels[level].condition) {
 					var condition = levels[level].condition;

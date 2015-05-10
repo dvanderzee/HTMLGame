@@ -1,3 +1,5 @@
+/*Code by Miles*/
+
 * {
 	font-family: 'Open Sans', sans-serif;
     margin: 0;
@@ -28,13 +30,6 @@ tr {
 td {
 	width: 10%;
 	height: 10%;
-}
-
-.first {
-	height: 10%;
-	width: 10%;
-	-webkit-animation: shrink .4s linear;
-    animation: shrink .4s linear;
 }
 
 .stars {
@@ -76,18 +71,27 @@ td {
 }
 
 .btn {
-  -webkit-border-radius: 11;
-  -moz-border-radius: 11;
-  border-radius: 11px;
-  color: #ffffff;
-  font-size: 20px;
-  padding: 10px 20px 10px 20px;
-  border: solid #ffffff 2px;
-  text-decoration: none;
+	display: block;
+	-webkit-border-radius: 11;
+	-moz-border-radius: 11;
+	border-radius: 11px;
+	color: #ffffff;
+	font-size: 20px;
+	padding: 10px 20px 10px 20px;
+	border: solid #ffffff 2px;
+	text-decoration: none;
 }
 
 .btn:hover {
-  background: #77767E;
+  background: rgba(119, 118, 126, 0.5);
   text-decoration: none;
   cursor: pointer;
+}
+
+#cursor {
+	width: 60px;
+	height: 60px;
+	position: absolute;
+	z-index: 99;
+	pointer-events: none;
 }

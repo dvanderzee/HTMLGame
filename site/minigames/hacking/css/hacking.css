@@ -11,7 +11,7 @@ body {
 input[type = text]{
 
     font-size: 625%;
-    width: 6%;
+    width: 7%;
     border-style: hidden;
     text-align: center;
     margin: 1%;
@@ -84,7 +84,7 @@ font-size: 312.5%
 
 #roundNumber {
 
-    font-size: 312.5%;
+    font-size: 200%;
     margin: 0%;
     
 }
@@ -99,12 +99,12 @@ font-size: 312.5%
 
 #timeLabel {
 
-    font-size: 312.5%;
+    font-size: 200%;
     margin: 0%;
 }
 #timer {
 
-    font-size: 187.5%;
+    font-size: 175%;
 }
 #characterDiv {
 
@@ -114,8 +114,8 @@ font-size: 312.5%
 
 #characters {
     position: relative;
-    font-size:625%;
-    letter-spacing: .3em;
+    font-size:615%;
+    letter-spacing: .1em;
     vertical-align: text-bottom;
     margin: 1.9%;
     border-style: double;
@@ -126,7 +126,6 @@ font-size: 312.5%
 
 #sender {
 
-    width: 5.75%;
     height: 4em;
     background-color: gray;
 }

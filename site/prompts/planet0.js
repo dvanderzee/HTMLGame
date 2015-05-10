@@ -9,8 +9,7 @@ levels._1_ = {
 	a: "Explore",
 	a_go: "_2_",
 	b: "Salvage machinery",
-	b_go: "_1_salvage",
-	
+	b_go: "_1_salvage"
 }
 
 levels._1_salvage = {
@@ -18,8 +17,7 @@ levels._1_salvage = {
 	a: "Map",
 	a_go: "_1_minigame",
 	b: "Back",
-	b_go: "_1_",
-	
+	b_go: "_1_"
 }
 
 levels._1_minigame = {
@@ -33,14 +31,11 @@ levels._1_minigame = {
 
 levels._1_success = {
 	prompt: "Now that you have this map, it should be easier to find water, assuming all of the scans are accurate. It was a crash landing after all.",
-	north_go: "_2_b",
+	north_go: "_2_b"
 }
-	
-//}
 
-//{ Lines associated with exploration
 levels._2_ = {
-	prompt = "You can look for water in the distance or search for what you can find in the brush",
+	prompt: "You can look for water in the distance or search for what you can find in the brush",
 	a: "Water",
 	a_go: "_3_",
 	b: "Search Brush",
