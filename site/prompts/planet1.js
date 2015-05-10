@@ -71,7 +71,7 @@ levels._2_ = {
 }
 
 levels._2_a = {
-	location: "ship.js",
+	location: "ship",
 	start: "_1_check",
 }
 
@@ -104,7 +104,7 @@ levels._3_minigame = {
 }
 
 levels._3_success = {
-	prompt: "You have hack into the computer and acquire the files you need on a portable drive!",
+	prompt: "You have hacked into the computer and acquire the files you need on a portable drive!",
 
 	north: "North",
 	north_go: "_1_",
