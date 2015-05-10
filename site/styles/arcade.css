@@ -41,6 +41,7 @@ Main {
 
 .layoutArea {
     display: inline-block;
+}
 
 #textGame {
 	width: 100%;
@@ -93,8 +94,6 @@ Main {
     text-align: center;
 	margin-top: 5px;
 }
-
-
 
 button{
     display: inline-block;
@@ -170,7 +169,6 @@ button{
 	display: none;
 }
 
-/*new stuff starts here so yeah i just want everyone to see where it starts so yeah man*/
 #layoutLeftgame {
 	float: left;
 	position: relative;
