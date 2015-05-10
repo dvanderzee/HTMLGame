@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<!--Code by Miles-->
+	<title></title>
+	<meta charset="UTF-8">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,700,600' rel='stylesheet' type='text/css'>
+	<link href='./flight.css' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="./flight.js"></script>
+	<script>
+		var planet_loc = "planet2.png";
+		var flight_length = 70;
+		var flight_speed = 200;
+	</script>
+	<style>
+		.first {
+			height: 10%;
+			width: 10%;
+			-webkit-animation: shrink .2s linear;
+		    animation: shrink .2s linear;
+		}
+	</style>
+</head>
+<body>
+	<div id="cursor">
+	</div>
+	<div id="menu">
+		<span id="distance"></span>
+	</div>
+	<div id="init">
+		<span class="btn">Begin</span>
+	</div>
+	<table>
+		<tr>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust2.png" class="stars"></td>
+			<td><img src="./images/stardust3.png" class="stars"></td>
+			<td><img src="./images/stardust4.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust3.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust2.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust4.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+		</tr>
+		<tr>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust3.png" class="stars"></td>
+			<td><img src="./images/stardust3.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust4.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust2.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust2.png" class="stars"></td>
+			<td><img src="./images/stardust3.png" class="stars"></td>
+			<td><img src="./images/stardust4.png" class="stars"></td>
+		</tr>
+		<tr>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust2.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust3.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust4.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust3.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust4.png" class="stars"></td>
+		</tr>
+		<tr>
+			<td><img src="./images/stardust3.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust2.png" class="stars"></td>
+			<td><img src="./images/stardust2.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust3.png" class="stars"></td>
+			<td><img src="./images/stardust4.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust4.png" class="stars"></td>
+		</tr>
+		<tr>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust3.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust2.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust3.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust3.png" class="stars"></td>
+			<td><img src="./images/stardust4.png" class="stars"></td>
+			<td><img src="./images/stardust3.png" class="stars"></td>
+		</tr>
+		<tr>
+			<td><img src="./images/stardust3.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust4.png" class="stars"></td>
+			<td><img src="./images/stardust2.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust3.png" class="stars"></td>
+			<td><img src="./images/stardust4.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust2.png" class="stars"></td>
+			<td><img src="./images/stardust3.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+		</tr>
+		<tr>
+			<td><img src="./images/stardust3.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust4.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust2.png" class="stars"></td>
+			<td><img src="./images/stardust3.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+			<td><img src="./images/stardust4.png" class="stars"></td>
+			<td><img src="./images/stardust3.png" class="stars"></td>
+			<td><img src="./images/stardust2.png" class="stars"></td>
+			<td><img src="./images/stardust.png" class="stars"></td>
+		</tr>
+</body>
+</html>

@@ -25,7 +25,7 @@
             var winSound = new Audio("sounds/win.wav");                //Sound for winning game
             
             $(document).ready(function(){
-                $(document).bind('keypress', pressed);
+                $(document).bind('keyup', pressed);
                 });
                 
             function pressed(e){
@@ -44,7 +44,7 @@
                 backgroundMusic.play()
             }
             
-            function shift(input) {
+            function changeInput(input) {
                 switch($(input).val()) {
                     case "1":
                         $(input).val("!");
@@ -127,14 +127,14 @@
             
             function round4() {
             
-                maxTimeInSec = 55;                                                
+                maxTimeInSec = 60;                                                
                 timeLeft = maxTimeInSec;                               
                 round = 4;                                                          
                 document.getElementById("roundNumber").innerHTML = ("Level 4");
                 var timer = document.getElementById("timer");                       //variable for <p> area of timer
                 decrementor = setInterval(decrementTimer, 1000);                
-                numberOfCharacters = 8;
-                numberOfInputs = 8;
+                numberOfCharacters = 7;
+                numberOfInputs = 7;
                 
                 buildLevel()                                                        //builds level
                 
@@ -142,14 +142,14 @@
             
             function round5() {
             
-                maxTimeInSec = 60;                                                
+                maxTimeInSec = 75;                                                
                 timeLeft = maxTimeInSec;                               
                 round = 5;                                                          
                 document.getElementById("roundNumber").innerHTML = ("Level 5");
                 var timer = document.getElementById("timer");                       //variable for <p> area of timer
                 decrementor = setInterval(decrementTimer, 1000);                
                 numberOfCharacters = 8;
-                numberOfInputs = 10;
+                numberOfInputs = 8;
                 
                 buildLevel()                                                        //builds level
                 
@@ -170,21 +170,32 @@
                     inputBox.setAttribute('type', 'text');
                     inputBox.id = "input" + i;
                     inputBox.setAttribute('maxlength', '1');
+                    
                     inputBox.onchange = function() {inputSound.play();};
                     if(i < numberOfInputs - 1){
-                        $(inputBox).keyup(function() {
-                            shift(this);
+                        $(inputBox).keyup(function(e) {
+                            changeInput(this);
                             if(this.nextSibling.readOnly != true){
-                                this.nextSibling.focus();
+                                if(e.keyCode != 8 && e.keyCode != 46){
+                                    this.nextSibling.focus();
+                                }
+                                else {
+                                    //Backspacing corrects color
+                                    this.style.color = "black";
+                                }
                             }
                         });
                     }
                     else {
-                        $(inputBox).keyup(function() {
-                            shift(this)
+                        $(inputBox).keyup(function(e) {
+                            changeInput(this)
+                            if(e.keyCode == 8 || e.keyCode == 46) {
+                                this.style.color = "black";
+                            }
                         });
                     }
                     inputArea.appendChild(inputBox);
+                    if(i == 0) {inputBox.autofocus = true; inputBox.focus();};
                 }
                 
                 
@@ -208,8 +219,12 @@
                 //Collect Input
                 var playerInput = new Array();
                 for(var i =0; i < numberOfInputs; i++) {
+                    //in case a number hasn't become a character yet
+                    var input = document.getElementById("input" + i);
+                    changeInput(input);
                     playerInput[i] = document.getElementById("input" + i);
                 }
+                
                 
                 var correct = true;
                 
@@ -286,6 +301,7 @@
                 while(otherNode.firstChild) {
                     otherNode.removeChild(otherNode.firstChild);
                 }
+                correctCode = [];
             }
             
             //function that is called every second while not gameover
@@ -307,6 +323,7 @@
                     countdownSound.play();
                     timer.innerHTML = ":" + timeLeft;
                 }
+                
             }
         
         </script>
@@ -318,14 +335,15 @@
             <p class = "instructions">The terminal will show you possible characters that may appear in the secret code. <p>
             <p class = "instructions">! @ # $ %<p>
             <p class = "instructions">Type your guess at the code and the system will alert you how close you are. </p>
-            <p class ="instructions">If your input appears red, that character does NOT appear in the code</p>
+            <p class ="instructions">If your input is red, that character does NOT appear in the code.</p>
             <p class = "instructions_red">& </p>
-            <p class = "instructions">If your input appears yellow, that character appears in the code but that is not the right spot for it</p>
+            <p class = "instructions">If your input is yellow, that character appears in the code but is not in the right spot.</p>
             <p class = "instructions_yellow">& </p>
             <p class = "instructions">If your input is correct, the character will appear green<p>
             <p class = "instructions_green">& </p>
-            <p class = "instructions">You have a limited amount of time to hack into each layer. Otherwise the system will kick you out.<p>
-            <p class = "instructions">When you're ready click to hack the database<p>
+            <p class = "instructions">If you take too long to get the code the system will shut you out.<p>
+            <p class = "instructions">The shift key is not necessary to type the characters! </p>
+            <p class = "instructions">When you're ready click to hack the database.<p>
             <br>
             <button id = "begin" onclick = "round1()" >Hack</button>
         </div>
