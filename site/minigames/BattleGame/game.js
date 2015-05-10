@@ -156,6 +156,7 @@ $('#exit').click(function(){
 		$('#layoutLeft').css("display","block");
 		$('#movementButtons').show();
 		$('#invStatToggle').show();
+		levels[level].reward();
 		update(levels[level].success);
 	}
 });
