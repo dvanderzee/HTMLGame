@@ -16,6 +16,7 @@ var landed = false;
 var asteroid_width = 0;
 var asteroid_loc = 0;
 var ship_loc = 0;
+var ship_width = 0;
 
 $(document).mousemove(function(e){
 	mouse_x = e.pageX;
@@ -118,15 +119,16 @@ function crashcheck(){
 			asteroid_width = $(this).width();
 			asteroid_loc = $(this).position();
 			ship_loc = $("#cursor").position();
+			ship_width = $("#cursor").width();
 			ship_L = ship_loc.left;
-			ship_R = ship_loc.left + 30;
+			ship_R = ship_loc.left + ship_width;
 			ship_T = ship_loc.top;
-			ship_B = ship_loc.top + 30;
+			ship_B = ship_loc.top + ship_width;
 			ast_L = asteroid_loc.left;
 			ast_R = asteroid_loc.left + asteroid_width;
 			ast_T = asteroid_loc.top;
 			ast_B = asteroid_loc.top + asteroid_width;
-			if ( (((ship_R < ast_R)) && ((ship_R > ast_L))) && (((ship_T > ast_T) && (ship_T < ast_B)) || ((ship_B > ast_T) && (ship_B < ast_B))) ){
+			if ((((ship_R < ast_R)) && ((ship_R > ast_L))) && (((ship_T > ast_T) && (ship_T < ast_B)) || ((ship_B > ast_T) && (ship_B < ast_B)))){
 				dead = true;
 			    death();
 			}
