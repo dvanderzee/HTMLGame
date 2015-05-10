@@ -41,7 +41,7 @@ function updateDistance(){
 		finaldist = dist;
 		$("#distance").text("Final Distance: " + finaldist + " km");
 	}
-	if (travel >= (flight_length)) {
+	if (travel >= (flight_length + 5)) {
 		onPlanet();
 	}
 }
