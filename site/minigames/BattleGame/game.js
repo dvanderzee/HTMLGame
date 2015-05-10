@@ -147,11 +147,17 @@ function MonsterAttack(){
 
 //will go back to the story once you have finished your fight
 $('#exit').click(function(){
-	$('#layoutLeftgame').css("display","none");
-	$('#layoutLeft').css("display","block");
-	$('#movementButtons').show();
-	$('#invStatToggle').show();
-	update(levels[level].success);
+	var current_window = window.location.hash.substr(1);;
+	if (current_window == "battle"){
+		window.location = './index.html';
+	}
+	else{
+		$('#layoutLeftgame').css("display","none");
+		$('#layoutLeft').css("display","block");
+		$('#movementButtons').show();
+		$('#invStatToggle').show();
+		update(levels[level].success);
+	}
 });
 
 $('#Restart').click(function(){
@@ -274,4 +280,10 @@ $('#Run').click(function(){
 	}
 });
 
+$(window).on("load",function(){
+	var current_window = window.location.hash.substr(1);;
+	if (current_window == "battle"){
+		$("#statMenu").css("height", "92%");
+	}
+});
 
