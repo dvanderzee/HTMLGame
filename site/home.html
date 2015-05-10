@@ -77,7 +77,6 @@
 			
 			function update(newLevel) {
 				level = newLevel;
-				console.log(level+" "+newLevel);
 				//Toggle Directional keys as needed.
 				for (dir in cardinal) {
 						var dir_go = cardinal[dir] + "_go";
@@ -187,7 +186,6 @@
             }
 			
 			function miniGameResult(e) {			
-				console.log(e.data);
 				$("#miniGame").remove();
 				$("#textGame").show();
 				if (e.data.success) {
@@ -216,6 +214,7 @@
 						</div><!-- /display-hero -->
 						
 						<div id="exit"><p>Exit</p></div>
+						<div id="Restart"><p>Restart</p></div>
 						
 						<div id="display-monster">
 							<h1><strong><span id="Monster-Name">Enemy</span></strong></h1>

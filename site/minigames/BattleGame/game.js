@@ -10,7 +10,7 @@ function Enemy(Name,Strength,HP,level,xp,chance){
 }
 
 //the four enemies that you might face
-var Grunt = new Enemy('Grunt', 10, 50, 1, 10, 20);
+var Grunt = new Enemy('Grunt', 50, 50, 1, 10, 20);
 var Bandit = new Enemy('Bandit', 15, 75, 2, 20, 15);
 var Assassin = new Enemy('Assassin', 20, 100, 3, 30, 10);
 var Eldar = new Enemy('Eldar', 25, 125, 4, 40, 5);
@@ -41,6 +41,7 @@ function battlemain(){
 	$('#movementButtons').hide();
 	$('#invStatToggle').hide();
 	$('#exit').hide();
+	$('#Restart').hide();
 	if (!showingStats){toggle();}
 	
 	//displays the characters most important stats
@@ -128,9 +129,9 @@ function MonsterAttack(){
 			var armor=Stats.Toughness/10+Math.floor(EquipStats("Toughness"));
 			damage-=armor;
 			damage=Math.max(Math.floor(damage),0);
-			MinusStat("HP",damage);
 			$('#enemy-actions').html("The "+Monster.Name+" hits you for "+damage+
 									 " damage"+iscrit);
+			MinusStat("HP",damage);
 		}else{
 			$('#enemy-actions').html("The "+Monster.Name+" misses you by a hair!");
 			if (Math.random()<.01){
@@ -151,6 +152,18 @@ $('#exit').click(function(){
 	$('#movementButtons').show();
 	$('#invStatToggle').show();
 	update(levels[level].success);
+});
+
+$('#Restart').click(function(){
+	Monster.HP=Monster.MaxHP;
+	Stats.HP=Stats.MaxHP;
+	Stats.MP=Stats.MaxMP;
+	UpdateDisplay();
+	battlemain();
+	$('#player-actions').html("Time stops rewinding and you are once again \
+			faced with the "+Monster.Name+". It does not seem to have any \
+			clue of what just happened.");
+	$('#enemy-actions').html("Maybe this time you'll be successful...");
 });
 
 //lets the character heal mid-battle button
