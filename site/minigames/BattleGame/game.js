@@ -146,6 +146,10 @@ function MonsterAttack(){
 
 //will go back to the story once you have finished your fight
 $('#exit').click(function(){
+	var current_window = window.location.hash.substr(1);;
+	if (current_window == "battle"){
+		window.location = './index.html';
+	}
 	$('#layoutLeftgame').css("display","none");
 	$('#layoutLeft').css("display","block");
 	$('#movementButtons').show();
@@ -276,4 +280,9 @@ $('#Run').click(function(){
 	}
 });
 
-
+$(window).on("load",function(){
+	var current_window = window.location.hash.substr(1);;
+	if (current_window == "battle"){
+		$("#statMenu").css("height", "99%");
+	}
+});

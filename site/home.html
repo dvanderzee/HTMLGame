@@ -20,6 +20,10 @@
 			var backgroundSound = new Audio("sounds/background.wav");
             
             $(window).on("load",function(){
+            	var current_window = window.location.hash.substr(1);;
+				if (current_window == "battle"){
+					battlemain();
+				}
 				window.addEventListener("message", miniGameResult, false);
                 loadscript(level);
 				
