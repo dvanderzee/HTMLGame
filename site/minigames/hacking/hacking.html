@@ -285,7 +285,7 @@
                 else{
                     //Win the game
                     winSound.play();
-                    alert("YOU WIN THE GAME");
+                    parent.postMessage({'success':true}, "*");
                 }
               
                 
