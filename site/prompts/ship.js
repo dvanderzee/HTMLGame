@@ -24,7 +24,7 @@ levels._0_a = {
 }
 
 levels._0_a_minigame = {
-	game: "./minigames/flight/flight.html",
+	game: "./minigames/flight/flight1.html",
 	success: "_0_a_success",
 	fail: "_0_a_fail",
 
