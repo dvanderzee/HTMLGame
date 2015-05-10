@@ -41,9 +41,6 @@ Main {
 
 .layoutArea {
     display: inline-block;
-    /*border-style: solid;
-    border-color: white;
-    border-width: 1px;*/
 }
 
 #textGame {
@@ -97,8 +94,6 @@ Main {
     text-align: center;
 	margin-top: 5px;
 }
-
-
 
 button{
     display: inline-block;
@@ -174,7 +169,6 @@ button{
 	display: none;
 }
 
-/*new stuff starts here so yeah i just want everyone to see where it starts so yeah man*/
 #layoutLeftgame {
 	float: left;
 	position: relative;
@@ -308,4 +302,10 @@ button{
 	float:right;
 }
 
+#homebutton{
+	text-align: center;
+}
 
+#bringmehome{
+	width: 30%;
+}

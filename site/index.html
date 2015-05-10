@@ -13,6 +13,7 @@
         	var game_loc = 0;
 
         	$(document).ready(function(){
+        		$("#homebutton").hide();
         		$('.btn').click(function() {
 	        		playClickSound()
 				    game_loc = $(this).attr('id');
@@ -29,8 +30,10 @@
             	var miniGame = document.createElement("iframe");
 				miniGame.id = "miniGame";
 				$(miniGame).attr('src', game_loc);
+				$("#layoutLeft").css("height", "93%");
 				document.getElementById("layoutLeft").appendChild(miniGame);
 				$("#textGame").hide();
+				$("#homebutton").show();	
             }
 
             $(window).on("load",function(){
@@ -40,8 +43,10 @@
 			function miniGameResult(e) {
 				setTimeout(function() {			
 					$("#miniGame").remove();
+					$("#layoutLeft").css("height", "100%");
 					$("#disp1").html("<strong>Congratulations! You won!</strong>");
 					$("#disp2").html("Choose Another Game");
+					$("#homebutton").hide();
 					$("#textGame").show();		
 				}, 400);		
 			}
@@ -60,16 +65,19 @@
 						</div>
 					</div>
 					<div id="actionButtons" class="layoutArea">
+						<button class="btn" onclick = "window.location = './home.html';">RPG</button>
 						<button class="btn" id="./minigames/flight/flight2.html">Flight</button>
 						<button class="btn" id="./minigames/jigsawpuzzle/planet1_puzzle.html">Jigsaw</button>
 						<button class="btn" id="./minigames/hacking/hacking.html">Hack</button>
-						<button class="btn" onclick="window.location = './home.html#battle';">Battle</button>
-						<button class="btn" onclick="window.location = './home.html';">Classic</button>
-						<button class="btn" onclick="window.location = './credits.html';"><em>Credits</em></button>
+						<button class="btn" onclick = "window.location = './home.html#battle';">Battle</button>
+						<button class="btn" onclick = "window.location = './credits.html';"><em>Credits</em></button>
 					</div>
 				</div>
+				<script type="text/javascript" src="minigames/BattleGame/game.js"></script>
 			</div>
-			<script type="text/javascript" src="minigames/BattleGame/game.js"></script>
+			<div id="homebutton">
+					<button class="btn" id="bringmehome" onclick="window.location = './index.html';">Return to Arcade</button>
+			</div>
 		</main>
     </body>
 </html>

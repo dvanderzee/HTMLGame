@@ -141,6 +141,7 @@ function MonsterAttack(){
 				Monster.HP-=Monster.Strength/2;
 			}
 		}
+<<<<<<< HEAD
 		displayStats();
 	}
 	setTimeout(function() {
@@ -149,6 +150,9 @@ function MonsterAttack(){
 	setTimeout(function() {
 		$('#attack-animation').removeClass();
 	}, 1000)
+=======
+	}displayStats();
+>>>>>>> f5ed75164fad621a1ab074c676fe90db18c42b82
 }
 
 //will go back to the story once you have finished your fight
@@ -157,14 +161,14 @@ $('#exit').click(function(){
 	if (current_window == "battle"){
 		battlemain();
 	}
-	else{
-		$('#layoutLeftgame').css("display","none");
-		$('#layoutLeft').css("display","block");
-		$('#movementButtons').show();
-		$('#invStatToggle').show();
+	$('#layoutLeftgame').css("display","none");
+	$('#layoutLeft').css("display","block");
+	$('#movementButtons').show();
+	$('#invStatToggle').show();
+	if (levels[level].reward) {
 		levels[level].reward();
-		update(levels[level].success);
 	}
+	update(levels[level].success);
 });
 
 $('#Restart').click(function(){
@@ -300,7 +304,6 @@ $('#Run').click(function(){
 $(window).on("load",function(){
 	var current_window = window.location.hash.substr(1);;
 	if (current_window == "battle"){
-		$("#statMenu").css("height", "92%");
+		$("#statMenu").css("height", "99%");
 	}
 });
-

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset = "utf-8">
-        <title>Space Quest</title>
+        <title>Space Adventure</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,700,600' rel='stylesheet' type='text/css'>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <link href="./styles/gameStyle.css" rel="stylesheet">
@@ -13,10 +13,11 @@
             var loc = "ship";
 			var level = "_0_";
             var showingStats = false;
-			var cardinal = ["north", "east", "west", "south", "a", "b", "c", "d"];
+			var actions = ["north", "east", "west", "south", "a", "b", "c", "d"];
             
             //sounds
             var clickSound = new Audio("sounds/click.wav");
+			var backgroundSound = new Audio("sounds/background.wav");
             
             $(window).on("load",function(){
             	var current_window = window.location.hash.substr(1);;
@@ -24,74 +25,67 @@
 					battlemain();
 				}
 				window.addEventListener("message", miniGameResult, false);
-                loadscript();
-				//update(level);
+                loadscript(level);
+				
+				//Loop background music
+				backgroundSound.addEventListener('ended',function() {
+					this.currentTime = 0;
+					this.play();
+				}, false);
+				backgroundSound.play();
             });
-			
-			function explore(fight, discover, goal){
-
-				var chance = Math.ceil(Math.random() * 100);
-				switch(true){
-					case (chance <= discover):
-						newLevel =  goal;
-						update(newLevel);
-						break;
-					case (chance <= fight):
-						newLevel = level + "_fight";
-						update(newLevel);
-						break;
-                    default:
-                        newLevel = level + "_none";
-                        update(newLevel);
-				}
-			};
             
             function playClickSound(){
                 clickSound.play();
-            };
+            }
 
             <!-- When the new location is needed, edit location and run loadscript() -->
-            function loadscript(){
+            function loadscript(start){
                 var src = "./prompts/" + loc + ".js" + "?" + Math.random();  
                 var head= document.getElementsByTagName('head')[0];
                 var script= document.createElement('script');
                 script.type= 'text/javascript';
                 script.src= src;
                 head.appendChild(script);  
-
-				$(script).on("load",function(){
-					update(level);
-					
-					// Old style that I updated
-					//Button Click functionality
 				
-				$("button").on("click",function(){
-						console.log(level);
-						var id = this.id;
-						var dir_go = id + "_go";
-						if (levels[level][dir_go]){
-							newLevel = levels[level][dir_go];
-							update(newLevel);
+				$(script).on("load",function(){
+					// Set prompt and buttons
+					$("#displayprompt").html(levels[start].prompt);
+					for (a in actions) {
+						var id = actions[a];
+						if (levels[start][id]) {
+							$("#" + id).html(levels[start][id]);
+							$("#" + id).unbind("click");
+							$("#" + id).on("click",function(){
+								playClickSound();
+								var dir_go = this.id + "_go";
+								newLevel = levels[level][dir_go];
+								update(newLevel);
+							});
+							$("#" + id).show();
 						}
-                        playClickSound();
-					});
-                });
-            }
+						else {
+							$("#" + actions[a]).hide();
+						}
+					}				
+					level = start;
+				});
+			}
 			
 			function update(newLevel) {
 				level = newLevel;
-				//Toggle Directional keys as needed.
-				for (dir in cardinal) {
-						var dir_go = cardinal[dir] + "_go";
-						if (!levels[level][dir_go]) {
-							$("#" + cardinal[dir]).hide();
-						} else {
-							$("#" + cardinal[dir]).show();
-						}
-					}
-					
+				
+				// If going to new location then run the loadscript function
+				if (levels[level].location) {
+					// Set location to the next locataion (ship or planet)
+					loc = levels[level].location;
+					// Set the level to the starting level described in the levels object
+					start = levels[level].start;
+					loadscript(start);
+				}
+				
 				//If the location runs a game, find the file and append the game screen
-				if (levels[level].game) {
+				else if (levels[level].game) {
 					var miniGame = document.createElement("iframe");
 					miniGame.id = "miniGame";
 					$(miniGame).attr('src', levels[level].game);
@@ -99,23 +93,11 @@
 					$("#textGame").hide();
 				} 
 				
-				else if(levels[level].battle){
-					levels[level].battle();
+				else if (levels[level].battle) {
+					battlemain();
 				}
 				
-				else if (levels[level].explore) {
-					levels[level].explore();
-				}
-				
-				else if (levels[level].location) {
-					// Set location to the next locataion (ship or planet)
-					loc = levels[level].location;
-					// Set the level to the starting level described in the levels object
-					level = levels[level].start;
-					loadscript();
-				}
-				
-				else if (levels[level].condition) {
+								else if (levels[level].condition) {
 					var condition = levels[level].condition;
 					var pass = levels[level].pass;
 					switch (condition) {
@@ -162,11 +144,20 @@
 							hiddenStats.coordinator += 10;
 					}
 				}
-				//Otherwise, update the prompt and options.
+				
 				else {
+					// Set prompt and buttons
 					$("#displayprompt").html(levels[newLevel].prompt);
-					$("#a").html(levels[newLevel].a); 
-					$("#b").html(levels[newLevel].b);
+					for (a in actions) {
+						var id = actions[a];
+						if (levels[level][id]) {
+							$("#" + id).html(levels[newLevel][id]);
+							$("#" + id).show();
+						} 
+						else {
+							$("#" + actions[a]).hide();
+						}
+					}
 				}
 			}
 						
@@ -189,6 +180,7 @@
             }
 			
 			function miniGameResult(e) {			
+				console.log(e.data);
 				$("#miniGame").remove();
 				$("#textGame").show();
 				if (e.data.success) {
@@ -217,7 +209,6 @@
 						</div><!-- /display-hero -->
 						
 						<div id="exit"><p>Exit</p></div>
-						<div id="Restart"><p>Restart</p></div>
 						
 						<div id="display-monster">
 							<h1><strong><span id="Monster-Name">Enemy</span></strong></h1>
@@ -270,9 +261,6 @@
 				</div>
 			</div>
 			<div id="layoutRight">
-				<div id="arcade" class="layoutArea" onclick = "window.location = './index.html';">
-					Return to Arcade
-				</div>
 				<div id="invStatToggle" class="layoutArea" onclick = "toggle()">
 					Show Stats
 				</div>
