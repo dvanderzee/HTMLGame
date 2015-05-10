@@ -35,22 +35,15 @@ Main {
 #layoutLeft {
 	float: left;
 	position: relative;
-	width: 75%;
+	width: 100%;
 	height: 100%;
-}
-
-#layoutRight {
-	float: right;
-	position: relative;
-	width: 24%;
-	height:100%;
 }
 
 .layoutArea {
     display: inline-block;
-    border-style: solid;
+    /*border-style: solid;
     border-color: white;
-    border-width: 1px;
+    border-width: 1px;*/
 }
 
 #textGame {
@@ -109,9 +102,9 @@ Main {
 
 button{
     display: inline-block;
-	width: 20%;
+	width: 13%;
     height: 90%;
-    margin: 5px;
+    margin: 8px;
 }
 
 .mvbtn {
@@ -152,7 +145,7 @@ button{
     text-decoration: none;
     cursor: pointer;
 }
-.smallbtn:hover, .btn:hover, .mvbtn:hover, #invStatToggle:hover, #arcade:hover{
+.smallbtn:hover, .btn:hover, .mvbtn:hover, #invStatToggle:hover{
 	background: #248BA4;
     text-decoration: none;
 }
@@ -167,22 +160,12 @@ button{
     cursor: pointer;
 }
 
-#arcade {
-	position: relative;
-    text-align: center;
-    width: 100%;
-	height: 6%;
-    padding: 10px;
-	margin-bottom: 10px;
-    cursor: pointer;
-}
-
 .sidebar {
     width: 100%;
 	margin-top: 5px;
 	margin-bottom: 5px;
     position: relative;
-	height:65.3%;
+	height:72.7%;
     padding: 10px;
 	overflow: auto;
 }

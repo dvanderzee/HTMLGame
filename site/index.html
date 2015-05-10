@@ -1,0 +1,75 @@
+ <!doctype html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title>Space Quest Arcade</title>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,700,600' rel='stylesheet' type='text/css'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <link href="./styles/arcade.css" rel="stylesheet">
+        
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        
+        <script>
+        	var game_loc = 0;
+
+        	$(document).ready(function(){
+        		$('.btn').click(function() {
+	        		playClickSound()
+				    game_loc = $(this).attr('id');
+				    runGame();
+			    });
+        	});
+
+        	function playClickSound(){
+        		var clickSound = new Audio("sounds/click.wav");
+                clickSound.play();
+            };
+
+            function runGame(){
+            	var miniGame = document.createElement("iframe");
+				miniGame.id = "miniGame";
+				$(miniGame).attr('src', game_loc);
+				document.getElementById("layoutLeft").appendChild(miniGame);
+				$("#textGame").hide();
+            }
+
+            $(window).on("load",function(){
+				window.addEventListener("message", miniGameResult, false);
+            });
+            
+			function miniGameResult(e) {
+				setTimeout(function() {			
+					$("#miniGame").remove();
+					$("#disp1").html("<strong>Congratulations! You won!</strong>");
+					$("#disp2").html("Choose Another Game");
+					$("#textGame").show();		
+				}, 400);		
+			}
+            
+        </script>
+    </head>
+    <body>
+        <main> 
+			<div id="layoutLeft">
+				<div id="textGame">
+					<div id="textOutput" class="layoutArea">
+						<div id="prompt">
+							<p id="disp1"><strong>Welcome to Space Quest</strong></p>
+							<br>
+							<p id="disp2">Choose A Game</p>
+						</div>
+					</div>
+					<div id="actionButtons" class="layoutArea">
+						<button class="btn" id="./minigames/flight/flight2.html">Flight</button>
+						<button class="btn" id="./minigames/jigsawpuzzle/planet1_puzzle.html">Jigsaw</button>
+						<button class="btn" id="./minigames/hacking/hacking.html">Hack</button>
+						<button class="btn" onclick="window.location = './home.html#battle';">Battle</button>
+						<button class="btn" onclick="window.location = './home.html';">Classic</button>
+						<button class="btn" onclick="window.location = './credits.html';"><em>Credits</em></button>
+					</div>
+				</div>
+			</div>
+			<script type="text/javascript" src="minigames/BattleGame/game.js"></script>
+		</main>
+    </body>
+</html>

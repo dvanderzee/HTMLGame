@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset = "utf-8">
-        <title>Space Adventure</title>
+        <title>Space Quest</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,700,600' rel='stylesheet' type='text/css'>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <link href="./styles/gameStyle.css" rel="stylesheet">
@@ -19,7 +19,10 @@
             var clickSound = new Audio("sounds/click.wav");
             
             $(window).on("load",function(){
-			
+            	var current_window = window.location.hash.substr(1);;
+				if (current_window == "battle"){
+					battlemain();
+				}
 				window.addEventListener("message", miniGameResult, false);
                 loadscript();
 				//update(level);
@@ -265,6 +268,9 @@
 				</div>
 			</div>
 			<div id="layoutRight">
+				<div id="arcade" class="layoutArea" onclick = "window.location = './index.html';">
+					Return to Arcade
+				</div>
 				<div id="invStatToggle" class="layoutArea" onclick = "toggle()">
 					Show Stats
 				</div>
