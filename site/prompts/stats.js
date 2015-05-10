@@ -112,7 +112,7 @@ function MinusStat(stat,amount){
 			$('#player-actions').html("You fall over in pain as you feel the "+
 			Monster.Name+"'s attack hit its mark. Your world goes dark.");
 			$('#enemy-actions').html("You suddenly feel the world returning,\
-				but it's your last actions backwards. Time is reverting!");
+				but it's flowing backwards. Time is reverting!");
 			$('#Heal').hide();
 			$('#Attack').hide();
 			$('#MagicMissile').hide();

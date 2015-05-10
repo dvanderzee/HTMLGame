@@ -10,7 +10,7 @@ function Enemy(Name,Strength,HP,level,xp,chance){
 }
 
 //the four enemies that you might face
-var Grunt = new Enemy('Grunt', 50, 50, 1, 10, 20);
+var Grunt = new Enemy('Grunt', 10, 50, 1, 10, 20);
 var Bandit = new Enemy('Bandit', 15, 75, 2, 20, 15);
 var Assassin = new Enemy('Assassin', 20, 100, 3, 30, 10);
 var Eldar = new Enemy('Eldar', 25, 125, 4, 40, 5);

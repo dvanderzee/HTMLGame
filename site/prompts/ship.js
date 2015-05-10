@@ -81,7 +81,6 @@ levels._1_deny = {
 	south_go: "_1_cargo"
 }
 
-
 levels._1_accept = {
 	prompt: "You enter your ship. Looking around, you see the damaged console \
 			the mechanic was referring to. Now that you've acquired the files \
