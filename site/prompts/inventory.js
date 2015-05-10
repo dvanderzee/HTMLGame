@@ -11,7 +11,7 @@ function Item(name,type,count,equipped,effect){
 
 //Initiates the players inventory, giving a few starting things; global access
 var inventory={
-	Gold:new Item("Gold","Currency",100,null,"really?"),
+	Gold:new Item("Gold","Currency",100,false,null),
 	Shirt:new Item("Shirt","Armor",1,true,["Toughness",.5]),
 	Machete:new Item("Machete","Weapon",1,false,["Strength",2]),
 	HideHat:new Item("Hide Hat","Helmet",1,true,["Toughness",.5]),
@@ -228,7 +228,7 @@ function addinventory(name,nospacename,type,count,effect){
 		temp=document.getElementById("items"+nospacename);
 		temp.cells[1].innerHTML=inventory[nospacename].count;
 	}else{
-		inventory[nospacename]=new Item(name,type,count,null,effect);
+		inventory[nospacename]=new Item(name,type,count,false,effect);
 		mytable=document.getElementById("Inventorytable");
 		printitem(mytable,nospacename);
 	}

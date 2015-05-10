@@ -63,14 +63,9 @@ levels._1_explore = {
 levels._1_explore_fight = {
 	battle: function(){battlemain()},
 	success: "_1_fight_success",
-	fail: "_1_fight_fail",
 	reward: function(){
-		addinventory("Gold","Gold","currency",Math.ceil((Math.random *10)),null)
+		addinventory("Gold","Gold","Currency",Math.ceil(Math.random()*10),null);
 	},
-}
-
-levels._1_fight_fail = {
-	prompt: "You died. Game Over."
 }
 
 levels._1_fight_success = {
