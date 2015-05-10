@@ -4,7 +4,7 @@ var levels = {};
 //The letters after the question number indicate the history of choices to get to that point in the branch
 
 levels._ship_ = {
-	location: "ship.js",
+	location: "ship",
 	start: "_2_c"
 	
 }
