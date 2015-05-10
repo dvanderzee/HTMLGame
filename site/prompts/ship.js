@@ -121,7 +121,7 @@ levels._1_fail = {
 }
 
 levels._1_a = {
-	location: "planet1.js",
+	location: "planet1",
 	start: "_2_"
 }
 
@@ -211,12 +211,12 @@ levels._2_fail = {
 }
 
 levels._2_deny = {
-	location: "planet2.js",
+	location: "planet2",
 	start: "_0_"
 }
 
 levels._2_accept = {
-	location: "planet2.js",
+	location: "planet2",
 	start: "_1_"
 }
 

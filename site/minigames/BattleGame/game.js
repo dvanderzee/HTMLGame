@@ -150,7 +150,9 @@ $('#exit').click(function(){
 	$('#layoutLeft').css("display","block");
 	$('#movementButtons').show();
 	$('#invStatToggle').show();
-	levels[level].reward();
+	if (levels[level].reward) {
+		levels[level].reward();
+	}
 	update(levels[level].success);
 });
 

@@ -21,7 +21,7 @@
             
             $(window).on("load",function(){
 				window.addEventListener("message", miniGameResult, false);
-                loadscript();
+                loadscript(level);
 				
 				//Loop background music
 				backgroundSound.addEventListener('ended',function() {
@@ -36,7 +36,7 @@
             }
 
             <!-- When the new location is needed, edit location and run loadscript() -->
-            function loadscript(){
+            function loadscript(start){
                 var src = "./prompts/" + loc + ".js" + "?" + Math.random();  
                 var head= document.getElementsByTagName('head')[0];
                 var script= document.createElement('script');
@@ -45,18 +45,28 @@
                 head.appendChild(script);  
 				
 				$(script).on("load",function(){
-					//update(level);
-					$("button").on("click",function(){
-						var id = this.id;
-						var dir_go = id + "_go";
-						if (levels[level][dir_go]){
-							newLevel = levels[level][dir_go];
-							update(newLevel);
+					// Set prompt and buttons
+					$("#displayprompt").html(levels[start].prompt);
+					for (a in actions) {
+						var id = actions[a];
+						if (levels[start][id]) {
+							$("#" + id).html(levels[start][id]);
+							$("#" + id).unbind("click");
+							$("#" + id).on("click",function(){
+								playClickSound();
+								var dir_go = this.id + "_go";
+								newLevel = levels[level][dir_go];
+								update(newLevel);
+							});
+							$("#" + id).show();
 						}
-                        playClickSound();
-					});
-                });
-            }
+						else {
+							$("#" + actions[a]).hide();
+						}
+					}				
+					level = start;
+				});
+			}
 			
 			function update(newLevel) {
 				level = newLevel;
@@ -66,8 +76,8 @@
 					// Set location to the next locataion (ship or planet)
 					loc = levels[level].location;
 					// Set the level to the starting level described in the levels object
-					level = levels[level].start;
-					loadscript();
+					start = levels[level].start;
+					loadscript(start);
 				}
 				
 				//If the location runs a game, find the file and append the game screen
@@ -79,23 +89,11 @@
 					$("#textGame").hide();
 				} 
 				
-				else {
-					// Set prompt and buttons
-					$("#displayprompt").html(levels[newLevel].prompt);
-					for (a in actions) {
-						var id = actions[a];
-						if (levels[level][id]) {
-							$("#" + id).html(levels[newLevel][id]);
-							$("#" + id).show();
-						} 
-						else {
-							$("#" + actions[a]).hide();
-						}
-					}
+				else if (levels[level].battle) {
+					battlemain();
 				}
-				console.log("Done");
-				/*
-				else if (levels[level].condition) {
+				
+								else if (levels[level].condition) {
 					var condition = levels[level].condition;
 					var pass = levels[level].pass;
 					switch (condition) {
@@ -142,7 +140,21 @@
 							hiddenStats.coordinator += 10;
 					}
 				}
-				*/
+				
+				else {
+					// Set prompt and buttons
+					$("#displayprompt").html(levels[newLevel].prompt);
+					for (a in actions) {
+						var id = actions[a];
+						if (levels[level][id]) {
+							$("#" + id).html(levels[newLevel][id]);
+							$("#" + id).show();
+						} 
+						else {
+							$("#" + actions[a]).hide();
+						}
+					}
+				}
 			}
 						
              <!-- function to toggle between the stats and inventory menu when the toggle button is clicked -->

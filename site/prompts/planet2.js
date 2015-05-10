@@ -61,7 +61,7 @@ levels._0_none = {
 }
 
 levels._0_fight_ = {
-	game: "./minigames/BattleGame/battle.html",
+	battle: true,
 	success: "_0_success",
 	fail: "_0_fail",
 
@@ -96,7 +96,7 @@ levels._0_b = {
 }
 
 levels._0_minigame = {
-	game: "./minigames/jigsawpuzzle/planet2.html",
+	game: "./minigames/jigsawpuzzle/planet3_puzzle.html",
 	success: "_map_success",
 }
 

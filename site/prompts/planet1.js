@@ -11,6 +11,8 @@ levels._1_ = {
 	b: "Explore",
 	b_go: "_1_c",
 	
+	north: "North",
+	south: "South",
 	north_go: "_2_",
 	south_go: "_3_",
 }
@@ -25,6 +27,8 @@ levels._1_a = {
 	a: "Continue",
 	a_go: "_1_",
 	
+	north: "North",
+	south: "South",
 	north_go: "_2_",
 	south_go: "_3_",
 }
@@ -37,6 +41,8 @@ levels._1_b = {
 	b: "Explore",
 	b_go: "_1_c",
 	
+	north: "North",
+	south: "South",
 	north_go: "_2_",
 	south_go: "_3_",
 }
@@ -48,6 +54,8 @@ levels._1_c = {
 	b: "Continue",
 	b_go: "_1_",
 	
+	north: "North",
+	south: "South",
 	north_go: "_2_",
 	south_go: "_3_",
 }
@@ -58,6 +66,7 @@ levels._2_ = {
 	b: "Enter Ship",
 	b_go: "_2_a",
 	
+	south: "South",
 	south_go: "_1_",
 }
 
@@ -72,6 +81,8 @@ levels._3_ = {
 	Most likely you can find the file you need stored on one of the computers.<p>To the north there is a door leading back into the mech station.",
 	a: "Computer",
 	a_go: "_3_a",
+	
+	north: "North",
 	north_go: "_1_",
 }
 
@@ -79,7 +90,7 @@ levels._3_a = {
 	prompt: "You approach the computer and turn it on.",
 	a: "Exit",
 	a_go: "_3_",
-	b: "Activate Minigame",
+	b: "Start Hacking",
 	b_go: "_3_minigame",
 }
 
@@ -94,6 +105,8 @@ levels._3_minigame = {
 
 levels._3_success = {
 	prompt: "You have hack into the computer and acquire the files you need on a portable drive!",
+
+	north: "North",
 	north_go: "_1_",
 }
 

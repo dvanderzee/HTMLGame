@@ -21,7 +21,7 @@ levels._1_salvage = {
 }
 
 levels._1_minigame = {
-	game: "./minigames/jigsawpuzzle/planet0_puzzle.html",
+	game: "./minigames/jigsawpuzzle/planet1_puzzle.html",
 	success: "_1_success",
 	fail: "_1_fail",
 	reward: function(){
@@ -30,8 +30,9 @@ levels._1_minigame = {
 }
 
 levels._1_success = {
-	prompt: "Now that you have this map, it should be easier to find water, assuming all of the scans are accurate. It was a crash landing after all.",
-	north_go: "_2_b"
+	prompt: "Now that you have this map, it should be easier to find water (NORTH!), assuming all of the scans are accurate. It was a crash landing after all.",
+	north: "North",
+	north_go: "_3_"
 }
 
 levels._2_ = {
@@ -39,7 +40,7 @@ levels._2_ = {
 	a: "Water",
 	a_go: "_3_",
 	b: "Search Brush",
-	b_go: "_2_battle"
+	b_go: "_4_battle"
 }
 
 levels._3_ = {
@@ -55,18 +56,15 @@ levels._4_ = {
 }
 
 levels._4_battle = {
-	game: "./minigames/BattleGame/battle.html",
+	battle: true,
 	success: "_4_success",
-	fail: "_4_fail",
+	fail: "_4_fail"
 }
 
 levels._4_success = {
 	prompt: "You managed to come out on top, and even got a bit of loot for your troubles. You're still stuck waiting though.",
-	reward: function(){
-		addinventory("Gold","Gold","currency",math.Floor((math.Random *10) + 1),null)
-	},
 	a: "Back",
-	a_go: "_2_",
+	a_go: "_2_"
 }
 	
 levels._4_fail = {
@@ -77,11 +75,11 @@ levels._4_fail = {
 levels._5_ = {
 	prompt: "Finally help arrives. You are escorted onto a transport ship and brought to the nearby space station.",
 	a: "Next",
-	a_go: "_6_",
+	a_go: "_6_"
 }
 
 levels._6_ = {
-	location: "planet1.js",
-	start: "_1_a",
+	location: "planet1",
+	start: "_1_a"
 }
 
