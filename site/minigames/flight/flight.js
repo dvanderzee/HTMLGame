@@ -125,9 +125,7 @@ function crashcheck(){
 			ast_R = asteroid_loc.left + asteroid_width;
 			ast_T = asteroid_loc.top + 50;
 			ast_B = asteroid_loc.top + asteroid_width;
-			console.log(ship_loc.top);
 			if ((((ship_R < ast_R)) && ((ship_R > ast_L))) && (((ship_T > ast_T) && (ship_T < ast_B)) || ((ship_B > ast_T) && (ship_B < ast_B)))){
-				alert("crashcheck")
 				dead = true;
 			    death();
 			}
