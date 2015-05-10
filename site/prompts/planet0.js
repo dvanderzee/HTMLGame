@@ -7,7 +7,7 @@ var levels = {};
 levels._1_ = {
 	prompt: "A desert. That's just perfect. You'll need to find water, and do your best to avoid the natives, they're known to be pretty hostile towards visitors.",
 	a: "Explore",
-	a_go: "_1_explore",
+	a_go: "_2_",
 	b: "Salvage machinery",
 	b_go: "_1_salvage",
 	
@@ -39,89 +39,54 @@ levels._1_success = {
 //}
 
 //{ Lines associated with exploration
-levels._1_explore = {
-	explore: [50,25,"_1_oasis"]
+levels._2_ = {
+	prompt = "You can look for water in the distance or search for what you can find in the brush",
+	a: "Water",
+	a_go: "_3_",
+	b: "Search Brush",
+	b_go: "_2_battle"
 }
 
-levels._1_fight_ = {
-	game: "./minigames/BattleGame/battle.html",
-	success: "_1_fight_success",
-	fail: "_1_fight_fail",
-}
-
-levels._1_fight_fail = {
-	prompt: "You died. Game Over."
-}
-
-levels._1_fight_success = {
-	prompt: "You managed to come out on top, and even got a bit of loot for your troubles. You're still stuck waiting though.",
-	reward: function(){
-		addinventory("Gold","Gold","currency",math.Floor((math.Random *10) + 1),null)
-	},
-	a: "Back",
-	a_go: "_1_",
-	
-}
-
-levels._1_oasis = {
+levels._3_ = {
 	prompt: "Skin scorched and throat parched you finally find an oasis. You're quick to fill your waterskins, and take a long slow drink from the pool; all from the shade of a lemon tree. Now that you're stocked you just need to hold out until rescue arrives.",
 	a: "Return to your ship",
-	a_go: "_2_"
-	
+	a_go: "_5_"	
 }
 
-levels._1_none = {
-	prompt: "You roam around but find nothing of consequence.",
-	a: "Back",
-	a_go: "_1_",
-}	
-	
-//}
-
-
-
-//{ Waiting for rescue, being attacked while you do.
-levels._2_ = {
-	prompt: "Back at your ship, now with supplies to last, you need to wait, and hope you dont get attacked while you do.",
-	a: "Next",
-	a_go: "_2_wait_",
-	
-}
-	
-levels._2_wait_ = {
-	explore: function(){
-		explore(50,25,"_2_rescue");
-	}
+levels._4_ = {
+	prompt: "You're under attack!",
+	a: "Fight",
+	a_go: "_4_battle"
 }
 
-levels._2_wait_fight_ = {
+levels._4_battle = {
 	game: "./minigames/BattleGame/battle.html",
-	success: "_2_success",
-	fail: "_2_fail",
+	success: "_4_success",
+	fail: "_4_fail",
 }
 
-levels._2_success = {
+levels._4_success = {
 	prompt: "You managed to come out on top, and even got a bit of loot for your troubles. You're still stuck waiting though.",
 	reward: function(){
 		addinventory("Gold","Gold","currency",math.Floor((math.Random *10) + 1),null)
 	},
-	a: "Wait",
-	a_go: "_2_wait",
+	a: "Back",
+	a_go: "_2_",
 }
+	
+levels._4_fail = {
+	prompt: "You died. Game Over."
+}	
 
-levels._2_fail = {
-	prompt: "You have been killed! Gameover",
-}
-
-levels._2_rescue = {
+//{ Waiting for rescue, being attacked while you do.
+levels._5_ = {
 	prompt: "Finally help arrives. You are escorted onto a transport ship and brought to the nearby space station.",
 	a: "Next",
-	a_go: "_2_leave",
+	a_go: "_6_",
 }
 
-levels._2_leave = {
+levels._6_ = {
 	location: "planet1.js",
 	start: "_1_a",
 }
-//}
 
