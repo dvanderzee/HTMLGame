@@ -412,7 +412,6 @@
 			var errors = this.checkTiles();
 			if (errors == 0) {
 				// Change this to signal to main window that the minigame was completed successfully
-				alert('Congratulations!!!');
 				parent.postMessage({'success':true}, "*");
 			}
 		}

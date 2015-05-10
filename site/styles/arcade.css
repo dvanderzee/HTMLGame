@@ -308,4 +308,10 @@ button{
 	float:right;
 }
 
+#homebutton{
+	text-align: center;
+}
 
+#bringmehome{
+	width: 30%;
+}
