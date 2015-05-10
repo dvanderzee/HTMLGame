@@ -107,6 +107,12 @@ function EquipStats(stat){
 
 //controls the monster attacks and the case of a dead monster/player
 function MonsterAttack(){
+	setTimeout(function() {
+		$('#attack-animation').removeClass().addClass(Monster.Name);
+	}, 500)
+	setTimeout(function() {
+		$('#attack-animation').removeClass();
+	}, 1000)
 	if (Monster.HP<=0){
 		$('#enemy-actions').html("You have killed the "+Monster.Name+"! You gain "+
 		Monster.XP+" xp!");
@@ -143,13 +149,6 @@ function MonsterAttack(){
 		}
 		displayStats();
 	}
-	setTimeout(function() {
-		$('#attack-animation').removeClass().addClass(Monster.Name);
-	}, 500)
-	setTimeout(function() {
-		$('#attack-animation').removeClass();
-	}, 1000)
-	displayStats();
 }
 
 //will go back to the story once you have finished your fight
@@ -302,6 +301,12 @@ $('#Run').click(function(){
 $(window).on("load",function(){
 	var current_window = window.location.hash.substr(1);;
 	if (current_window == "battle"){
-		$("#statMenu").css("height", "99%");
+		$("#statMenu").css("height", "92%");
+		$('#invStatToggle').show();
+		$('#invStatToggle').html("Return to Arcade");
+		goback=function(){
+			window.location="./index.html";
+		}
+		$('#invStatToggle').attr("onclick","goback()");
 	}
 });
