@@ -11,11 +11,11 @@
         
         <script>
         	var game_loc = 0;
+        	var backgroundSound = new Audio("sounds/background.wav");
 
         	$(document).ready(function(){
         		$("#homebutton").hide();
         		$('.btn').click(function() {
-	        		playClickSound()
 				    game_loc = $(this).attr('id');
 				    runGame();
 			    });
@@ -38,6 +38,11 @@
 
             $(window).on("load",function(){
 				window.addEventListener("message", miniGameResult, false);
+				backgroundSound.addEventListener('ended',function() {
+					this.currentTime = 0;
+					this.play();
+				}, false);
+				backgroundSound.play();
             });
             
 			function miniGameResult(e) {
