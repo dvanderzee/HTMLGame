@@ -93,7 +93,7 @@
 					battlemain();
 				}
 				
-								else if (levels[level].condition) {
+				else if (levels[level].condition) {
 					var condition = levels[level].condition;
 					var pass = levels[level].pass;
 					switch (condition) {
@@ -149,7 +149,14 @@
 						if (levels[level][id]) {
 							$("#" + id).html(levels[newLevel][id]);
 							$("#" + id).show();
-						} 
+							$("#" + id).unbind("click");
+							$("#" + id).on("click",function(){
+								playClickSound();
+								var dir_go = this.id + "_go";
+								newLevel = levels[level][dir_go];
+								update(newLevel);
+							});
+						}
 						else {
 							$("#" + actions[a]).hide();
 						}
