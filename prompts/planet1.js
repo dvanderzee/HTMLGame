@@ -65,14 +65,16 @@ levels._2_ = {
 	<p> To the south is the entrance to the mech station where your ship was repaired.",
 	b: "Enter Ship",
 	b_go: "_2_a",
-	
 	south: "South",
 	south_go: "_1_",
 }
 
 levels._2_a = {
-	location: "ship",
-	start: "_1_check",
+	prompt: "You enter your ship. Looking around, you see the damaged console \
+			the mechanic was referring to. Unfortunately you still don't have \
+			the map you need.",
+	a: "Leave Ship",
+	a_go: "_2_"
 }
 
 
@@ -105,8 +107,18 @@ levels._3_minigame = {
 
 levels._3_success = {
 	prompt: "You have hacked into the computer and acquire the files you need on a portable drive!",
-
 	north: "North",
-	north_go: "_1_",
+	north_go: "_4_",
+}
+
+levels._4_ = {
+	prompt: "It's getting late and there isn't much left for you to see here.  Might as well get a move on...",
+	a: "Enter Ship",
+	a_go: "_4_a"
+}
+
+levels._4_a = {
+	location: "ship",
+	start: "_1_",
 }
 

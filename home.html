@@ -97,54 +97,6 @@
 					battlemain();
 				}
 				
-				else if (levels[level].condition) {
-					var condition = levels[level].condition;
-					var pass = levels[level].pass;
-					switch (condition) {
-						case "Starmap":
-							if (inventory["Starmap"]){
-								newLevel = level + "_accept";
-								update(newLevel);
-							}
-							
-							else {
-								newLevel = level + "_deny";
-								update(newLevel);
-							}
-							break;	
-						case "map":
-							if (hiddenStats.planet2Base){
-								newLevel = level + "_accept";
-								update(newLevel);
-							}
-							
-							else {
-								newLevel = level + "_deny";
-								update(newLevel);
-							}
-						case "coordinator":
-							switch (true) {
-								case (hiddenStats.coordinator < 10) :
-									newLevel = level + "_a";
-									update(newLevel);
-									break;
-								case (hiddenStats.coordinator < 20) :
-									newLevel = level + "_b";
-									update(newLevel);
-									break;
-								case (hiddenStats.coordinator < 30) :
-									newLevel = level + "_c";
-									update(newLevel);
-									break;
-								case (hiddenStats.coordinator < 40) :
-									newLevel = level + "_d";
-									update(newLevel);
-									break;
-							}
-							hiddenStats.coordinator += 10;
-					}
-				}
-				
 				else {
 					// Set prompt and buttons
 					$("#displayprompt").html(levels[newLevel].prompt);

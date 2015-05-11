@@ -51,34 +51,8 @@ levels._0_a_fail = {
 	prompt: "You've crashed your ship! Gameover"
 }
 
-//}
-
-
-//{ Lines associated with Planet 1
-levels._1_check = {
-	condition: "Starmap",
-	pass: "Starmap"
-	
-}
-
-//}
-
-
-//{ Lines associated with Planet 1
-
-levels._1_deny = {
-	prompt: "You enter your ship. Looking around, you see the damaged console \
-			the mechanic was referring to. Unfortunately you still don't have \
-			the map you need.",
-	
-	a: "Leave Ship",
-	a_go: "_1_a",
-	
-	north_go: "_1_deck",
-	south_go: "_1_cargo"
-}
-
-levels._1_accept = {
+// Lines associated with Planet 1
+levels._1_ = {
 	prompt: "You enter your ship. Looking around, you see the damaged console \
 			the mechanic was referring to. Now that you've acquired the files \
 			you need, you can navigate to the first newly charted planet and \
@@ -87,6 +61,8 @@ levels._1_accept = {
 	a: "Take Off",
 	a_go: "_1_minigame",
 	
+	north: "North",
+	south: "South",
 	north_go: "_1_cockpit",
 	south_go: "_1_cargo"
 }
@@ -95,22 +71,25 @@ levels._1_cockpit = {
 	prompt: "You're in the cockpit of your ship. There isn't much to see here, \
 			your pilot's seat and the controls. Everything seems to be in order,\
 			you should set a course back on the bridge before doing anything though.",
-	south_go: "_1_check"
+	south: "South",
+	south_go: "_1_"
 }
 
 levels._1_cargo = {
 	prompt: "You're in your ships cargo bay. The room is stocked with supplies \
 			for your journey.",
-	north_go: "_1_check"
+	north: "North",
+	north_go: "_1_"
 }
 
-levels._1_a_minigame = {
-	game: "./minigames/flight/flight.html",
+levels._1_minigame = {
+	game: "./minigames/flight/flight2.html",
 	success: "_1_success",
 	fail: "_1_fail",
 }
 
 levels._1_success = {
+	prompt: "You successfully navigated through that astroid belt, good work pilot!",
 	a: "Next",
 	a_go: "_2_"
 }
@@ -119,16 +98,11 @@ levels._1_fail = {
 	prompt: "You crashed your ship! Gameover"
 }
 
-levels._1_a = {
-	location: "planet1",
-	start: "_2_"
-}
-
 //}
 
 //{ Lines associated with Planet 2
 levels._2_ = {
-	prompt: "You arrive in orbit around the first planet. A quick scan reveals \
+	prompt: "You arrive in orbit around the next planet. A quick scan reveals \
 			there is already significant human life on the planet. No surprise,\
 			this is the closest planet, every company would send it's scouts here first.",
 	a: "Next",
@@ -140,23 +114,25 @@ levels._2_a = {
 	prompt: "You figure you should map out the planet before you land.",
 	a: "Stellar Map",
 	a_go: "_2_b",
-	b: "Cargo Bay",
-	b_go: "_2_cargo",
-	c: "Cockpit",
-	c_go: "_2_cockpit",
+	north: "North",
+	north_go: "_2_cockpit",
+	south: "South",
+	south_go: "_2_cargo",
+	
 }
 
 levels._2_cockpit = {
-	prompt: "You're in the cockpit of your ship. Are you ready to fly down to the planet?",
-	a: "Fly",
-	a_go: "_2_minigame_2",
-	
-	south_go: "_2_a"
+	prompt: "You're in the cockpit of your ship. If you fly down to the planet now you'll be going blind, you should map it out first!",
+	a: "Fly Down",
+	a_go: "_2_blind",
+	south: "South",
+	south_go: "_2_a",
 }
 
 levels._2_cargo = {
 	prompt: "You're in your ships cargo bay. The room is stocked with supplies \
 			for your journey.",
+	north: "North",
 	north_go: "_2_a"
 }
 
@@ -166,7 +142,7 @@ levels._2_b = {
 			and build a map for yourself.",
 	a: "Exit",
 	a_go: "_2_a",
-	b: "Activate Minigame",
+	b: "Scan Planet",
 	b_go: "_2_minigame",
 }
 
@@ -182,64 +158,29 @@ levels._2_minigame = {
 levels._2_success = {
 	prompt: "You have constructed a map, and now know where the other explorers\
 			are stationed.",
-	north_go: "_2_b",
+	north: "North",
+	north_go: "_2_c",
 }
 
-levels._2_b = {
+levels._2_c = {
 	prompt: "Now that you have your map, you are fully prepared to land.",
-	a: "Cargo Bay",
-	a_go: "_2_cargo",
-	b: "Cockpit",
-	b_go: "_2_cockpit",
+	a: "Cockpit",
+	a_go: "_2_cockpit_map",
 }
 
-levels._2_minigame_2 = {
-	game: "./minigames/flight/flight.html",
-	success: "_2_flight_success",
-	fail: "_2_flight_fail",
-
+levels._2_cockpit_map = {
+	a: "Fly Down",
+	a_go: "_2_map"
 }
 
-levels._2_flight_success = {
-	condition: "map",
-	pass: "hiddenStats.planet2Base"
-}
-
-levels._2_fail = {
-	prompt: "You crashed your ship! Gameover"
-}
-
-levels._2_deny = {
+levels._2_blind = {
 	location: "planet2",
 	start: "_0_"
 }
 
-levels._2_accept = {
+levels._2_map = {
 	location: "planet2",
 	start: "_1_"
-}
-
-levels._2_c = {
-	prompt: "You enter your ship. Looking around, you see the damaged console \
-	the mechanic was referring to. Unfortunately you still don't have the map you need.",
-	
-	a: "Leave Ship",
-	a_go: "_1_a",
-	
-	north_go: "_2_c_deck",
-	south_go: "_2_c_cargo"
-}
-
-levels._2_c_cockpit = {
-	prompt: "You're in the cockpit of your ship. Without new intel there's nowhere to go.",
-
-	south_go: "_2_c"
-}
-
-levels._2_c_cargo = {
-	prompt: "You're in your ships cargo bay. The room is stocked with supplies\
-			for your journey.",
-	north_go: "_2_c"
 }
 
 //}
