@@ -11,6 +11,10 @@
 
 body {
     margin: 0;
+    background: -webkit-linear-gradient(#101128, #196BA4, #20B4A8); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#101128, #196BA4, #20B4A8); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#101128, #196BA4, #20B4A8); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#101128, #196BA4, #20B4A8); /* Standard syntax */
 }
 
 body, html {
@@ -101,8 +105,6 @@ Main {
 	margin-top: 5px;
 }
 
-
-
 button{
     display: inline-block;
 	width: 20%;
@@ -187,7 +189,7 @@ button{
 	display: none;
 }
 
-/*new stuff starts here so yeah i just want everyone to see where it starts so yeah man*/
+/*new*/
 #layoutLeftgame {
 	float: left;
 	position: relative;
@@ -212,11 +214,61 @@ button{
 	position:relative;
 }
 
-#enemy-pic.Grunt{background:url(../minigames/BattleGame/images/grunt.png) no-repeat 50% 0;background-size:auto 100%;}
-#enemy-pic.Bandit{background:url(../minigames/BattleGame/images/bandit.png) no-repeat 50% 0;background-size:auto 100%;}
-#enemy-pic.Assassin{background:url(../minigames/BattleGame/images/assassin.png) no-repeat 50% 0;background-size:auto 100%;}
-#enemy-pic.Eldar{background:url(../minigames/BattleGame/images/eldar.png) no-repeat 50% 0;background-size:auto 100%;}
+#attack-animation{
+	width: 50%;
+	height: 70%;
+	margin:auto auto;
+	background:none;
+	background-size:100% 100%;
+	position:relative;
+}
 
+#attack-animation.Attack{
+	background:url(../minigames/BattleGame/images/slash.gif) no-repeat 50% 0;
+	background-size:auto 100%;
+}
+#attack-animation.Missile{
+	background:url(../minigames/BattleGame/images/Missile.gif) no-repeat 50% 0;
+	background-size:auto 100%;
+}
+#attack-animation.Healing{
+	background:url(../minigames/BattleGame/images/healing.gif) no-repeat 50% 0;
+	background-size:auto 100%;
+}
+
+
+#enemy-pic.Grunt{
+	background:url(../minigames/BattleGame/images/grunt.png) no-repeat 50% 0;
+	background-size:auto 100%;
+}
+#attack-animation.Grunt{
+	background:url(../minigames/BattleGame/images/gatk.png) no-repeat 50% 0;
+	background-size:auto 100%;
+}
+#enemy-pic.Bandit{
+	background:url(../minigames/BattleGame/images/bandit.png) no-repeat 50% 0;
+	background-size:auto 100%;
+}
+#attack-animation.Bandit{
+	background:url(../minigames/BattleGame/images/batk.png) no-repeat 50% 0;
+	background-size:auto 100%;
+}
+#enemy-pic.Assassin{
+	background:url(../minigames/BattleGame/images/assassin.png) no-repeat 50% 0;
+	background-size:auto 100%;
+}
+#attack-animation.Assassin{
+	background:url(../minigames/BattleGame/images/assatk.png) no-repeat 50% 0;
+	background-size:auto 100%;
+}
+#enemy-pic.Eldar{
+	background:url(../minigames/BattleGame/images/eldar.png) no-repeat 50% 0;
+	background-size:auto 100%;
+}
+#attack-animation.Eldar{
+	background:url(../minigames/BattleGame/images/blood.png) no-repeat 50% 0;
+	background-size:auto 100%;
+}
 
 #header-area{
 	width: 100%;

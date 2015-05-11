@@ -107,6 +107,12 @@ function EquipStats(stat){
 
 //controls the monster attacks and the case of a dead monster/player
 function MonsterAttack(){
+	setTimeout(function() {
+		$('#attack-animation').removeClass().addClass(Monster.Name);
+	}, 500)
+	setTimeout(function() {
+		$('#attack-animation').removeClass();
+	}, 1000)
 	if (Monster.HP<=0){
 		$('#enemy-actions').html("You have killed the "+Monster.Name+"! You gain "+
 		Monster.XP+" xp!");
@@ -141,19 +147,25 @@ function MonsterAttack(){
 				Monster.HP-=Monster.Strength/2;
 			}
 		}
-	}displayStats();
+		displayStats();
+	}
 }
 
 //will go back to the story once you have finished your fight
 $('#exit').click(function(){
-	$('#layoutLeftgame').css("display","none");
-	$('#layoutLeft').css("display","block");
-	$('#movementButtons').show();
-	$('#invStatToggle').show();
-	if (levels[level].reward) {
-		levels[level].reward();
+	var current_window = window.location.hash.substr(1);;
+	if (current_window == "battle"){
+		battlemain();
+	}else{
+		$('#layoutLeftgame').css("display","none");
+		$('#layoutLeft').css("display","block");
+		$('#movementButtons').show();
+		$('#invStatToggle').show();
+		if (levels[level].reward) {
+			levels[level].reward();
+		}
+		update(levels[level].success);
 	}
-	update(levels[level].success);
 });
 
 $('#Restart').click(function(){
@@ -162,6 +174,7 @@ $('#Restart').click(function(){
 	Stats.MP=Stats.MaxMP;
 	UpdateDisplay();
 	battlemain();
+	$('#background').css("background","");
 	$('#player-actions').html("Time stops rewinding and you are once again \
 			faced with the "+Monster.Name+". It does not seem to have any \
 			clue of what just happened.");
@@ -182,6 +195,9 @@ $('#Heal').click(function(){
 			PlusStat("HP",healing);
 			MinusStat("MP",mana);
 			$('#player-actions').html("You heal "+healing+" health"+iscrit);
+			var attacksound = new Audio("minigames/BattleGame/images/heal.mp3");
+			attacksound.play();
+			$('#attack-animation').removeClass().addClass("Healing");
 		}else{
 			$('#player-actions').html("Your spell fizzles unexpectedly.");
 			//chance that your spell backfires :( 1/1000 chance of happening
@@ -208,6 +224,9 @@ $('#Attack').click(function(){
 		Monster.HP-=damage;
 		$('#player-actions').html("You deal "+damage+" damage to the "+
 				Monster.Name+iscrit);
+		var attacksound = new Audio("minigames/BattleGame/images/attack.wav");
+		attacksound.play();
+		$('#attack-animation').removeClass().addClass("Attack");
 	}else{
 		$('#player-actions').html("You clumsily attack the "+Monster.Name+
 				" and it easily sidesteps, taunting you while it's at it.");
@@ -235,6 +254,9 @@ $('#MagicMissile').click(function(){
 			MinusStat("MP",mana);
 			$('#player-actions').html("You deal "+damage+" to the "+
 									  Monster.Name+iscrit);
+			var attacksound = new Audio("minigames/BattleGame/images/missile.wav");
+			attacksound.play();
+			$('#attack-animation').removeClass().addClass("Missile");
 		}else{
 			$('#player-actions').html("Your spell fizzles unexpectedly.");
 			if (Math.random()<.01){
@@ -276,4 +298,15 @@ $('#Run').click(function(){
 	}
 });
 
-
+$(window).on("load",function(){
+	var current_window = window.location.hash.substr(1);;
+	if (current_window == "battle"){
+		$("#statMenu").css("height", "92%");
+		$('#invStatToggle').show();
+		$('#invStatToggle').html("Return to Arcade");
+		goback=function(){
+			window.location="./index.html";
+		}
+		$('#invStatToggle').attr("onclick","goback()");
+	}
+});

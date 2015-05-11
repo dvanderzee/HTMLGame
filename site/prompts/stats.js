@@ -112,6 +112,8 @@ function MinusStat(stat,amount){
 			Monster.Name+"'s attack hit its mark. Your world goes dark.");
 			$('#enemy-actions').html("You suddenly feel the world returning,\
 				but it's flowing backwards. Time is reverting!");
+			$('#enemy-pic').removeClass();
+			$('#background').css("background","black");
 			$('#Heal').hide();
 			$('#Attack').hide();
 			$('#MagicMissile').hide();
